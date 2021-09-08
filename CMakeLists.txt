@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.17)
+project(cpuStats)
+
+set(CMAKE_CXX_STANDARD 17)
+find_library(IOKIT_LIBRARY IOKit)
+find_library(FOUNDATION_LIBRARY CoreFoundation)
+mark_as_advanced(IOKIT_LIBRARY)
+set(EXTRA_LIBS ${IOKIT_LIBRARY}, ${FOUNDATION_LIBRARY})
+add_executable(${PROJECT_NAME} main.cpp controller/cpu_controller.h controller/cpu_controller.cpp controller/smc.cpp controller/smc.h controller/generic_device.cpp controller/generic_device.h controller/cpu_device.cpp controller/cpu_device.h controller/Utils/utilsConverter.h)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${IOKIT_LIBRARY})
