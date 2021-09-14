@@ -8,16 +8,17 @@ public:
     inline static UInt32 strToUl(const char* str, int size, int base);
     inline static void ulToStr(char* str, UInt32 val);
     inline static float fltToFloat(const unsigned char *str);
-    inline static void floatToFlt(float str, SMCBytes_t& returnBuffer);
+    inline static void floatToFlt(const float& str, SMCBytes_t& returnBuffer);
     inline static int  ui16ToInteger(const unsigned char* str);
+    inline static int si16ToInteger(const char* str);
     inline static int sp78ToInteger(const SMCBytes_t bytes);
     inline static int fpe2ToInteger(const SMCBytes_t bytes);
     inline static int ui32ToInteger(const SMCBytes_t bytes);
     inline static double convertToFahrenheit(const double& celsius);
-    template<typename convertedType, typename typeToConvert, size_t size>
-    union template_union{
-        convertedType value;
-        typeToConvert buffer[size];
+    template<typename Type_1, typename Type_2, size_t size>
+    union template_union {
+        Type_1 value;
+        Type_2 buffer[size];
     };
 
 };
@@ -52,10 +53,9 @@ float Converter::fltToFloat(const unsigned char *str) {
 }
 
 int Converter::ui16ToInteger(const unsigned char *str) {
-    template_union<int, char, 2> integerType;
-    integerType.buffer[0] = str[0];
-    integerType.buffer[1] = str[1];
-    return abs(integerType.value);
+//    template_union<uint16_t , char, 2> shortType;
+//    memmove(shortType.buffer, str, 2);
+    return (str[0] * 256 + (unsigned char)str[1]);
 }
 
 int Converter::sp78ToInteger(const char *bytes) {
@@ -87,16 +87,16 @@ double Converter::convertToFahrenheit(const double &celsius) {
     return (celsius * (9.0 / 5.0)) + 32.0;
 }
 
-void Converter::floatToFlt(float str, SMCBytes_t& returnBuffer) {
+void Converter::floatToFlt(const float& str, SMCBytes_t& fltBuffer) {
     template_union<float, unsigned char, 32> x;
     memset(&x.buffer, 0, 32);
-    \
     x.value = str;
-    std::cout<<"x.buffer: "<<x.buffer<<std::endl;
-    memcpy(returnBuffer,(signed char *)x.buffer, 32);
-
-    std::cout<<"returnBuffer: "<<returnBuffer<<std::endl;
+    memcpy(fltBuffer,(signed char *)x.buffer, 32);
 }
 
+int Converter::si16ToInteger(const char *str) {
+    return (str[0] * 256 + (unsigned char) str[1]);
+
+}
 
 #endif //CPUSTATS_UTILSCONVERTER_H
