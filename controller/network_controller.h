@@ -11,27 +11,37 @@
 //#include "Utils/transmitionspeed.h"
 #include "network_speed.h"
 #include "generic_class.h"
+#include <condition_variable>
+
+template<typename T>
+struct ValueContainer {
+    std::mutex mtx;
+    T value;
+};
 
 class NetworkController : public GenericClass {
     typedef char IPv4[INET_ADDRSTRLEN];
     typedef char IPv6[INET6_ADDRSTRLEN];
 private:
-    IPv4 wifiIP;
-    IPv6 addressIPv6;
-    std::string wifiMACAddress;
-    std::string wifiSSID;
-    ConnectionStats connectionSpeed;
+    ValueContainer<IPv4> wifiIP;
+    ValueContainer<IPv6> addressIPv6;
+    ValueContainer<std::string> wifiMACAddress;
+    ValueContainer<std::string> wifiSSID;
+    ValueContainer<ConnectionStats> connectionSpeed;
+
     void retrieveWifiInformation();
     void testConnectionSpeed();
     void setConnectionStats();
     void retrieveSSID();
+    mutable std::condition_variable cv;
+
 public:
     NetworkController();
     const char* getWifiIP() const;
-    const char* getAddresIPv6() const;
+    const char* getAddressIPv6() const;
     std::string getWifiMacAddress() const;
     std::string getWifiSSID() const;
-    ConnectionStats getConnectionSpeed();
+    ConnectionStats getConnectionSpeed() const;
 
 };
 
