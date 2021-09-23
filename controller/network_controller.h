@@ -15,7 +15,7 @@
 
 template<typename T>
 struct ValueContainer {
-    std::mutex mtx;
+    mutable std::mutex mtx;
     T value;
 };
 

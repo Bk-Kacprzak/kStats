@@ -29,54 +29,65 @@ NetworkController::NetworkController() {
 }
 
 void NetworkController::retrieveWifiInformation() {
-    memset(addressIPv6.value, 0, sizeof(addressIPv6.value));
+    std::lock(wifiIP.mtx,addressIPv6.mtx,wifiMACAddress.mtx);
     memset(wifiIP.value, 0, sizeof(wifiIP.value));
+    wifiIP.mtx.unlock();
+    memset(addressIPv6.value, 0, sizeof(addressIPv6.value));
+    addressIPv6.mtx.unlock();
     wifiMACAddress.value.clear();
+    wifiMACAddress.mtx.unlock();
 
     ifaddrs * ifAddr = nullptr;
     ifaddrs * currentAddr = nullptr;
     void * tempAddrPtr = nullptr;
     getifaddrs(&ifAddr);
 
+    IPv4 inet_addr;
+    IPv6 inet6_addr;
+    std::string mac_addr;
+
     for (currentAddr = ifAddr; currentAddr != nullptr; currentAddr = currentAddr->ifa_next) {
         //IPv4
         if (currentAddr->ifa_addr->sa_family == AF_INET) {
             tempAddrPtr=&((struct sockaddr_in *)currentAddr->ifa_addr)->sin_addr;
-            IPv4 addressBuffer;
-            inet_ntop(AF_INET, tempAddrPtr, addressBuffer, INET_ADDRSTRLEN);
-            if(strncmp(addressBuffer,"127",3) != 0) {
-                //lock!
-                memmove(wifiIP.value, addressBuffer, INET_ADDRSTRLEN);
+            inet_ntop(AF_INET, tempAddrPtr, inet_addr, INET_ADDRSTRLEN);
+            if(strncmp(inet_addr,"127",3) != 0) {
+                std::lock_guard<std::mutex> lock(wifiIP.mtx);
+                memmove(wifiIP.value, inet_addr, INET_ADDRSTRLEN);
             }
         }
         //IPv6
         else if (currentAddr->ifa_addr->sa_family == AF_INET6) {
-            //lock!
-            if(strlen(addressIPv6.value) > 0)
+            if(strlen(inet6_addr) > 0)
                 continue;
 
             tempAddrPtr = &((struct sockaddr_in6*)currentAddr->ifa_addr)->sin6_addr;
-            inet_ntop(AF_INET6, tempAddrPtr, addressIPv6.value, INET6_ADDRSTRLEN);
-            std::string temp_addr = addressIPv6.value;
+
+            inet_ntop(AF_INET6, tempAddrPtr, inet6_addr, INET6_ADDRSTRLEN);
+            std::string temp_addr = inet6_addr;
             int contains_ipv6_address = temp_addr.find("fd88:");
-            if(contains_ipv6_address==std::string::npos)
-                memset(addressIPv6.value, 0, sizeof(addressIPv6.value));
+            if(contains_ipv6_address!=std::string::npos) {
+                std::lock_guard<std::mutex> lock(addressIPv6.mtx);
+                memmove(addressIPv6.value, inet6_addr, INET6_ADDRSTRLEN);
+            }
+            else
+                memset(inet6_addr, 0, sizeof(inet6_addr));
         }
 
         //Link layer interface
         else if (currentAddr->ifa_addr->sa_family == AF_LINK) {
-            std::lock_guard<std::mutex> lock(controller_mutex);
-            if(!wifiMACAddress.value.empty())
+            if(!mac_addr.empty())
                 continue;
-            wifiMACAddress.value = link_ntoa((struct sockaddr_dl*)currentAddr->ifa_addr);
-            int contains_mac_address = wifiMACAddress.value.find("en0:");
+            mac_addr = link_ntoa((struct sockaddr_dl*)currentAddr->ifa_addr);
+            int contains_mac_address = mac_addr.find("en0:");
 
             if(contains_mac_address==std::string::npos)
-                wifiMACAddress.value.clear();
+                mac_addr.clear();
             else {
-                wifiMACAddress.value.erase(wifiMACAddress.value.begin(), wifiMACAddress.value.begin() + 4);
+                mac_addr.erase(mac_addr.begin(), mac_addr.begin() + 4);
+                std::lock_guard<std::mutex> lock(wifiMACAddress.mtx);
+                wifiMACAddress.value = std::move(mac_addr);
             }
-
         }
     }
 
@@ -104,23 +115,25 @@ void NetworkController::retrieveSSID() {
     if(!pipe)
         throw std::runtime_error("popen() failed!\n");
 
+    std::string ssid;
     while(!feof(pipe.get())) {
         if(fgets(buffer,128, pipe.get())) {
-            std::lock_guard<std::mutex> lock(controller_mutex);
-            wifiSSID.value = buffer;
+//            std::lock_guard<std::mutex> lock(wifiSSID.mtx);
+            ssid = buffer;
             break; //to check
         }
     }
-    if(wifiSSID.value.empty())
+    if(ssid.empty())
         std::cout<<"Wifi connection not found. \n";
     else {
-        std::lock_guard<std::mutex> lock(controller_mutex);
-        wifiSSID.value = wifiSSID.value.replace(0, wifiSSID.value.find(":") + 2, "");
+        ssid = ssid.replace(0, ssid.find(":") + 2, "");
+        std::lock_guard<std::mutex> lock(wifiSSID.mtx);
+        wifiSSID.value = std::move(ssid);
     }
 }
 
 const char *NetworkController::getAddressIPv6() const {
-    std::unique_lock<std::mutex> lock(controller_mutex);
+    std::unique_lock<std::mutex> lock(addressIPv6.mtx);
     cv.wait(lock,[this] {
         return strlen(addressIPv6.value) > 0;
     });
@@ -128,7 +141,7 @@ const char *NetworkController::getAddressIPv6() const {
 }
 
 std::string NetworkController::getWifiMacAddress() const {
-    std::unique_lock<std::mutex> lock(controller_mutex);
+    std::unique_lock<std::mutex> lock(wifiMACAddress.mtx);
     cv.wait(lock,[this] {
         return !wifiMACAddress.value.empty();
     });
@@ -136,7 +149,7 @@ std::string NetworkController::getWifiMacAddress() const {
 }
 
 std::string NetworkController::getWifiSSID() const {
-    std::unique_lock<std::mutex> lock(controller_mutex);
+    std::unique_lock<std::mutex> lock(wifiSSID.mtx);
     cv.wait(lock,[this] {
         return !wifiSSID.value.empty();
     });
@@ -144,7 +157,7 @@ std::string NetworkController::getWifiSSID() const {
 }
 
 ConnectionStats NetworkController::getConnectionSpeed() const {
-    std::unique_lock<std::mutex> lock(controller_mutex);
+    std::unique_lock<std::mutex> lock(connectionSpeed.mtx);
     cv.wait(lock,[this] {
         return connectionSpeed.value.latency != -1;
     });
@@ -152,11 +165,9 @@ ConnectionStats NetworkController::getConnectionSpeed() const {
 }
 
 const char *NetworkController::getWifiIP() const {
-    std::unique_lock<std::mutex> lock(controller_mutex);
+    std::unique_lock<std::mutex> lock(wifiIP.mtx);
     cv.wait(lock,[this] {
         return strlen(wifiIP.value) > 0;
     });
     return wifiIP.value;
 }
-
-
