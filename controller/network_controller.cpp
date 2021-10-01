@@ -1,50 +1,40 @@
 #include <iostream> //to delete
 #include "network_controller.h"
 
+#define CHAR_SIZE(_PTR)  (strlen(_PTR) + 1)
+
 NetworkController::NetworkController() {
     memset(addressIPv6.value, 0, sizeof(addressIPv6.value));
     memset(wifiIP.value, 0, sizeof(wifiIP.value));
     wifiMACAddress.value.clear();
     wifiSSID.value.clear();
-
-
-    threadPool.push([this] {
-        retrieveSSID();
+    threadPool.push([&] {
         retrieveWifiInformation();
+        std::cout<<"Wifi IP Address: " <<getWifiIP() << std::endl;
+        std::cout<<"IPv6 Address: " << getAddressIPv6()<<std::endl;
+        std::cout << "Wi-Fi MAC Address: " << getWifiMacAddress() << std::endl;
     });
-    retrieveWifiInformation();
-    retrieveSSID();
+    threadPool.push([&] {
+        retrieveSSID();
+        std::cout<<"Wifi SSID: " <<getWifiSSID()<<std::endl;
 
-
-    std::cout<<"Wifi SSID: " <<wifiSSID.value;
-    std::cout<<"Wifi IP Address: " << wifiIP.value << std::endl;
-    if(strlen(addressIPv6.value) == 0)
-        std::cout<< "Unknown IPv6 address. \n";
-    else
-        std::cout<<"IPv6 Address: " <<addressIPv6.value<<std::endl;
-
-    std::cout << "Wi-Fi MAC Address: " << wifiMACAddress.value << std::endl;
-    setConnectionStats();
-
+    });
+    threadPool.push([&] {
+        setConnectionStats();
+    });
 }
 
 void NetworkController::retrieveWifiInformation() {
-    std::lock(wifiIP.mtx,addressIPv6.mtx,wifiMACAddress.mtx);
-    memset(wifiIP.value, 0, sizeof(wifiIP.value));
-    wifiIP.mtx.unlock();
-    memset(addressIPv6.value, 0, sizeof(addressIPv6.value));
-    addressIPv6.mtx.unlock();
-    wifiMACAddress.value.clear();
-    wifiMACAddress.mtx.unlock();
+    IPv4 inet_addr;
+    IPv6 inet6_addr;
+    std::string mac_addr;
+    memset(inet_addr, 0, sizeof(inet_addr));
+    memset(inet6_addr, 0, sizeof(inet6_addr));
 
     ifaddrs * ifAddr = nullptr;
     ifaddrs * currentAddr = nullptr;
     void * tempAddrPtr = nullptr;
     getifaddrs(&ifAddr);
-
-    IPv4 inet_addr;
-    IPv6 inet6_addr;
-    std::string mac_addr;
 
     for (currentAddr = ifAddr; currentAddr != nullptr; currentAddr = currentAddr->ifa_next) {
         //IPv4
@@ -90,6 +80,20 @@ void NetworkController::retrieveWifiInformation() {
             }
         }
     }
+
+    if(strlen(addressIPv6.value) == 0)  {
+        const char *message = "Unknown IPv6 address";
+        memmove(addressIPv6.value, message, CHAR_SIZE(message));
+    }
+    if(strlen(wifiIP.value) == 0)  {
+        const char *message = "Unknown IP address";
+        memmove(wifiIP.value, message, CHAR_SIZE(message));
+    }
+    if(wifiMACAddress.value.empty())  {
+        const char* message = "Unknown MAC address";
+        memmove(addressIPv6.value, message, CHAR_SIZE(message));
+    }
+
 
     if (ifAddr) {
         freeifaddrs(currentAddr);
@@ -140,7 +144,7 @@ const char *NetworkController::getAddressIPv6() const {
     return addressIPv6.value;
 }
 
-std::string NetworkController::getWifiMacAddress() const {
+const std::string& NetworkController::getWifiMacAddress() const {
     std::unique_lock<std::mutex> lock(wifiMACAddress.mtx);
     cv.wait(lock,[this] {
         return !wifiMACAddress.value.empty();
@@ -148,7 +152,7 @@ std::string NetworkController::getWifiMacAddress() const {
     return wifiMACAddress.value;
 }
 
-std::string NetworkController::getWifiSSID() const {
+const std::string& NetworkController::getWifiSSID() const {
     std::unique_lock<std::mutex> lock(wifiSSID.mtx);
     cv.wait(lock,[this] {
         return !wifiSSID.value.empty();
