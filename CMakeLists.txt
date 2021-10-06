@@ -10,6 +10,7 @@ find_library(FOUNDATION_LIBRARY Foundation)
 find_library(CORE_FOUNDATION CoreFoundation)
 find_library(BLUETOOTH_LIBRARY IOBluetooth)
 find_library(APPKIT_LIBRARY AppKit)
+find_library(METAL_LIBRARY Metal)
 
 
 
@@ -30,5 +31,5 @@ set(BLUETOOTH_LIBS ${BLUETOOTH_LIBRARY})
 set(FOUNDATION_LIBS ${FOUNDATION_LIBRARY})
 set(CORE_LIBS ${CORE_FOUNDATION})
 
-add_executable(${PROJECT_NAME} main.mm controller/smc.cpp controller/smc.h controller/generic_device.cpp controller/generic_device.h controller/cpu_device.cpp controller/cpu_device.h controller/Utils/utilsConverter.h controller/Utils/keys.h controller/Utils/utils.h controller/Utils/threadPool.cpp controller/Utils/threadPool.h controller/fan_controller.cpp controller/fan_controller.h controller/battery_controller.cpp controller/battery_controller.h controller/network_controller.cpp controller/network_controller.h  controller/generic_class.h controller/generic_class.cpp controller/network_speed.cpp controller/network_speed.h controller/peripherals_controller.mm controller/peripherals_controller.h controller/generic_peripheral.mm controller/generic_peripheral.h controller/volume_storage_controller.mm controller/volume_storage_controller.h)
-target_link_libraries(${PROJECT_NAME} PRIVATE ${EXTRA_LIBS} ${EXPAT_LIBRARIES} ${CURL_LIBRARIES} ${BLUETOOTH_LIBS} ${FOUNDATION_LIBS} ${CORE_LIBS} ${APPKIT_LIBRARY})
+add_executable(${PROJECT_NAME} main.mm controller/smc.cpp controller/smc.h controller/Generic/generic_device.cpp controller/Generic/generic_device.h controller/CPU/cpu_device.cpp controller/CPU/cpu_device.h controller/Utils/utilsConverter.h controller/Utils/keys.h controller/Utils/utils.h controller/Utils/threadPool.cpp controller/Utils/threadPool.h controller/Fan/fan_controller.cpp controller/Fan/fan_controller.h controller/Battery/battery_controller.cpp controller/Battery/battery_controller.h controller/Network/network_controller.cpp controller/Network/network_controller.h controller/Generic/generic_class.h controller/Generic/generic_class.cpp controller/Network/network_speed.cpp controller/Network/network_speed.h controller/Peripherals/peripherals_controller.mm controller/Peripherals/peripherals_controller.h controller/Peripherals/generic_peripheral.mm controller/Peripherals/generic_peripheral.h controller/Peripherals/volume_storage_controller.mm controller/Peripherals/volume_storage_controller.h controller/kStat_controller.mm controller/kStat_controller.h controller/Peripherals/iokit_libraries.h controller/GPU/gpu_device.mm controller/GPU/gpu_device.h)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${EXTRA_LIBS} ${EXPAT_LIBRARIES} ${CURL_LIBRARIES} ${BLUETOOTH_LIBS} ${FOUNDATION_LIBS} ${CORE_LIBS} ${APPKIT_LIBRARY} ${METAL_LIBRARY})
