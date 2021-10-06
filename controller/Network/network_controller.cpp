@@ -19,9 +19,9 @@ NetworkController::NetworkController() {
         std::cout<<"Wifi SSID: " <<getWifiSSID()<<std::endl;
 
     });
-    threadPool.push([&] {
-        setConnectionStats();
-    });
+//    threadPool.push([&] {
+//        setConnectionStats();
+//    });
 }
 
 void NetworkController::retrieveWifiInformation() {
@@ -98,7 +98,9 @@ void NetworkController::retrieveWifiInformation() {
     if (ifAddr) {
         freeifaddrs(currentAddr);
         freeifaddrs(ifAddr);
-        currentAddr, ifAddr, tempAddrPtr = nullptr;
+        currentAddr = nullptr;
+        ifAddr = nullptr;
+        tempAddrPtr = nullptr;
     }
 }
 

@@ -1,11 +1,6 @@
 #ifndef CPUSTATS_UTILS_H
 #define CPUSTATS_UTILS_H
-
-class Utils {
-public:
-
-};
-
+#include <iostream>
 
 //timing benchmark
 

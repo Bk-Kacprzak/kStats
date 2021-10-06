@@ -44,6 +44,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/Library/Frameworks/Mono.framework/Headers"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
@@ -65,6 +66,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/Library/Frameworks/Mono.framework/Headers"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/12.0.5/include"/>
@@ -80,25 +82,94 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Battery/battery_controller.cpp">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Battery/battery_controller.h">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/CPU/cpu_device.cpp">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/CPU/cpu_device.h">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Fan/fan_controller.cpp">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Fan/fan_controller.h">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/GPU/gpu_device.h">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/GPU/gpu_device.mm">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Generic/generic_class.cpp">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Generic/generic_class.h">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Generic/generic_device.cpp">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Generic/generic_device.h">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Network/network_controller.cpp">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Network/network_controller.h">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Network/network_speed.cpp">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Network/network_speed.h">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Peripherals/generic_peripheral.h">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Peripherals/generic_peripheral.mm">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Peripherals/iokit_libraries.h">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Peripherals/peripherals_controller.h">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Peripherals/peripherals_controller.mm">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Peripherals/volume_storage_controller.h">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Peripherals/volume_storage_controller.mm">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Utils/keys.h">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Utils/threadPool.cpp">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Utils/threadPool.h">
+			<Option target="cpuStats"/>
+		</Unit>
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Utils/utils.h">
+			<Option target="cpuStats"/>
+		</Unit>
 		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Utils/utilsConverter.h">
 			<Option target="cpuStats"/>
 		</Unit>
-		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/cpu_controller.cpp">
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/kStat_controller.h">
 			<Option target="cpuStats"/>
 		</Unit>
-		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/cpu_controller.h">
-			<Option target="cpuStats"/>
-		</Unit>
-		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/cpu_device.cpp">
-			<Option target="cpuStats"/>
-		</Unit>
-		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/cpu_device.h">
-			<Option target="cpuStats"/>
-		</Unit>
-		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/generic_device.cpp">
-			<Option target="cpuStats"/>
-		</Unit>
-		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/generic_device.h">
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/kStat_controller.mm">
 			<Option target="cpuStats"/>
 		</Unit>
 		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/smc.cpp">
@@ -107,7 +178,7 @@
 		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/smc.h">
 			<Option target="cpuStats"/>
 		</Unit>
-		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/main.cpp">
+		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/main.mm">
 			<Option target="cpuStats"/>
 		</Unit>
 		<Unit filename="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/CMakeLists.txt">

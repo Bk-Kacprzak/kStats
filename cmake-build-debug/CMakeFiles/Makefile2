@@ -94,12 +94,12 @@ clean: CMakeFiles/cpuStats.dir/clean
 CMakeFiles/cpuStats.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target cpuStats"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 "Built target cpuStats"
 .PHONY : CMakeFiles/cpuStats.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/cpuStats.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles 16
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/cpuStats.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/cpuStats.dir/rule

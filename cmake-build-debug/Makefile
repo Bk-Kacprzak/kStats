@@ -143,86 +143,356 @@ cpuStats/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/build
 .PHONY : cpuStats/fast
 
-controller/cpu_controller.o: controller/cpu_controller.cpp.o
+controller/Battery/battery_controller.o: controller/Battery/battery_controller.cpp.o
 
-.PHONY : controller/cpu_controller.o
-
-# target to build an object file
-controller/cpu_controller.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/cpu_controller.cpp.o
-.PHONY : controller/cpu_controller.cpp.o
-
-controller/cpu_controller.i: controller/cpu_controller.cpp.i
-
-.PHONY : controller/cpu_controller.i
-
-# target to preprocess a source file
-controller/cpu_controller.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/cpu_controller.cpp.i
-.PHONY : controller/cpu_controller.cpp.i
-
-controller/cpu_controller.s: controller/cpu_controller.cpp.s
-
-.PHONY : controller/cpu_controller.s
-
-# target to generate assembly for a file
-controller/cpu_controller.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/cpu_controller.cpp.s
-.PHONY : controller/cpu_controller.cpp.s
-
-controller/cpu_device.o: controller/cpu_device.cpp.o
-
-.PHONY : controller/cpu_device.o
+.PHONY : controller/Battery/battery_controller.o
 
 # target to build an object file
-controller/cpu_device.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/cpu_device.cpp.o
-.PHONY : controller/cpu_device.cpp.o
+controller/Battery/battery_controller.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Battery/battery_controller.cpp.o
+.PHONY : controller/Battery/battery_controller.cpp.o
 
-controller/cpu_device.i: controller/cpu_device.cpp.i
+controller/Battery/battery_controller.i: controller/Battery/battery_controller.cpp.i
 
-.PHONY : controller/cpu_device.i
+.PHONY : controller/Battery/battery_controller.i
 
 # target to preprocess a source file
-controller/cpu_device.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/cpu_device.cpp.i
-.PHONY : controller/cpu_device.cpp.i
+controller/Battery/battery_controller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Battery/battery_controller.cpp.i
+.PHONY : controller/Battery/battery_controller.cpp.i
 
-controller/cpu_device.s: controller/cpu_device.cpp.s
+controller/Battery/battery_controller.s: controller/Battery/battery_controller.cpp.s
 
-.PHONY : controller/cpu_device.s
+.PHONY : controller/Battery/battery_controller.s
 
 # target to generate assembly for a file
-controller/cpu_device.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/cpu_device.cpp.s
-.PHONY : controller/cpu_device.cpp.s
+controller/Battery/battery_controller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Battery/battery_controller.cpp.s
+.PHONY : controller/Battery/battery_controller.cpp.s
 
-controller/generic_device.o: controller/generic_device.cpp.o
+controller/CPU/cpu_device.o: controller/CPU/cpu_device.cpp.o
 
-.PHONY : controller/generic_device.o
+.PHONY : controller/CPU/cpu_device.o
 
 # target to build an object file
-controller/generic_device.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/generic_device.cpp.o
-.PHONY : controller/generic_device.cpp.o
+controller/CPU/cpu_device.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/CPU/cpu_device.cpp.o
+.PHONY : controller/CPU/cpu_device.cpp.o
 
-controller/generic_device.i: controller/generic_device.cpp.i
+controller/CPU/cpu_device.i: controller/CPU/cpu_device.cpp.i
 
-.PHONY : controller/generic_device.i
+.PHONY : controller/CPU/cpu_device.i
 
 # target to preprocess a source file
-controller/generic_device.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/generic_device.cpp.i
-.PHONY : controller/generic_device.cpp.i
+controller/CPU/cpu_device.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/CPU/cpu_device.cpp.i
+.PHONY : controller/CPU/cpu_device.cpp.i
 
-controller/generic_device.s: controller/generic_device.cpp.s
+controller/CPU/cpu_device.s: controller/CPU/cpu_device.cpp.s
 
-.PHONY : controller/generic_device.s
+.PHONY : controller/CPU/cpu_device.s
 
 # target to generate assembly for a file
-controller/generic_device.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/generic_device.cpp.s
-.PHONY : controller/generic_device.cpp.s
+controller/CPU/cpu_device.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/CPU/cpu_device.cpp.s
+.PHONY : controller/CPU/cpu_device.cpp.s
+
+controller/Fan/fan_controller.o: controller/Fan/fan_controller.cpp.o
+
+.PHONY : controller/Fan/fan_controller.o
+
+# target to build an object file
+controller/Fan/fan_controller.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Fan/fan_controller.cpp.o
+.PHONY : controller/Fan/fan_controller.cpp.o
+
+controller/Fan/fan_controller.i: controller/Fan/fan_controller.cpp.i
+
+.PHONY : controller/Fan/fan_controller.i
+
+# target to preprocess a source file
+controller/Fan/fan_controller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Fan/fan_controller.cpp.i
+.PHONY : controller/Fan/fan_controller.cpp.i
+
+controller/Fan/fan_controller.s: controller/Fan/fan_controller.cpp.s
+
+.PHONY : controller/Fan/fan_controller.s
+
+# target to generate assembly for a file
+controller/Fan/fan_controller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Fan/fan_controller.cpp.s
+.PHONY : controller/Fan/fan_controller.cpp.s
+
+controller/GPU/gpu_device.o: controller/GPU/gpu_device.mm.o
+
+.PHONY : controller/GPU/gpu_device.o
+
+# target to build an object file
+controller/GPU/gpu_device.mm.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/GPU/gpu_device.mm.o
+.PHONY : controller/GPU/gpu_device.mm.o
+
+controller/GPU/gpu_device.i: controller/GPU/gpu_device.mm.i
+
+.PHONY : controller/GPU/gpu_device.i
+
+# target to preprocess a source file
+controller/GPU/gpu_device.mm.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/GPU/gpu_device.mm.i
+.PHONY : controller/GPU/gpu_device.mm.i
+
+controller/GPU/gpu_device.s: controller/GPU/gpu_device.mm.s
+
+.PHONY : controller/GPU/gpu_device.s
+
+# target to generate assembly for a file
+controller/GPU/gpu_device.mm.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/GPU/gpu_device.mm.s
+.PHONY : controller/GPU/gpu_device.mm.s
+
+controller/Generic/generic_class.o: controller/Generic/generic_class.cpp.o
+
+.PHONY : controller/Generic/generic_class.o
+
+# target to build an object file
+controller/Generic/generic_class.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Generic/generic_class.cpp.o
+.PHONY : controller/Generic/generic_class.cpp.o
+
+controller/Generic/generic_class.i: controller/Generic/generic_class.cpp.i
+
+.PHONY : controller/Generic/generic_class.i
+
+# target to preprocess a source file
+controller/Generic/generic_class.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Generic/generic_class.cpp.i
+.PHONY : controller/Generic/generic_class.cpp.i
+
+controller/Generic/generic_class.s: controller/Generic/generic_class.cpp.s
+
+.PHONY : controller/Generic/generic_class.s
+
+# target to generate assembly for a file
+controller/Generic/generic_class.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Generic/generic_class.cpp.s
+.PHONY : controller/Generic/generic_class.cpp.s
+
+controller/Generic/generic_device.o: controller/Generic/generic_device.cpp.o
+
+.PHONY : controller/Generic/generic_device.o
+
+# target to build an object file
+controller/Generic/generic_device.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Generic/generic_device.cpp.o
+.PHONY : controller/Generic/generic_device.cpp.o
+
+controller/Generic/generic_device.i: controller/Generic/generic_device.cpp.i
+
+.PHONY : controller/Generic/generic_device.i
+
+# target to preprocess a source file
+controller/Generic/generic_device.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Generic/generic_device.cpp.i
+.PHONY : controller/Generic/generic_device.cpp.i
+
+controller/Generic/generic_device.s: controller/Generic/generic_device.cpp.s
+
+.PHONY : controller/Generic/generic_device.s
+
+# target to generate assembly for a file
+controller/Generic/generic_device.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Generic/generic_device.cpp.s
+.PHONY : controller/Generic/generic_device.cpp.s
+
+controller/Network/network_controller.o: controller/Network/network_controller.cpp.o
+
+.PHONY : controller/Network/network_controller.o
+
+# target to build an object file
+controller/Network/network_controller.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Network/network_controller.cpp.o
+.PHONY : controller/Network/network_controller.cpp.o
+
+controller/Network/network_controller.i: controller/Network/network_controller.cpp.i
+
+.PHONY : controller/Network/network_controller.i
+
+# target to preprocess a source file
+controller/Network/network_controller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Network/network_controller.cpp.i
+.PHONY : controller/Network/network_controller.cpp.i
+
+controller/Network/network_controller.s: controller/Network/network_controller.cpp.s
+
+.PHONY : controller/Network/network_controller.s
+
+# target to generate assembly for a file
+controller/Network/network_controller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Network/network_controller.cpp.s
+.PHONY : controller/Network/network_controller.cpp.s
+
+controller/Network/network_speed.o: controller/Network/network_speed.cpp.o
+
+.PHONY : controller/Network/network_speed.o
+
+# target to build an object file
+controller/Network/network_speed.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Network/network_speed.cpp.o
+.PHONY : controller/Network/network_speed.cpp.o
+
+controller/Network/network_speed.i: controller/Network/network_speed.cpp.i
+
+.PHONY : controller/Network/network_speed.i
+
+# target to preprocess a source file
+controller/Network/network_speed.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Network/network_speed.cpp.i
+.PHONY : controller/Network/network_speed.cpp.i
+
+controller/Network/network_speed.s: controller/Network/network_speed.cpp.s
+
+.PHONY : controller/Network/network_speed.s
+
+# target to generate assembly for a file
+controller/Network/network_speed.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Network/network_speed.cpp.s
+.PHONY : controller/Network/network_speed.cpp.s
+
+controller/Peripherals/generic_peripheral.o: controller/Peripherals/generic_peripheral.mm.o
+
+.PHONY : controller/Peripherals/generic_peripheral.o
+
+# target to build an object file
+controller/Peripherals/generic_peripheral.mm.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Peripherals/generic_peripheral.mm.o
+.PHONY : controller/Peripherals/generic_peripheral.mm.o
+
+controller/Peripherals/generic_peripheral.i: controller/Peripherals/generic_peripheral.mm.i
+
+.PHONY : controller/Peripherals/generic_peripheral.i
+
+# target to preprocess a source file
+controller/Peripherals/generic_peripheral.mm.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Peripherals/generic_peripheral.mm.i
+.PHONY : controller/Peripherals/generic_peripheral.mm.i
+
+controller/Peripherals/generic_peripheral.s: controller/Peripherals/generic_peripheral.mm.s
+
+.PHONY : controller/Peripherals/generic_peripheral.s
+
+# target to generate assembly for a file
+controller/Peripherals/generic_peripheral.mm.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Peripherals/generic_peripheral.mm.s
+.PHONY : controller/Peripherals/generic_peripheral.mm.s
+
+controller/Peripherals/peripherals_controller.o: controller/Peripherals/peripherals_controller.mm.o
+
+.PHONY : controller/Peripherals/peripherals_controller.o
+
+# target to build an object file
+controller/Peripherals/peripherals_controller.mm.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Peripherals/peripherals_controller.mm.o
+.PHONY : controller/Peripherals/peripherals_controller.mm.o
+
+controller/Peripherals/peripherals_controller.i: controller/Peripherals/peripherals_controller.mm.i
+
+.PHONY : controller/Peripherals/peripherals_controller.i
+
+# target to preprocess a source file
+controller/Peripherals/peripherals_controller.mm.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Peripherals/peripherals_controller.mm.i
+.PHONY : controller/Peripherals/peripherals_controller.mm.i
+
+controller/Peripherals/peripherals_controller.s: controller/Peripherals/peripherals_controller.mm.s
+
+.PHONY : controller/Peripherals/peripherals_controller.s
+
+# target to generate assembly for a file
+controller/Peripherals/peripherals_controller.mm.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Peripherals/peripherals_controller.mm.s
+.PHONY : controller/Peripherals/peripherals_controller.mm.s
+
+controller/Peripherals/volume_storage_controller.o: controller/Peripherals/volume_storage_controller.mm.o
+
+.PHONY : controller/Peripherals/volume_storage_controller.o
+
+# target to build an object file
+controller/Peripherals/volume_storage_controller.mm.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Peripherals/volume_storage_controller.mm.o
+.PHONY : controller/Peripherals/volume_storage_controller.mm.o
+
+controller/Peripherals/volume_storage_controller.i: controller/Peripherals/volume_storage_controller.mm.i
+
+.PHONY : controller/Peripherals/volume_storage_controller.i
+
+# target to preprocess a source file
+controller/Peripherals/volume_storage_controller.mm.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Peripherals/volume_storage_controller.mm.i
+.PHONY : controller/Peripherals/volume_storage_controller.mm.i
+
+controller/Peripherals/volume_storage_controller.s: controller/Peripherals/volume_storage_controller.mm.s
+
+.PHONY : controller/Peripherals/volume_storage_controller.s
+
+# target to generate assembly for a file
+controller/Peripherals/volume_storage_controller.mm.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Peripherals/volume_storage_controller.mm.s
+.PHONY : controller/Peripherals/volume_storage_controller.mm.s
+
+controller/Utils/threadPool.o: controller/Utils/threadPool.cpp.o
+
+.PHONY : controller/Utils/threadPool.o
+
+# target to build an object file
+controller/Utils/threadPool.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Utils/threadPool.cpp.o
+.PHONY : controller/Utils/threadPool.cpp.o
+
+controller/Utils/threadPool.i: controller/Utils/threadPool.cpp.i
+
+.PHONY : controller/Utils/threadPool.i
+
+# target to preprocess a source file
+controller/Utils/threadPool.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Utils/threadPool.cpp.i
+.PHONY : controller/Utils/threadPool.cpp.i
+
+controller/Utils/threadPool.s: controller/Utils/threadPool.cpp.s
+
+.PHONY : controller/Utils/threadPool.s
+
+# target to generate assembly for a file
+controller/Utils/threadPool.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/Utils/threadPool.cpp.s
+.PHONY : controller/Utils/threadPool.cpp.s
+
+controller/kStat_controller.o: controller/kStat_controller.mm.o
+
+.PHONY : controller/kStat_controller.o
+
+# target to build an object file
+controller/kStat_controller.mm.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/kStat_controller.mm.o
+.PHONY : controller/kStat_controller.mm.o
+
+controller/kStat_controller.i: controller/kStat_controller.mm.i
+
+.PHONY : controller/kStat_controller.i
+
+# target to preprocess a source file
+controller/kStat_controller.mm.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/kStat_controller.mm.i
+.PHONY : controller/kStat_controller.mm.i
+
+controller/kStat_controller.s: controller/kStat_controller.mm.s
+
+.PHONY : controller/kStat_controller.s
+
+# target to generate assembly for a file
+controller/kStat_controller.mm.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/kStat_controller.mm.s
+.PHONY : controller/kStat_controller.mm.s
 
 controller/smc.o: controller/smc.cpp.o
 
@@ -251,32 +521,32 @@ controller/smc.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/controller/smc.cpp.s
 .PHONY : controller/smc.cpp.s
 
-main.o: main.cpp.o
+main.o: main.mm.o
 
 .PHONY : main.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/main.cpp.o
-.PHONY : main.cpp.o
+main.mm.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/main.mm.o
+.PHONY : main.mm.o
 
-main.i: main.cpp.i
+main.i: main.mm.i
 
 .PHONY : main.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/main.cpp.i
-.PHONY : main.cpp.i
+main.mm.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/main.mm.i
+.PHONY : main.mm.i
 
-main.s: main.cpp.s
+main.s: main.mm.s
 
 .PHONY : main.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/main.cpp.s
-.PHONY : main.cpp.s
+main.mm.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpuStats.dir/build.make CMakeFiles/cpuStats.dir/main.mm.s
+.PHONY : main.mm.s
 
 # Help Target
 help:
@@ -287,15 +557,45 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... cpuStats"
-	@echo "... controller/cpu_controller.o"
-	@echo "... controller/cpu_controller.i"
-	@echo "... controller/cpu_controller.s"
-	@echo "... controller/cpu_device.o"
-	@echo "... controller/cpu_device.i"
-	@echo "... controller/cpu_device.s"
-	@echo "... controller/generic_device.o"
-	@echo "... controller/generic_device.i"
-	@echo "... controller/generic_device.s"
+	@echo "... controller/Battery/battery_controller.o"
+	@echo "... controller/Battery/battery_controller.i"
+	@echo "... controller/Battery/battery_controller.s"
+	@echo "... controller/CPU/cpu_device.o"
+	@echo "... controller/CPU/cpu_device.i"
+	@echo "... controller/CPU/cpu_device.s"
+	@echo "... controller/Fan/fan_controller.o"
+	@echo "... controller/Fan/fan_controller.i"
+	@echo "... controller/Fan/fan_controller.s"
+	@echo "... controller/GPU/gpu_device.o"
+	@echo "... controller/GPU/gpu_device.i"
+	@echo "... controller/GPU/gpu_device.s"
+	@echo "... controller/Generic/generic_class.o"
+	@echo "... controller/Generic/generic_class.i"
+	@echo "... controller/Generic/generic_class.s"
+	@echo "... controller/Generic/generic_device.o"
+	@echo "... controller/Generic/generic_device.i"
+	@echo "... controller/Generic/generic_device.s"
+	@echo "... controller/Network/network_controller.o"
+	@echo "... controller/Network/network_controller.i"
+	@echo "... controller/Network/network_controller.s"
+	@echo "... controller/Network/network_speed.o"
+	@echo "... controller/Network/network_speed.i"
+	@echo "... controller/Network/network_speed.s"
+	@echo "... controller/Peripherals/generic_peripheral.o"
+	@echo "... controller/Peripherals/generic_peripheral.i"
+	@echo "... controller/Peripherals/generic_peripheral.s"
+	@echo "... controller/Peripherals/peripherals_controller.o"
+	@echo "... controller/Peripherals/peripherals_controller.i"
+	@echo "... controller/Peripherals/peripherals_controller.s"
+	@echo "... controller/Peripherals/volume_storage_controller.o"
+	@echo "... controller/Peripherals/volume_storage_controller.i"
+	@echo "... controller/Peripherals/volume_storage_controller.s"
+	@echo "... controller/Utils/threadPool.o"
+	@echo "... controller/Utils/threadPool.i"
+	@echo "... controller/Utils/threadPool.s"
+	@echo "... controller/kStat_controller.o"
+	@echo "... controller/kStat_controller.i"
+	@echo "... controller/kStat_controller.s"
 	@echo "... controller/smc.o"
 	@echo "... controller/smc.i"
 	@echo "... controller/smc.s"

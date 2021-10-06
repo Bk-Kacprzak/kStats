@@ -16,10 +16,12 @@
  */
 
 #include <IOKit/IOKitLib.h>
+#include <IOKit/IOTypes.h>
+#include <device/device_types.h>
+
 #include "smc.h"
 #include "Utils/keys.h"
 #include "Utils/utilsConverter.h"
-
 //#include <IOKit/ps/IOPSKeys.h>
 //#include <IOKit/ps/IOPowerSources.h>
 
@@ -70,12 +72,9 @@ kern_return_t SMCCall(int index, SMCKeyData_t* inputStructure, SMCKeyData_t* out
     structureInputSize = sizeof(SMCKeyData_t);
     structureOutputSize = sizeof(SMCKeyData_t);
 #if MAC_OS_X_VERSION_10_0
-    kern_return_t result =  IOConnectCallStructMethod(conn, index,
+    return IOConnectCallStructMethod(conn, index,
                                      inputStructure, structureInputSize,
                                      outputStructure, &structureOutputSize);
-
-    std::cout<<"Kern result: " << result<<std::endl;
-    return result;
 #else
     return IOConnectMethodStructureIStructureO(conn, index,
         structureInputSize, /* structureInputSize */
@@ -141,7 +140,6 @@ kern_return_t SMCReadKey(const SMC_KEY key, SMCVal_t* val)
     memcpy(val->bytes, outputStructure.bytes, sizeof(outputStructure.bytes));
     return kIOReturnSuccess;
 }
-
 //
 //kern_return_t SMCWriteKey(SMCVal_t *writeVal) {
 //    kern_return_t result;
@@ -178,42 +176,7 @@ kern_return_t SMCReadKey(const SMC_KEY key, SMCVal_t* val)
 //    if(result != kIOReturnSuccess)
 //        std::cout<<"SMC Call errror\n";
 //    return result;
-//
 //}
-
-////
-kern_return_t SMCWriteKey(SMCVal_t writeVal)
-{
-    kern_return_t result;
-    SMCKeyData_t  inputStructure;
-    SMCKeyData_t  outputStructure;
-
-//
-//    SMCVal_t      readVal;
-//    result = SMCReadKey(writeVal->key, &readVal);
-//    if (result != kIOReturnSuccess)
-//        return result;
-//
-//    if (readVal.dataSize != writeVal->dataSize)
-        //        return kIOReturnError;
-//        writeVal->dataSize = readVal.dataSize;
-    memset(&inputStructure, 0, sizeof(SMCKeyData_t));
-    memset(&outputStructure, 0, sizeof(SMCKeyData_t));
-
-    inputStructure.key = Converter::strToUl(writeVal.key, 4, 16);
-    inputStructure.data8 = SMC_CMD_WRITE_BYTES;
-    inputStructure.keyInfo.dataSize = writeVal.dataSize;
-    memcpy(inputStructure.bytes, writeVal.bytes, sizeof(writeVal.bytes));
-
-    result = SMCCall(KERNEL_INDEX_SMC, &inputStructure, &outputStructure);
-    if (result != kIOReturnSuccess){
-        std::cout<<"SMC Call error\n";
-        return result;
-    }
-
-    return kIOReturnSuccess;
-}
-
 
 kern_return_t SMCWriteKey(SMCVal_t* writeVal)
 {
@@ -221,31 +184,25 @@ kern_return_t SMCWriteKey(SMCVal_t* writeVal)
     SMCKeyData_t  inputStructure;
     SMCKeyData_t  outputStructure;
 
-//
-//    SMCVal_t      readVal;
-//    result = SMCReadKey(writeVal->key, &readVal);
-//    if (result != kIOReturnSuccess)
-//        return result;
-//
-//    if (readVal.dataSize != writeVal->dataSize)
-    //        return kIOReturnError;
-//        writeVal->dataSize = readVal.dataSize;
     memset(&inputStructure, 0, sizeof(SMCKeyData_t));
     memset(&outputStructure, 0, sizeof(SMCKeyData_t));
 
     inputStructure.key = Converter::strToUl(writeVal->key, 4, 16);
-    inputStructure.data8 = SMC_CMD_WRITE_BYTES;
     inputStructure.keyInfo.dataSize = writeVal->dataSize;
+    inputStructure.data8 = SMC_CMD_WRITE_BYTES;
+
     memcpy(inputStructure.bytes, writeVal->bytes, sizeof(writeVal->bytes));
 
     result = SMCCall(KERNEL_INDEX_SMC, &inputStructure, &outputStructure);
     if (result != kIOReturnSuccess){
-        std::cout<<"SMC Call error\n";
+        std::cout<<"SMC Call error\nResult: "<<result<<std::endl;
         return result;
     }
 
     return kIOReturnSuccess;
 }
+
+
 //kern_return_t SMCWriteKey(SMCVal_t *writeVal)
 //{
 //    kern_return_t result;

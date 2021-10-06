@@ -1,11 +1,10 @@
 #ifndef CPUSTATS_SMC_H
 #define CPUSTATS_SMC_H
-#include <IOKit/IOKitLib.h>
 
+#include <IOKit/IOKitLib.h>
 #include <array>
 #include <iostream>
-#include "cpu_controller.h"
-
+#include "Utils/keys.h"
 
 /*
  * Apple System Management Control (SMC) Tool
@@ -28,6 +27,12 @@
 #define VERSION "0.01"
 
 /***************************************/
+
+typedef char SMCBytes_t[32];
+typedef char UInt32Char_t[5];
+typedef char SMC_KEY[5];
+
+
 typedef struct {
     char major;
     char minor;
@@ -50,10 +55,6 @@ typedef struct {
     char dataAttributes;
 } SMCKeyData_keyInfo_t;
 
-typedef char SMCBytes_t[32];
-
-
-
 
 typedef struct {
     UInt32 key;
@@ -67,8 +68,6 @@ typedef struct {
     SMCBytes_t bytes;
 } SMCKeyData_t;
 
-typedef char UInt32Char_t[5];
-typedef char SMC_KEY[5];
 
 typedef struct {
     UInt32Char_t key;
@@ -77,27 +76,11 @@ typedef struct {
     SMCBytes_t bytes;
 } SMCVal_t;
 
-
 //controllers
 kern_return_t SMCReadKey(std::mutex&, const SMC_KEY key, SMCVal_t* val);
 kern_return_t SMCReadKey(const SMC_KEY key, SMCVal_t* val);
 kern_return_t SMC_Init_Connection();
 kern_return_t SMC_Close_Connection();
 kern_return_t SMCWriteKey(SMCVal_t* writeValue);
-kern_return_t SMCWriteKey(SMCVal_t writeValue);
-
-// prototypes
-//double SMCGetTemperature(char*&& key);
-//kern_return_t SMCSetFanRpm(char* key, int rpm);
-//int SMCGetFanRpm(char* key);
-
-
-//void readAndPrintFanRPMs();
-//void readAndPrintCpuTemp(int show_title, char scale, int core, char *type = nullptr);
-////void readAndPrintGpuTemp(int show_title, char scale);
-//void getFanSpeed(kNet::Keys::fan &&fan);
-//double getCpuTemp(const char &scale, const int &core, const char* type = nullptr);
-//double SMCGetPower(const char *&& key);
-
 
 #endif //CPUSTATS_SMC_H
