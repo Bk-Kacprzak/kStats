@@ -13,9 +13,9 @@ void FanController::getFanSpeedRPM(const FanController::FANTYPE fan, const FanCo
             int it = 0;
             for(int j = fan * speedType; j < speedType*(fan+1); j++) {
                 float return_value = readKey(fan_mutex, fanSpeed[j]).f;
-                fan_mutex.lock();
+                std::lock_guard<std::mutex> lock(fan_mutex);
                 fanSpeedContainer[j] = return_value;
-                fan_mutex.unlock();
+//                fan_mutex.unlock();
                 std::cout<<speedTypes[it]<<"rFAN "<<fan<<": "<< return_value << " RPM"<<std::endl;
                 it++;
             }
@@ -30,14 +30,14 @@ void FanController::getFanSpeedRPM(const FanController::FANTYPE fan, const FanCo
                 throw std::invalid_argument("Invalid fan number.\n");
 
             float return_value = readKey(fan_mutex, fanSpeed[i]).f;
-            fan_mutex.lock();
+            std::lock_guard<std::mutex> lock(fan_mutex);
             fanSpeedContainer[i] = return_value;
-            fan_mutex.unlock();
+//            fan_mutex.unlock();
             std::cout<<speedTypes[speedType]<<return_value << " RPM"<<std::endl;
         }
 
-    } catch (const std::exception& e) {
-        std::cout << e.what();
+    } catch (...) {
+//        knet::threadPool::exceptionPointer = std::current_exception();
     }
 }
 
@@ -63,21 +63,15 @@ void FanController::setFanSpeed(const FanController::FANTYPE fan, const float sp
         index = 3;
 
     SMCVal_t val;
-    UInt32Char_t smc_key ="FS! ";
     memcpy(val.dataType, DATATYPE_FLT, 5);
-//    memcpy(val.key, fanSpeed[index], 5);
-    memcpy(val.key, smc_key, 5);
-
+    memcpy(val.key, fanSpeed[index], 5);
     //-536870207
+
     val.dataSize = DATATYPE_FLT_DATASIZE;
     Converter::floatToFlt(speed,val.bytes);
 
-//    std::cout<<"\nData type: "<<val.dataType;
-//    std::cout<<"\nData size: "<<val.dataSize;
-//    std::cout<<"\nKey: "<<val.key;
-//    std::cout<<"\nBytes: "<<val.bytes<<std::endl;
-
-        writeKey(fan_mutex, &val);
-        fanSpeedContainer[index] = speed;
-
+    writeKey(&val);
+    std::lock_guard<std::mutex> lock(fan_mutex);
+    fanSpeedContainer[index] = speed;
 }
+

@@ -1,6 +1,7 @@
 #ifndef CPUSTATS_BATTERY_CONTROLLER_H
 #define CPUSTATS_BATTERY_CONTROLLER_H
-#include "generic_device.h"
+
+#include "../Generic/generic_device.h"
 
 class BatteryController : public GenericDevice {
 public:
@@ -38,7 +39,6 @@ private:
 
     void readBatteryKey(BatteryController::KEYTYPE keytype, const int &index = -1);
 public:
-
     //getters
     void getEachBatteryVoltage();
     void getEachBatteryCapacity();
@@ -46,8 +46,6 @@ public:
     void getTotalVoltage();
     void getTotalAmperage();
     void getAllInformation();
-
-
 };
 
 

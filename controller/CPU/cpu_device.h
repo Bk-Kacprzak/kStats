@@ -1,12 +1,12 @@
 #ifndef CPUSTATS_CPU_DEVICE_H
 #define CPUSTATS_CPU_DEVICE_H
 
-#include "generic_device.h"
-#include "Utils/threadPool.h"
-#include "Utils/keys.h"
+#include "../Generic/generic_device.h"
+#include "../Utils/keys.h"
 #include <mutex>
 #include <vector>
 #include <sys/sysctl.h>
+
 
 class CPU : public GenericDevice {
 #define CPU_MAX_COUNT 8
@@ -39,11 +39,10 @@ private:
             SMC_KEY_CPU_POWER_CORE8,
     };
 
-    std::mutex temp_mutex;
     //concurrency
 //    std::vector<std::thread> threads;
 //    knet::threadPool threadPool;
-    std::array<float, 8> CPUTemperature = { 0,0,0,0,0,0,0,0};
+    ValueContainer<std::array<float, 8>> CPUTemperature;
 //    void retrieveCPUInformation();
 
     ValueContainer<char [64]> processorModel;
@@ -52,8 +51,9 @@ private:
     ValueContainer<ushort> byteOrder;
     ValueContainer<ushort> architecture;
     mutable std::condition_variable cv;
-    std::mutex classMtx;
-    bool assigning;
+
+private:
+
     void retrieveCPUInormation();
     template<typename T>
     void sysctlCall(ValueContainer<T> &, const char*, size_t max_byte_size);
@@ -72,7 +72,6 @@ public:
     void getEachCoreTemperature();
     void setKey(KEYTYPE,const ushort id);
     ushort getCoreNumber();
-
     const char* getProcessorModel() const;
     ushort getPhysicalCoreCount() const;
     ushort getCacheSize() const;

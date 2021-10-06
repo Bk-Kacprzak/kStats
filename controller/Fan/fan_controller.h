@@ -1,14 +1,16 @@
 #ifndef CPUSTATS_FAN_CONTROLLER_H
 #define CPUSTATS_FAN_CONTROLLER_H
 
-#include "generic_device.h"
-
-
+#include "../Generic/generic_device.h"
 
 class FanController : public GenericDevice{
 private:
+#define MIN_SPEED 2500
+#define MAX_SPEED 5500
+
     static constexpr size_t fanNum = 2;
     static constexpr size_t fanAttributeSize = 3;
+
     //4 keys to each fan
         static constexpr keyContainer<fanNum * fanAttributeSize> fanSpeed= {
                 SMC_KEY_FAN0_CURRENT_SPEED,
@@ -26,13 +28,8 @@ private:
             "Maximum speed: "
         };
 
-
-#define MIN_SPEED 2500
-
-#define MAX_SPEED 5500
-
         std::mutex fan_mutex;
-        std::array<float, fanNum*3> fanSpeedContainer = {};
+        std::array<float, fanNum*3> fanSpeedContainer;
 public:
     enum KEYTYPE {
         CURRENT_SPEED = 0,

@@ -1,30 +1,11 @@
 #include "cpu_device.h"
-#include "Utils/utils.h"
+#include "../Utils/utils.h"
 #include <thread>
 #include <vector>
 
-CPU::CPU() : physicalCoreCount(0), cacheSize(0), byteOrder(-1), architecture(-1), assigning(true) {
+CPU::CPU() : physicalCoreCount(0), cacheSize(0), byteOrder(-1), architecture(-1) {
+    std::cout<<"********CPU********\n\n";
     retrieveCPUInormation();
-
-//    threadPool.push([&] {
-//
-//        retrieveCPUInformation(processorModel,"machdep.cpu.brand_string", 128);
-//    });
-
-//    threadPool.push([&] {
-//        retrieveCPUInformation(processorModel,"machdep.cpu.brand_string", 128);
-//    });
-
-
-
-//
-//    std::unique_lock<std::mutex> lock(classMtx);
-//    cv.wait(lock, [&] {
-//        return !assigning;
-//    });
-//    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-//    std::cout<<"Byte order: "<<getByteOrder()<<std::endl;
-//    std::cout<<"Architecture: "<<getArchitecture()<<std::endl;
 }
 
 void CPU::setKey(CPU::KEYTYPE keytype, const ushort id) {
@@ -48,23 +29,22 @@ void CPU::setKey(CPU::KEYTYPE keytype, const ushort id) {
 
 void CPU::getTemperature(const int &core) {
     try {
-//        if(core >= Utils::getArraySize(temperature))
-//            throw std::invalid_argument("Invalid core number.\n");
-//        std::lock_guard<std::mutex> lockGuard(mtx);
-        int return_value = readKey(temp_mutex,temperature[core]).i;
+        if(core >= temperature.size())
+            throw std::invalid_argument("Invalid core number.\n");
 
+        int return_value = readKey(temperature[core]).i;
         //consumer producer problem!!!!
-        std::lock_guard<std::mutex> lock(temp_mutex);
-        CPUTemperature[core] = return_value/256.0;
+        std::lock_guard<std::mutex> lock(CPUTemperature.mtx);
+        CPUTemperature.value[core] = return_value/256.0;
 
         if(core == 6)  {
             //avg temp
-            std::cout<<"Core average: "<<CPUTemperature[core]<<std::endl;
+            std::cout<<"Core average: "<<CPUTemperature.value[core]<<std::endl;
         }
         else if (core == 7) {
-            std::cout<<"Core PECI: "<<CPUTemperature[core]<<std::endl;
+            std::cout<<"Core PECI: "<<CPUTemperature.value[core]<<std::endl;
         } else {
-            std::cout<<"Core "<<core + 1 <<": "<<CPUTemperature[core]<<std::endl;
+            std::cout<<"Core "<<core + 1 <<": "<<CPUTemperature.value[core]<<std::endl;
         }
     }
 
@@ -81,7 +61,7 @@ ushort CPU::getCoreNumber() {
 }
 
 void CPU::getEachCoreTemperature() {
-    for(int i = 0; i<temperature.size(); i++) {
+    for(int i = 0; i<physicalCoreCount.value; i++) {
         threadPool.push([=] {
             getTemperature(i);
         });
@@ -164,6 +144,8 @@ void CPU::retrieveCPUInormation() {
         std::cout<<"Architecture: " <<(getArchitecture() == 1 ? "x86_64" : "x86")<<std::endl;
     });
 }
+
+
 
 
 
