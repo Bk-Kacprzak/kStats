@@ -40,17 +40,21 @@ void VolumeStorage::retrieveVolumeInformation() {
 }
 
 const std::string &VolumeStorage::getName() const {
+    std::lock_guard<std::mutex> lock(mtx);
     return name;
 }
 
 const std::string &VolumeStorage::getFormatDescription() const {
+    std::lock_guard<std::mutex> lock(mtx);
     return formatDescription;
 }
 
 float VolumeStorage::getFreeMemory() const {
+    std::lock_guard<std::mutex> lock(mtx);
     return freeMemory;
 }
 
 float VolumeStorage::getTotalMemory() const {
+    std::lock_guard<std::mutex> lock(mtx);
     return totalMemory;
 }

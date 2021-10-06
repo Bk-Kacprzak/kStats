@@ -1,8 +1,9 @@
 #ifndef CPUSTATS_VOLUME_STORAGE_CONTROLLER_H
 #define CPUSTATS_VOLUME_STORAGE_CONTROLLER_H
+
 #include <string>
-#include <Foundation/Foundation.h>
-#include "generic_class.h"
+#include <mutex>
+#include "iokit_libraries.h"
 
 
 class VolumeStorage {
@@ -10,7 +11,7 @@ class VolumeStorage {
     std::string formatDescription;
     float freeMemory;
     float totalMemory;
-    std::mutex mtx;
+    mutable std::mutex mtx;
 
     void retrieveVolumeInformation();
 public:
