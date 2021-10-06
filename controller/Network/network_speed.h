@@ -1,6 +1,7 @@
 #ifndef CPUSTATS_NETWORK_SPEED_H
 #define CPUSTATS_NETWORK_SPEED_H
 
+#include <iostream>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -10,7 +11,6 @@
 #include <cmath>
 #include <curl/curl.h>
 #include "expat.h"
-#include <iostream>
 
 
 #define URL_LENGTH_MAX       255
@@ -42,19 +42,14 @@
 #define ARRAY_SIZE(x) (sizeof(x)/sizeof(x[0]))
 
 struct ConnectionStats {
-    double latency, download_speed, upload_speed;
-    ConnectionStats& operator=(ConnectionStats&& data) noexcept {
-        if(this != &data) {
-            this->latency = data.latency;
-            this->download_speed = data.download_speed;
-            this->upload_speed = data.upload_speed;
-        }
-
-        return *this;
-    }
-
-
-
+    double latency = -1;
+    double download_speed = -1;
+    double upload_speed = -1;
+    ConnectionStats() = default;
+    ConnectionStats(const ConnectionStats& obj);
+    ConnectionStats(ConnectionStats &&obj);
+    ConnectionStats(const double& latency, const double& download_speed, const double& upload_speed);
+    ConnectionStats& operator=(ConnectionStats&& data) noexcept;
 };
 
 struct thread_para
@@ -788,11 +783,9 @@ namespace knet {
             upload_speed = test_upload(server_url, num_thread, speed*SPEEDTEST_TIME_MAX, ext, 1);
             printf("Upload speed: %0.2fMbps\n", ((upload_speed*8)/(1024*1024)));
 
-            return ConnectionStats{latency, download_speed, upload_speed};
+            return ConnectionStats(latency, download_speed, upload_speed);
         };
     };
 }
-
-
 
 #endif //CPUSTATS_NETWORK_SPEED_H
