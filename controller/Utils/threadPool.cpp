@@ -4,7 +4,7 @@
 
 #include "threadPool.h"
 #include <iostream>
-
+#include "utils.h"
 knet::threadPool::threadPool() : numOfThreads(std::thread::hardware_concurrency()), functionQueue(), mutexLock(), dataCondition(), acceptFunctions() {
     for(int i = 0; i<numOfThreads; i++)
         threads.push_back(std::move(std::thread(&threadPool::inifiniteLoop, this)));
@@ -36,7 +36,6 @@ void knet::threadPool::exit() {
 
 void knet::threadPool::inifiniteLoop() {
     std::function<void()> func;
-
     while(true) {
         std::unique_lock<std::mutex> lock(mutexLock);
         dataCondition.wait(lock, [this]() {
@@ -48,7 +47,6 @@ void knet::threadPool::inifiniteLoop() {
 
         func = std::move(functionQueue.front());
         functionQueue.pop();
-
         //release the lock
         func();
     }
@@ -57,4 +55,3 @@ void knet::threadPool::inifiniteLoop() {
 int knet::threadPool::getNumOfThreads() const {
     return numOfThreads;
 }
-
