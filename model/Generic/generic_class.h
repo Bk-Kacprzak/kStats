@@ -3,6 +3,8 @@
 
 #include "../Utils/threadPool.h"
 #include <mutex>
+static knet::threadPool threadPool;
+
 template<typename T>
 struct ValueContainer {
     mutable std::mutex mtx;
@@ -14,7 +16,6 @@ struct ValueContainer {
 class GenericClass {
     protected:
        mutable std::mutex controller_mutex;
-       static knet::threadPool threadPool;
 public:
         GenericClass();
         virtual ~GenericClass() = default;
