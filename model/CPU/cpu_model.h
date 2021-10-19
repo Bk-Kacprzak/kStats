@@ -54,7 +54,7 @@ private:
 
 private:
 
-    void retrieveCPUInormation();
+    void retrieveCPUInformation();
     template<typename T>
     void sysctlCall(ValueContainer<T> &, const char*, size_t max_byte_size);
 public:
@@ -68,14 +68,14 @@ public:
     CPU();
     ~CPU();
     //kernel getters
-    void getTemperature(const int& core);
-    void getEachCoreTemperature();
+    void retrieveTemperature(const int& core);
+    const std::array<float, 8> & EachCoreTemperature();
     void setKey(KEYTYPE,const ushort id);
     ushort getCoreNumber();
-    const char* getProcessorModel() const;
-    ushort getPhysicalCoreCount() const;
-    ushort getCacheSize() const;
-    ushort getByteOrder() const;
-    ushort getArchitecture() const;
+    const char*  ProcessorModel() const;
+    ushort PhysicalCoreCount() const;
+    ushort CacheSize() const;
+    ushort ByteOrder() const;
+    ushort Architecture() const;
 };
 #endif //CPUSTATS_CPU_DEVICE_H
