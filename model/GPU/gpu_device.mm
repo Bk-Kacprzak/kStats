@@ -7,29 +7,29 @@
 
 GPU::GPU() {
     retrieveModelName();
-//    getAllTemperatureValues();
+//    retrieveAllTemperatureValues();
 }
 
-void GPU::getTemperature(const int &property) {
+void GPU::retrieveTemperature(const int &property) {
     try {
         int return_value = readKey(temperature[property]).i;
-        std::lock_guard<std::mutex> lock(GPUTemperature.mtx);
-        GPUTemperature.value[property] = return_value/256.0;
+        std::lock_guard<std::mutex> lock(temperatures.mtx);
+        temperatures.value[property] = return_value / 256.0;
         switch(property){
             case 0: {
-                std::cout<<"GPU PROXIMITY: " << GPUTemperature.value[property]<<std::endl;
+                std::cout << "GPU PROXIMITY: " << temperatures.value[property] << std::endl;
                 break;
             }
             case 1: {
-                std::cout<<"GPU Radeon : " << GPUTemperature.value[property]<<std::endl;
+                std::cout << "GPU Radeon : " << temperatures.value[property] << std::endl;
                 break;
             }
             case 2: {
-                std::cout<<"GPU Intel: " << GPUTemperature.value[property]<<std::endl;
+                std::cout << "GPU Intel: " << temperatures.value[property] << std::endl;
                 break;
             }
             case 3: {
-                std::cout<<"GPU Heatsink: " << GPUTemperature.value[property]<<std::endl;
+                std::cout << "GPU Heatsink: " << temperatures.value[property] << std::endl;
                 break;
             }
         }
@@ -51,19 +51,26 @@ void GPU::retrieveModelName() {
     }
 }
 
-void GPU::getAllTemperatureValues() {
+void GPU::retrieveAllTemperatureValues() {
     for(int i = 0; i < GPU_TEMP_COUNT; i++) {
         threadPool.push([=] () {
-            getTemperature(i);
+            retrieveTemperature(i);
         });
     }
 }
 
-std::vector<std::string> &GPU::getModelName() {
+const std::vector<std::string> &GPU::ModelName() {
     std::unique_lock<std::mutex> lock(modelName.mtx);
     cv.wait(lock,[this] {
         return !modelName.value.empty();
     });
-
     return modelName.value;
+}
+
+const std::array<float, GPU_ALL_TEMP> &GPU::Temperatures() {
+    std::unique_lock<std::mutex> lock(temperatures.mtx);
+    cv.wait(lock,[this] {
+        return !temperatures.value.empty();
+    });
+    return temperatures.value;
 }

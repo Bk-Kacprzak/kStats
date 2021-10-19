@@ -3,9 +3,13 @@
 
 #include "../Generic/generic_device.h"
 #include "../Utils/keys.h"
-class GPU : GenericDevice {
 #define GPU_MAX_COUNT 2
 #define GPU_TEMP_COUNT 4
+
+#define GPU_ALL_TEMP (GPU_MAX_COUNT * 2 + 1)
+
+class GPU : GenericDevice {
+
     static constexpr keyContainer<GPU_TEMP_COUNT> temperature = {
         SMC_KEY_GPU_PROXIMITY,
         SMC_KEY_GPU0_HEATSINK,
@@ -13,15 +17,16 @@ class GPU : GenericDevice {
         SMC_KEY_GPU1_HEATSINK,
     };
     ValueContainer<std::vector<std::string>> modelName;
-    ValueContainer<std::array<float, GPU_MAX_COUNT*2 +1>> GPUTemperature;
+    ValueContainer<std::array<float, GPU_ALL_TEMP>> temperatures;
     std::condition_variable cv;
 public:
     GPU();
     void retrieveModelName();
     //kernel getters
-    void getTemperature(const int &property);
-    void getAllTemperatureValues();
-    std::vector<std::string>& getModelName();
+    void retrieveTemperature(const int &property);
+    void retrieveAllTemperatureValues();
+    const std::vector<std::string>& ModelName();
+    const std::array<float, GPU_ALL_TEMP> & Temperatures();
 };
 
 
