@@ -1,21 +1,27 @@
 cmake_minimum_required(VERSION 3.17)
 project(cpuStats)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 17)
+#set(CMAKE_PREFIX_PATH "/Users/bk.kacprzak/Qt/5.15.1/Src/qtbase/src/plugins/platforms/cocoa")
+set(CMAKE_PREFIX_PATH "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5")
 find_library(IOKIT_LIBRARY IOKit)
-#find_library(FOUNDATION_LIBRARY CoreFoundation)
-#find_library(IOBLUETOOTH_LIBRARY IOBluetooth)
 find_library(CPU_LIB cpuid)
 find_library(FOUNDATION_LIBRARY Foundation)
 find_library(CORE_FOUNDATION CoreFoundation)
 find_library(BLUETOOTH_LIBRARY IOBluetooth)
 find_library(APPKIT_LIBRARY AppKit)
 find_library(METAL_LIBRARY Metal)
-
-
-
 find_package(CURL REQUIRED)
 find_package(EXPAT REQUIRED)
+#find_package(Qt5::Core REQUIRED)
+find_package(Qt5 COMPONENTS Widgets Core Gui)
+
+set(REQUIRED_LIBS Core Gui Widgets REQUIRED)
+set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Qt5::Widgets)
+
 include_directories(${EXPAT_INCLUDE_DIRS})
 
 IF(CURL_FOUND)
@@ -30,6 +36,7 @@ set(EXTRA_LIBS ${IOKIT_LIBRARY})
 set(BLUETOOTH_LIBS ${BLUETOOTH_LIBRARY})
 set(FOUNDATION_LIBS ${FOUNDATION_LIBRARY})
 set(CORE_LIBS ${CORE_FOUNDATION})
+qt5_add_resources(view/resources.qrc)
 
-add_executable(${PROJECT_NAME} main.mm controller/smc.cpp controller/smc.h controller/Generic/generic_device.cpp controller/Generic/generic_device.h controller/CPU/cpu_device.cpp controller/CPU/cpu_device.h controller/Utils/utilsConverter.h controller/Utils/keys.h controller/Utils/utils.h controller/Utils/threadPool.cpp controller/Utils/threadPool.h controller/Fan/fan_controller.cpp controller/Fan/fan_controller.h controller/Battery/battery_controller.cpp controller/Battery/battery_controller.h controller/Network/network_controller.cpp controller/Network/network_controller.h controller/Generic/generic_class.h controller/Generic/generic_class.cpp controller/Network/network_speed.cpp controller/Network/network_speed.h controller/Peripherals/peripherals_controller.mm controller/Peripherals/peripherals_controller.h controller/Peripherals/generic_peripheral.mm controller/Peripherals/generic_peripheral.h controller/Peripherals/volume_storage_controller.mm controller/Peripherals/volume_storage_controller.h controller/kStat_controller.mm controller/kStat_controller.h controller/Peripherals/iokit_libraries.h controller/GPU/gpu_device.mm controller/GPU/gpu_device.h)
-target_link_libraries(${PROJECT_NAME} PRIVATE ${EXTRA_LIBS} ${EXPAT_LIBRARIES} ${CURL_LIBRARIES} ${BLUETOOTH_LIBS} ${FOUNDATION_LIBS} ${CORE_LIBS} ${APPKIT_LIBRARY} ${METAL_LIBRARY})
+add_executable(${PROJECT_NAME} main.mm model/smc.cpp model/smc.h model/Generic/generic_device.cpp model/Generic/generic_device.h model/CPU/cpu_model.cpp model/CPU/cpu_model.h model/Utils/utilsConverter.h model/Utils/keys.h model/Utils/utils.h model/Utils/threadPool.cpp model/Utils/threadPool.h model/Fan/fan_model.cpp model/Fan/fan_model.h model/Battery/battery_model.cpp model/Battery/battery_model.h model/Network/network_model.cpp model/Network/network_model.h model/Generic/generic_class.h model/Generic/generic_class.cpp model/Network/network_speed.cpp model/Network/network_speed.h model/Peripherals/peripherals_model.mm model/Peripherals/peripherals_model.h model/Peripherals/generic_peripheral.mm model/Peripherals/generic_peripheral.h model/Peripherals/volume_storage_model.mm model/Peripherals/volume_storage_model.h model/kStats_model.mm model/kStats_model.h model/Peripherals/iokit_libraries.h model/GPU/gpu_device.mm model/GPU/gpu_device.h view/kStats_view.h view/kStats_view.mm view/resources.qrc global.h controller/kStatsController.mm controller/kStatsController.h view/qt_libraries.h )
+target_link_libraries(${PROJECT_NAME} PRIVATE ${EXTRA_LIBS} ${EXPAT_LIBRARIES} ${CURL_LIBRARIES} ${BLUETOOTH_LIBS} ${FOUNDATION_LIBS} ${CORE_LIBS} ${APPKIT_LIBRARY} ${METAL_LIBRARY} ${REQUIRED_LIBS_QUALIFIED})
