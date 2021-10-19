@@ -3,8 +3,11 @@
 
 #include "../Generic/generic_device.h"
 
-class BatteryController : public GenericDevice {
+static constexpr size_t batteryNum = 3;
+
+class BatteryModel : public GenericDevice {
 public:
+    BatteryModel() = default;
     enum KEYTYPE {
         CELL_VOLTAGE = 0,
         CELL_CAPACITY = 1,
@@ -12,8 +15,6 @@ public:
         TOTAL_VOLTAGE = 3,
         CYCLE_COUNT = 4
     };
-private:
-    static constexpr size_t batteryNum = 3;
     static constexpr keyContainer<batteryNum> batteryVoltageKeys = {
             SMC_KEY_BATTERY_CELL1_VOLTAGE,
             SMC_KEY_BATTERY_CELL2_VOLTAGE,
@@ -29,6 +30,8 @@ private:
     static constexpr SMC_KEY totalVoltageKey = SMC_KEY_BATTERY_VOLTAGE;
     static constexpr SMC_KEY cycleCountKey = SMC_KEY_BATTERY_CYCLECOUNT;
 
+//todo: change std::array's to ValueContainers
+
     std::array<float, batteryNum> batteryVoltageValue = {};
     std::array<int, batteryNum> batteryCapacityValue = {};
     float totalAmperageValue;
@@ -37,14 +40,14 @@ private:
 
     std::mutex battery_mutex;
 
-    void readBatteryKey(BatteryController::KEYTYPE keytype, const int &index = -1);
-public:
+    void readBatteryKey(BatteryModel::KEYTYPE keytype, const int &index = -1);
+
     //getters
-    void getEachBatteryVoltage();
-    void getEachBatteryCapacity();
-    void getCycleCount();
-    void getTotalVoltage();
-    void getTotalAmperage();
+    void retrieveEachBatteryVoltage();
+    void retrieveEachBatteryCapacity();
+    void retrieveCycleCount();
+    void retrieveTotalVoltage();
+    void retrieveTotalAmperage();
     void getAllInformation();
 };
 

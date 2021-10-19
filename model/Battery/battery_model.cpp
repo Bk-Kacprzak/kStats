@@ -1,6 +1,6 @@
-#include "battery_controller.h"
+#include "battery_model.h"
 
-void BatteryController::readBatteryKey(KEYTYPE keytype, const int &index) {
+void BatteryModel::readBatteryKey(KEYTYPE keytype, const int &index) {
     kernReturnValue result;
     switch(keytype) {
         case CELL_VOLTAGE: {
@@ -52,7 +52,7 @@ void BatteryController::readBatteryKey(KEYTYPE keytype, const int &index) {
 }
 
 
-void BatteryController::getEachBatteryVoltage() {
+void BatteryModel::retrieveEachBatteryVoltage() {
     for(int i = 0; i<batteryNum; i++){
         threadPool.push([=] {
             readBatteryKey(KEYTYPE::CELL_VOLTAGE, i);
@@ -60,7 +60,7 @@ void BatteryController::getEachBatteryVoltage() {
     }
 }
 
-void BatteryController::getEachBatteryCapacity() {
+void BatteryModel::retrieveEachBatteryCapacity() {
     for(int i = 0; i<batteryNum; i++){
         threadPool.push([=] {
             readBatteryKey(KEYTYPE::CELL_CAPACITY, i);
@@ -68,28 +68,28 @@ void BatteryController::getEachBatteryCapacity() {
     }
 }
 
-void BatteryController::getCycleCount() {
+void BatteryModel::retrieveCycleCount() {
     threadPool.push([=] {
         readBatteryKey(KEYTYPE::CYCLE_COUNT);
     });
 }
 
-void BatteryController::getTotalVoltage() {
+void BatteryModel::retrieveTotalVoltage() {
     threadPool.push([=] {
         readBatteryKey(KEYTYPE::TOTAL_VOLTAGE);
     });
 }
 
-void BatteryController::getTotalAmperage() {
+void BatteryModel::retrieveTotalAmperage() {
     threadPool.push([=] {
         readBatteryKey(KEYTYPE::TOTAL_AMPERAGE);
     });
 }
 
-void BatteryController::getAllInformation() {
-    getEachBatteryVoltage();
-    getEachBatteryCapacity();
-    getCycleCount();
-    getTotalVoltage();
-    getTotalAmperage();
+void BatteryModel::getAllInformation() {
+    retrieveEachBatteryVoltage();
+    retrieveEachBatteryCapacity();
+    retrieveCycleCount();
+    retrieveTotalVoltage();
+    retrieveTotalAmperage();
 }
