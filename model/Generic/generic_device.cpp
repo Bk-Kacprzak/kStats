@@ -1,10 +1,8 @@
 #include "generic_device.h"
 
+
 GenericDevice::GenericDevice() {
-    SMC_Init_Connection();
-//    for(int i=0; i<threadPool.getNumOfThreads(); i++) {
-//        threads.push_back(std::move(std::thread(&knet::threadPool::inifiniteLoop, &threadPool)));
-//    }
+
 }
 GenericDevice::kernReturnValue GenericDevice::readKey(std::mutex& mtx, const char* key) {
     SMCVal_t val;
@@ -81,6 +79,7 @@ GenericDevice::kernReturnValue GenericDevice::readKey(const char *key) {
     SMCVal_t val;
     kern_return_t result;
     result = SMCReadKey(key, &val);
+
 //    std::cout<<"\nBytes: "<<val.bytes<<std::endl;
 //    std::cout<<"\nData Type: "<<val.dataType<<std::endl;
 //    std::cout<<"\nData size: "<<val.dataSize<<std::endl;
@@ -137,6 +136,7 @@ GenericDevice::kernReturnValue GenericDevice::readKey(const char *key) {
         }
     } else
         throw std::runtime_error("SMC Key read failed. kIOReturnSuccess = false\n");
+
 }
 
 void GenericDevice::writeKey(const char *key, const SMCBytes_t value) {
@@ -154,8 +154,3 @@ void GenericDevice::writeKey(const char *key, const SMCBytes_t value) {
         std::cout<<"kIOReturnSuccess returns false\n";
 
 }
-
-GenericDevice::~GenericDevice() {
-    SMC_Close_Connection();
-}
-

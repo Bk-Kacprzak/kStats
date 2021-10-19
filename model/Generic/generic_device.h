@@ -12,11 +12,11 @@ template <size_t size>
 using keyContainer = std::array<char [5], size>;
 
 class GenericDevice : public GenericClass{
-
 public:
     GenericDevice();
-    ~GenericDevice() override; //???
+    virtual ~GenericDevice() = default;
 
+//    ~GenericDevice() override; //???
     typedef union {
         float f;
         int i;
@@ -24,7 +24,6 @@ public:
 
     kernReturnValue readKey(std::mutex & mtx, const SMC_KEY key = nullptr);
     kernReturnValue readKey(const SMC_KEY key = nullptr);
-
     void writeKey(std::mutex &mtx, SMCVal_t *value);
     void writeKey(SMCVal_t *value);
     void writeKey(const SMC_KEY key, const SMCBytes_t value);
