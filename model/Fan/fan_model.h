@@ -3,7 +3,7 @@
 
 #include "../Generic/generic_device.h"
 
-class FanController : public GenericDevice{
+class FanModel : public GenericDevice{
 private:
 #define MIN_SPEED 2500
 #define MAX_SPEED 5500
@@ -21,7 +21,6 @@ private:
                 SMC_KEY_FAN1_MAXIMUM_SPEED,
         };
 
-
         static constexpr std::array<const char*, fanAttributeSize> speedTypes= {
             "Current speed: ",
             "Minimum speed: ",
@@ -29,7 +28,8 @@ private:
         };
 
         std::mutex fan_mutex;
-        std::array<float, fanNum*3> fanSpeedContainer;
+        ValueContainer<std::array<float, 3>> fanLeft;
+        ValueContainer<std::array<float, 3>> fanRight;
 public:
     enum KEYTYPE {
         CURRENT_SPEED = 0,
@@ -46,9 +46,12 @@ public:
     //getters
     void getFanSpeedRPM(const FANTYPE fan,const KEYTYPE speedType = KEYTYPE::ALL);
     void getEachFanSpeedRPM(const KEYTYPE speedType = KEYTYPE::ALL);
-
+    void retrieveEachFanSpeedRPM();
     //setters
     void setFanSpeed(const FANTYPE fan, const float speed);
+    const std::array<float, 3>& FanLeft();
+    const std::array<float, 3>& FanRight();
+
 };
 
 
