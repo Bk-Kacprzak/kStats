@@ -1,4 +1,4 @@
-#include "volume_storage_controller.h"
+#include "volume_storage_model.h"
 #include <iostream>
 #include <iomanip>
 VolumeStorage::VolumeStorage() {
@@ -39,22 +39,22 @@ void VolumeStorage::retrieveVolumeInformation() {
     std::cout<<name<<"\t"<<formatDescription<<"\t"<<std::setprecision(4)<<freeMemory<<"\t"<<std::setprecision(5)<<totalMemory<<"\n";
 }
 
-const std::string &VolumeStorage::getName() const {
+const std::string &VolumeStorage::Name() const {
     std::lock_guard<std::mutex> lock(mtx);
     return name;
 }
 
-const std::string &VolumeStorage::getFormatDescription() const {
+const std::string &VolumeStorage::FormatDescription() const {
     std::lock_guard<std::mutex> lock(mtx);
     return formatDescription;
 }
 
-float VolumeStorage::getFreeMemory() const {
+const float& VolumeStorage::FreeMemory() const {
     std::lock_guard<std::mutex> lock(mtx);
     return freeMemory;
 }
 
-float VolumeStorage::getTotalMemory() const {
+const float& VolumeStorage::TotalMemory() const {
     std::lock_guard<std::mutex> lock(mtx);
     return totalMemory;
 }

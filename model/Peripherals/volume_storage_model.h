@@ -17,10 +17,10 @@ class VolumeStorage {
 public:
     VolumeStorage();
     ~VolumeStorage() = default;
-    const std::string &getName() const;
-    const std::string &getFormatDescription() const;
-    float getFreeMemory() const;
-    float getTotalMemory() const;
+    const std::string &Name() const;
+    const std::string &FormatDescription() const;
+    const float& FreeMemory() const;
+    const float& TotalMemory() const;
 };
 
 
