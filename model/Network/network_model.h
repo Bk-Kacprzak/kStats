@@ -9,7 +9,7 @@
 #include <condition_variable>
 
 
-class NetworkController : public GenericClass {
+class NetworkModel : public GenericClass {
     typedef char IPv4[INET_ADDRSTRLEN];
     typedef char IPv6[INET6_ADDRSTRLEN];
 private:
@@ -18,20 +18,21 @@ private:
     ValueContainer<std::string> wifiMACAddress;
     ValueContainer<std::string> wifiSSID;
     ValueContainer<ConnectionStats> connectionSpeed;
+    ValueContainer<bool> isTesting;
 
     void retrieveWifiInformation();
     void testConnectionSpeed();
-    void setConnectionStats();
     void retrieveSSID();
     mutable std::condition_variable cv;
-
 public:
-    NetworkController();
-    const char* getWifiIP() const;
-    const char* getAddressIPv6() const;
-    const std::string& getWifiMacAddress() const;
-    const std::string& getWifiSSID() const;
-    ConnectionStats getConnectionSpeed() const;
+    NetworkModel();
+    void setConnectionStats();
+    const char* WifiIP() const;
+    const char* AddressIPv6() const;
+    const std::string& WifiMacAddress() const;
+    const std::string& WifiSSID() const;
+    const ConnectionStats& ConnectionSpeed() const;
+    bool IsTestingConnection();
 };
 
 

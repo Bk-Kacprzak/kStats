@@ -1,30 +1,30 @@
 #include <iostream> //to delete
-#include "network_controller.h"
+#include "network_model.h"
 
 #define CHAR_SIZE(_PTR)  (strlen(_PTR) + 1)
 
-NetworkController::NetworkController() {
+NetworkModel::NetworkModel() : isTesting(false) {
     memset(addressIPv6.value, 0, sizeof(addressIPv6.value));
     memset(wifiIP.value, 0, sizeof(wifiIP.value));
     wifiMACAddress.value.clear();
     wifiSSID.value.clear();
     threadPool.push([&] {
         retrieveWifiInformation();
-        std::cout<<"Wifi IP Address: " <<getWifiIP() << std::endl;
-        std::cout<<"IPv6 Address: " << getAddressIPv6()<<std::endl;
-        std::cout << "Wi-Fi MAC Address: " << getWifiMacAddress() << std::endl;
+        std::cout<<"Wifi IP Address: " <<WifiIP() << std::endl;
+        std::cout<<"IPv6 Address: " << AddressIPv6()<<std::endl;
+        std::cout << "Wi-Fi MAC Address: " << WifiMacAddress() << std::endl;
     });
+
     threadPool.push([&] {
         retrieveSSID();
-        std::cout<<"Wifi SSID: " <<getWifiSSID()<<std::endl;
-
+        std::cout<<"Wifi SSID: " <<WifiSSID()<<std::endl;
     });
 //    threadPool.push([&] {
 //        setConnectionStats();
 //    });
 }
 
-void NetworkController::retrieveWifiInformation() {
+void NetworkModel::retrieveWifiInformation() {
     IPv4 inet_addr;
     IPv6 inet6_addr;
     std::string mac_addr;
@@ -104,17 +104,31 @@ void NetworkController::retrieveWifiInformation() {
     }
 }
 
-void NetworkController::setConnectionStats() {
-    testConnectionSpeed();
+void NetworkModel::setConnectionStats() {
+        isTesting.mtx.lock();
+        if(!isTesting.value) {
+            isTesting.value = true;
+            std::cout << "Setting connection speed\n";
+            threadPool.push([&] {
+                testConnectionSpeed();
+            });
+        }
+//        isTesting.mtx.lock();
+//        isTesting.value = false;
+//        isTesting.mtx.unlock();
+
 //    threadPool.push([=] {});
 }
 
-void NetworkController::testConnectionSpeed() {
+void NetworkModel::testConnectionSpeed() {
     knet::NetworkSpeed::initializeClient();
     knet::NetworkSpeed::initializeServer();
     connectionSpeed.value = std::move(knet::NetworkSpeed::retrieveData());
+    isTesting.value = false;
+    isTesting.mtx.unlock();
+    cv.notify_one();
 }
-void NetworkController::retrieveSSID() {
+void NetworkModel::retrieveSSID() {
     const char* wifi = "/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep -w SSID: ";
     char buffer[128];
     std::shared_ptr<FILE> pipe(popen(wifi, "r"), pclose);
@@ -138,7 +152,7 @@ void NetworkController::retrieveSSID() {
     }
 }
 
-const char *NetworkController::getAddressIPv6() const {
+const char* NetworkModel::AddressIPv6() const {
     std::unique_lock<std::mutex> lock(addressIPv6.mtx);
     cv.wait(lock,[this] {
         return strlen(addressIPv6.value) > 0;
@@ -146,7 +160,7 @@ const char *NetworkController::getAddressIPv6() const {
     return addressIPv6.value;
 }
 
-const std::string& NetworkController::getWifiMacAddress() const {
+const std::string& NetworkModel::WifiMacAddress() const {
     std::unique_lock<std::mutex> lock(wifiMACAddress.mtx);
     cv.wait(lock,[this] {
         return !wifiMACAddress.value.empty();
@@ -154,7 +168,7 @@ const std::string& NetworkController::getWifiMacAddress() const {
     return wifiMACAddress.value;
 }
 
-const std::string& NetworkController::getWifiSSID() const {
+const std::string& NetworkModel::WifiSSID() const {
     std::unique_lock<std::mutex> lock(wifiSSID.mtx);
     cv.wait(lock,[this] {
         return !wifiSSID.value.empty();
@@ -162,18 +176,27 @@ const std::string& NetworkController::getWifiSSID() const {
     return wifiSSID.value;
 }
 
-ConnectionStats NetworkController::getConnectionSpeed() const {
-    std::unique_lock<std::mutex> lock(connectionSpeed.mtx);
-    cv.wait(lock,[this] {
-        return connectionSpeed.value.latency != -1;
+const ConnectionStats& NetworkModel::ConnectionSpeed() const {
+    //if connection.value is not set -> wait for results
+    std::unique_lock<std::mutex> lock(isTesting.mtx);
+    std::cout<<"IM LOCKING! \n";
+
+    cv.wait(lock, [=] {
+        return !isTesting.value;
     });
+    std::cout<<"Waiting here";
     return connectionSpeed.value;
 }
 
-const char *NetworkController::getWifiIP() const {
+const char *NetworkModel::WifiIP() const {
     std::unique_lock<std::mutex> lock(wifiIP.mtx);
     cv.wait(lock,[this] {
         return strlen(wifiIP.value) > 0;
     });
     return wifiIP.value;
+}
+
+bool NetworkModel::IsTestingConnection() {
+    std::lock_guard<std::mutex> lock(isTesting.mtx);
+    return isTesting.value;
 }
