@@ -1,5 +1,9 @@
 #include "fan_model.h"
 
+FanModel::FanModel() {
+        retrieveEachFanSpeedRPM();
+}
+
 void FanModel::getFanSpeedRPM(const FanModel::FANTYPE fan, const FanModel::KEYTYPE speedType) {
     int i = 0;
     try {
@@ -10,14 +14,14 @@ void FanModel::getFanSpeedRPM(const FanModel::FANTYPE fan, const FanModel::KEYTY
             else
                 throw std::invalid_argument("Invalid fan number.\n");
 
-            float return_value = readKey( fanSpeed[i]).f;
+            float return_value = readKey(fanSpeed[i]).f;
             if(fan == LEFT) {
                 std::lock_guard<std::mutex> lock(fanLeft.mtx);
-                fanLeft.value[speedType] = return_value;
+                fanLeft.value[speedType] = (int)return_value;
             }
             else if(fan == RIGHT) {
                 std::lock_guard<std::mutex> lock(fanRight.mtx);
-                fanRight.value[speedType] = return_value;
+                fanRight.value[speedType] = (int)return_value;
             }
 
     } catch (...) {
@@ -62,13 +66,26 @@ void FanModel::setFanSpeed(const FanModel::FANTYPE fan, const float speed) {
 //    fanSpeedContainer[index] = speed;
 }
 
-const std::array<float, 3> &FanModel::FanLeft() {
+const std::array<int, 3> &FanModel::FanLeft() {
     std::lock_guard<std::mutex> lock(fanLeft.mtx);
     return fanLeft.value;
 }
 
-const std::array<float, 3> &FanModel::FanRight() {
+const std::array<int, 3> &FanModel::FanRight() {
     std::lock_guard<std::mutex> lock(fanRight.mtx);
     return fanRight.value;
 }
+
+const std::array<int, 2> &&FanModel::FansCurrentSpeed() {
+    std::lock_guard<std::mutex> lockLeft(fanLeft.mtx);
+    std::lock_guard<std::mutex> lockRight(fanRight.mtx);
+    return std::array<int,2>{fanLeft.value[0], fanRight.value[0]};
+}
+
+const std::array<int, 4> FanModel::FansMinMaxSpeed() {
+    std::lock_guard<std::mutex> lockLeft(fanLeft.mtx);
+    std::lock_guard<std::mutex> lockRight(fanRight.mtx);
+    return std::array<int,4>{fanLeft.value[1],fanLeft.value[2],fanRight.value[1], fanRight.value[2]};
+}
+
 

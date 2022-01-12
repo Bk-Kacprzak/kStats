@@ -28,9 +28,11 @@ private:
         };
 
         std::mutex fan_mutex;
-        ValueContainer<std::array<float, 3>> fanLeft;
-        ValueContainer<std::array<float, 3>> fanRight;
+        ValueContainer<std::array<int, 3>> fanLeft;
+        ValueContainer<std::array<int, 3>> fanRight;
 public:
+
+    FanModel();
     enum KEYTYPE {
         CURRENT_SPEED = 0,
         MINIMUM_SPEED = 1,
@@ -47,10 +49,13 @@ public:
     void getFanSpeedRPM(const FANTYPE fan,const KEYTYPE speedType = KEYTYPE::ALL);
     void getEachFanSpeedRPM(const KEYTYPE speedType = KEYTYPE::ALL);
     void retrieveEachFanSpeedRPM();
+    const std::array<int, 3>& FanLeft();
+    const std::array<int, 3>& FanRight();
+    const std::array<int, 2> &&FansCurrentSpeed();
+    const std::array<int, 4> FansMinMaxSpeed();
     //setters
     void setFanSpeed(const FANTYPE fan, const float speed);
-    const std::array<float, 3>& FanLeft();
-    const std::array<float, 3>& FanRight();
+
 
 };
 
