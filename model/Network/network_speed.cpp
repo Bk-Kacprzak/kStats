@@ -27,6 +27,15 @@ ConnectionStats::ConnectionStats(const double &_latency, const double &_download
 
 }
 
+
+std::string& ConnectionStats::getBestServer() {
+    std::unique_lock<std::mutex> lock(mtx);
+    cv.wait(lock, [=] {
+        return !best_server.empty();
+    });
+    return best_server;
+}
+
 ConnectionStats &ConnectionStats::operator=(ConnectionStats &&data) noexcept {
     if(this != &data) {
         this->latency = std::move(data.latency);
