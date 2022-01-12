@@ -1,5 +1,6 @@
 #include <iostream> //to delete
 #include "network_model.h"
+#include <iomanip>
 
 #define CHAR_SIZE(_PTR)  (strlen(_PTR) + 1)
 
@@ -106,27 +107,22 @@ void NetworkModel::retrieveWifiInformation() {
 
 void NetworkModel::setConnectionStats() {
         isTesting.mtx.lock();
+        isTesting.mtx.lock();
+
         if(!isTesting.value) {
             isTesting.value = true;
             std::cout << "Setting connection speed\n";
-            threadPool.push([&] {
+            //removed for test
+//            threadPool.push([&] {
                 testConnectionSpeed();
-            });
+//            });
         }
-//        isTesting.mtx.lock();
-//        isTesting.value = false;
-//        isTesting.mtx.unlock();
 
-//    threadPool.push([=] {});
 }
 
 void NetworkModel::testConnectionSpeed() {
-    knet::NetworkSpeed::initializeClient();
-    knet::NetworkSpeed::initializeServer();
-    connectionSpeed.value = std::move(knet::NetworkSpeed::retrieveData());
-    isTesting.value = false;
-    isTesting.mtx.unlock();
-    cv.notify_one();
+
+//    connectionSpeed.value = std::move(knet::NetworkSpeed::retrieveData());
 }
 void NetworkModel::retrieveSSID() {
     const char* wifi = "/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep -w SSID: ";
@@ -153,11 +149,14 @@ void NetworkModel::retrieveSSID() {
 }
 
 const char* NetworkModel::AddressIPv6() const {
-    std::unique_lock<std::mutex> lock(addressIPv6.mtx);
-    cv.wait(lock,[this] {
-        return strlen(addressIPv6.value) > 0;
-    });
-    return addressIPv6.value;
+    //todo: prevent from std::__1::system_error: mutex lock failed: Invalid argument
+    //
+//    std::unique_lock<std::mutex> lock(addressIPv6.mtx);
+//    cv.wait(lock,[this] {
+//        return strlen(addressIPv6.value) > 0;
+//    });
+//    return addressIPv6.value;
+return "";
 }
 
 const std::string& NetworkModel::WifiMacAddress() const {
@@ -176,7 +175,7 @@ const std::string& NetworkModel::WifiSSID() const {
     return wifiSSID.value;
 }
 
-const ConnectionStats& NetworkModel::ConnectionSpeed() const {
+ConnectionStats& NetworkModel::ConnectionSpeed()  {
     //if connection.value is not set -> wait for results
     std::unique_lock<std::mutex> lock(isTesting.mtx);
     std::cout<<"IM LOCKING! \n";
@@ -197,6 +196,54 @@ const char *NetworkModel::WifiIP() const {
 }
 
 bool NetworkModel::IsTestingConnection() {
-    std::lock_guard<std::mutex> lock(isTesting.mtx);
     return isTesting.value;
+}
+
+void NetworkModel::lockConnectionSpeedTest() {
+    isTesting.mtx.try_lock();
+    if(!isTesting.value) {
+        isTesting.value = true;
+        isTesting.mtx.unlock();
+
+        curl_global_init(CURL_GLOBAL_ALL); // good place for curl init ????
+        std::cout << "Setting connection speed\n";
+        testConnectionSpeed();
+        knet::NetworkSpeed::initializeClient();
+
+    } else {
+        throw std::runtime_error("Connection speed test bug - NetworkModel::lockConnectionSpeedTest()\n");
+    }
+}
+
+
+std::string NetworkModel::getBestServer() {
+    std::lock_guard<std::mutex> lock(connectionSpeed.mtx);
+
+    connectionSpeed.value.best_server = knet::NetworkSpeed::initializeServer();
+    connectionSpeed.value.best_server.erase(connectionSpeed.value.best_server.end()-5, connectionSpeed.value.best_server.end());
+    return connectionSpeed.value.best_server;
+}
+
+float NetworkModel::getDownloadSpeed() {
+    std::lock_guard<std::mutex> lock(connectionSpeed.mtx);
+    connectionSpeed.value.download_speed = knet::NetworkSpeed::retreiveDownloadSpeed();
+    return connectionSpeed.value.download_speed;
+}
+
+float NetworkModel::getUploadSpeed() {
+    std::lock_guard<std::mutex> lock(connectionSpeed.mtx);
+    connectionSpeed.value.upload_speed = knet::NetworkSpeed::retreiveUploadSpeed();
+    return connectionSpeed.value.upload_speed;
+
+}
+
+int NetworkModel::getLatency() {
+    std::lock_guard<std::mutex> lock(connectionSpeed.mtx);
+    connectionSpeed.value.latency = knet::NetworkSpeed::retrieveLatency();
+    return connectionSpeed.value.latency;
+}
+
+void NetworkModel::closeConnectionSpeedTest() {
+    std::lock_guard<std::mutex> lock(isTesting.mtx);
+    isTesting.value = false;
 }

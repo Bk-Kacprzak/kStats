@@ -31,8 +31,17 @@ public:
     const char* AddressIPv6() const;
     const std::string& WifiMacAddress() const;
     const std::string& WifiSSID() const;
-    const ConnectionStats& ConnectionSpeed() const;
+    ConnectionStats& ConnectionSpeed() ;
     bool IsTestingConnection();
+    void lockConnectionSpeedTest();
+
+    std::string getBestServer();
+    float getDownloadSpeed();
+    float getUploadSpeed();
+    int getLatency();
+
+    void closeConnectionSpeedTest();
+
 };
 
 
