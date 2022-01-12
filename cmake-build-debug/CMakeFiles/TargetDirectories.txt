@@ -1,3 +1,4 @@
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles/cpuStats.dir
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles/cpuStats.dir
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles/cpuStats_autogen.dir

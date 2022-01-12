@@ -12,15 +12,15 @@ class CPU : public GenericDevice {
 #define CPU_MAX_COUNT 8
 
 private:
-    static constexpr keyContainer<CPU_MAX_COUNT + 2> temperature = {
+    static constexpr keyContainer<CPU_MAX_COUNT> temperature = {
             SMC_KEY_CPU_TEMP_CORE1,
             SMC_KEY_CPU_TEMP_CORE2,
             SMC_KEY_CPU_TEMP_CORE3,
             SMC_KEY_CPU_TEMP_CORE4,
             SMC_KEY_CPU_TEMP_CORE5,
             SMC_KEY_CPU_TEMP_CORE6,
-            SMC_KEY_CPU_TEMP_CORE7,
-            SMC_KEY_CPU_TEMP_CORE8,
+//            SMC_KEY_CPU_TEMP_CORE7,
+//            SMC_KEY_CPU_TEMP_CORE8,
             SMC_KEY_CPU_TEMP_CORE_AVG,
             SMC_KEY_CPU_TEMP_CORE_PECI,
     };

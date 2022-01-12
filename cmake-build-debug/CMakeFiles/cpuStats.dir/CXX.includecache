@@ -6,33 +6,139 @@
 
 #IncludeRegexTransform: 
 
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Generic/generic_class.h
+/Library/Frameworks/Mono.framework/Headers/expat.h
+stdlib.h
+-
+expat_external.h
+/Library/Frameworks/Mono.framework/Headers/expat_external.h
+
+/Library/Frameworks/Mono.framework/Headers/expat_external.h
+
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/controller/kStatsController.h
+../model/kStats_model.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/kStats_model.h
+../model/Generic/generic_class.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Generic/generic_class.h
+
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Battery/battery_model.h
+../Generic/generic_device.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Generic/generic_device.h
+
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/CPU/cpu_model.h
+../Generic/generic_device.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Generic/generic_device.h
+../Utils/keys.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Utils/keys.h
+mutex
+-
+vector
+-
+sys/sysctl.h
+-
+
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Fan/fan_model.h
+../Generic/generic_device.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Generic/generic_device.h
+
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/GPU/gpu_device.h
+../Generic/generic_device.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Generic/generic_device.h
+../Utils/keys.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Utils/keys.h
+
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Generic/generic_class.h
 ../Utils/threadPool.h
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Utils/threadPool.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Utils/threadPool.h
 mutex
 -
 
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Generic/generic_device.cpp
-generic_device.h
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Generic/generic_device.h
-
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Generic/generic_device.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Generic/generic_device.h
 string
 -
 memory
 -
 generic_class.h
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Generic/generic_class.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Generic/generic_class.h
 ../Utils/keys.h
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Utils/keys.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Utils/keys.h
 ../Utils/utilsConverter.h
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Utils/utilsConverter.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Utils/utilsConverter.h
 ../Utils/threadPool.h
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Utils/threadPool.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Utils/threadPool.h
 
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Utils/keys.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Network/network_model.h
+ifaddrs.h
+-
+arpa/inet.h
+-
+net/if_dl.h
+-
+network_speed.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Network/network_speed.h
+../Generic/generic_class.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Generic/generic_class.h
+condition_variable
+-
 
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Utils/threadPool.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Network/network_speed.h
+iostream
+-
+cstdio
+-
+cstdlib
+-
+cstring
+-
+unistd.h
+-
+pthread.h
+-
+cfloat
+-
+cmath
+-
+curl/curl.h
+-
+expat.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Network/expat.h
+string
+-
+
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/generic_peripheral.h
+../Generic/generic_class.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Generic/generic_class.h
+iokit_libraries.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/iokit_libraries.h
+
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/iokit_libraries.h
+Foundation/Foundation.h
+-
+IOBluetooth/objc/IOBluetoothDevice.h
+-
+AppKit/NSScreen.h
+-
+
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/peripherals_model.h
+iostream
+-
+string
+-
+vector
+-
+generic_peripheral.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/generic_peripheral.h
+
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/volume_storage_model.h
+string
+-
+mutex
+-
+iokit_libraries.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/iokit_libraries.h
+
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Utils/keys.h
+
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Utils/threadPool.h
 queue
 -
 functional
@@ -46,11 +152,27 @@ atomic
 thread
 -
 
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Utils/utilsConverter.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Utils/utilsConverter.h
 ../smc.h
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/smc.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/smc.h
 
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/smc.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/kStats_model.h
+Battery/battery_model.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Battery/battery_model.h
+CPU/cpu_model.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/CPU/cpu_model.h
+Fan/fan_model.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Fan/fan_model.h
+Network/network_model.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Network/network_model.h
+Peripherals/peripherals_model.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/peripherals_model.h
+Peripherals/volume_storage_model.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/volume_storage_model.h
+GPU/gpu_device.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/GPU/gpu_device.h
+
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/smc.h
 IOKit/IOKitLib.h
 -
 array
@@ -58,5 +180,163 @@ array
 iostream
 -
 Utils/keys.h
-/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Utils/keys.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Utils/keys.h
+
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/view/animation.h
+qt_libraries.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/view/qt_libraries.h
+../model/Utils/threadPool.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Utils/threadPool.h
+../model/Generic/generic_class.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Generic/generic_class.h
+future
+-
+
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/view/kStats_view.h
+qt_libraries.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/view/qt_libraries.h
+chrono
+-
+time.h
+-
+thread
+-
+QVBoxLayout
+-
+QHBoxLayout
+-
+animation.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/view/animation.h
+condition_variable
+-
+
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/view/kStats_view.mm
+kStats_view.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/view/kStats_view.h
+QMainWindow
+-
+iostream
+-
+../controller/kStatsController.h
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/controller/kStatsController.h
+QDebug
+-
+QPicture
+-
+chrono
+-
+
+/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/view/qt_libraries.h
+QtCore/QVariant
+-
+QtGui/QIcon
+-
+QtWidgets/QApplication
+-
+QtWidgets/QFrame
+-
+QtWidgets/QGridLayout
+-
+QtWidgets/QHBoxLayout
+-
+QtWidgets/QHeaderView
+-
+QtWidgets/QLabel
+-
+QtWidgets/QMainWindow
+-
+QtWidgets/QPushButton
+-
+QtWidgets/QSpacerItem
+-
+QtWidgets/QStackedWidget
+-
+QtWidgets/QTableWidget
+-
+QtWidgets/QVBoxLayout
+-
+QtWidgets/QWidget
+-
+
+/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/QtCore.framework/Headers/QDebug
+qdebug.h
+/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/QtCore.framework/Headers/qdebug.h
+
+/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/QtCore.framework/Headers/qdebug.h
+QtCore/qalgorithms.h
+-
+QtCore/qhash.h
+-
+QtCore/qlist.h
+-
+QtCore/qmap.h
+-
+QtCore/qpair.h
+-
+QtCore/qtextstream.h
+-
+QtCore/qstring.h
+-
+QtCore/qvector.h
+-
+QtCore/qset.h
+-
+QtCore/qcontiguouscache.h
+-
+QtCore/qsharedpointer.h
+-
+vector
+-
+list
+-
+map
+-
+utility
+-
+
+/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/QtGui.framework/Headers/QPicture
+qpicture.h
+/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/QtGui.framework/Headers/qpicture.h
+
+/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/QtGui.framework/Headers/qpicture.h
+QtGui/qtguiglobal.h
+-
+QtCore/qiodevice.h
+-
+QtCore/qstringlist.h
+-
+QtCore/qsharedpointer.h
+-
+QtGui/qpaintdevice.h
+-
+
+/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/QtWidgets.framework/Headers/QHBoxLayout
+qboxlayout.h
+/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h
+
+/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/QtWidgets.framework/Headers/QMainWindow
+qmainwindow.h
+/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h
+
+/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/QtWidgets.framework/Headers/QVBoxLayout
+qboxlayout.h
+/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h
+
+/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/QtWidgets.framework/Headers/qboxlayout.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qlayout.h
+-
+QtWidgets/qwidget.h
+-
+limits.h
+-
+
+/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h
+QtWidgets/qtwidgetsglobal.h
+-
+QtWidgets/qwidget.h
+-
+QtWidgets/qtabwidget.h
+-
 

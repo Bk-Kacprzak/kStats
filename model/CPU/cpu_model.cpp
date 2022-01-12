@@ -1,10 +1,11 @@
 #include "cpu_model.h"
 #include "../Utils/utils.h"
 #include <thread>
+#include <mutex>
+
 #include <vector>
 
 CPU::CPU() : physicalCoreCount(0), cacheSize(0), byteOrder(-1), architecture(-1) {
-    std::cout<<"********CPUIM HEEEEEEERE********\n\n";
     retrieveCPUInformation();
 }
 
@@ -35,16 +36,16 @@ void CPU::retrieveTemperature(const int &core) {
         int return_value = readKey(temperature[core]).i;
 
         std::lock_guard<std::mutex> lock(CPUTemperature.mtx);
-        CPUTemperature.value[core] = return_value/256.0;
+        CPUTemperature.value[core] = (int)(return_value/256.0);
 //todo: delete printing
         if(core == 6)  {
             //avg temp
-            std::cout<<"Core average: "<<CPUTemperature.value[core]<<std::endl;
+//            std::cout<<"Core average: "<<CPUTemperature.value[core]<<std::endl;
         }
         else if (core == 7) {
-            std::cout<<"Core PECI: "<<CPUTemperature.value[core]<<std::endl;
+//            std::cout<<"Core PECI: "<<CPUTemperature.value[core]<<std::endl;
         } else {
-            std::cout<<"Core "<<core + 1 <<": "<<CPUTemperature.value[core]<<std::endl;
+//            std::cout<<"Core "<<core + 1 <<": "<<CPUTemperature.value[core]<<std::endl;
         }
     }
 
@@ -58,8 +59,8 @@ ushort CPU::getCoreNumber() {
     return 6;
 }
 
-const std::array<float, 8>& CPU::EachCoreTemperature() {
-    for(int i = 0; i<physicalCoreCount.value; i++) {
+const std::array<float, 8> & CPU::EachCoreTemperature() {
+    for(int i = 0; i<physicalCoreCount.value+2; i++) {
         threadPool.push([=] {
             retrieveTemperature(i);
         });
@@ -69,6 +70,7 @@ const std::array<float, 8>& CPU::EachCoreTemperature() {
     cv.wait(lock,[this] {
         return !CPUTemperature.value.empty();
     });
+
     return CPUTemperature.value;
 }
 
@@ -139,10 +141,12 @@ void CPU::retrieveCPUInformation() {
         sysctlCall(cacheSize,"machdep.cpu.cache.size", 64);
         std::cout<<"Cache Size: "<<CacheSize()<<std::endl;
     });
+
     threadPool.push([&] {
         sysctlCall(byteOrder,"hw.byteorder", 64);
         std::cout<<"Cache Size: "<<(ByteOrder() == 1234 ? "Little Endian" : "Big Endian" )<<std::endl;
     });
+
     threadPool.push([&] {
         sysctlCall(architecture, "hw.optional.x86_64", 64);
         std::cout<<"Architecture: " <<(Architecture() == 1 ? "x86_64" : "x86")<<std::endl;

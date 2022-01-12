@@ -8,7 +8,6 @@
 knet::threadPool::threadPool() : numOfThreads(std::thread::hardware_concurrency()), functionQueue(), mutexLock(), dataCondition(), acceptFunctions() {
     for(int i = 0; i<numOfThreads; i++)
         threads.push_back(std::move(std::thread(&threadPool::inifiniteLoop, this)));
-
 }
 
 knet::threadPool::~threadPool() {

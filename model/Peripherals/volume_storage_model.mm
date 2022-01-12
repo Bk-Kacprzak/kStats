@@ -30,6 +30,7 @@ void VolumeStorage::retrieveVolumeInformation() {
         }
         else if(keys[i] == NSURLVolumeTotalCapacityKey){
             totalMemory = static_cast<NSNumber*>(values[i]).floatValue/1000000000;
+            totalMemory = (int)totalMemory;
         }
         else if(keys[i] == NSURLVolumeAvailableCapacityKey){
             freeMemory = static_cast<NSNumber*>(values[i]).floatValue/1000000000;

@@ -16,6 +16,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/CMakeGenericSystem.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/CMakeInitializeConfigs.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/CMakeLanguageInformation.cmake"
+  "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/CMakeParseArguments.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/CMakeSystemSpecificInformation.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/CMakeSystemSpecificInitialize.cmake"
   "/Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.17/Modules/Compiler/AppleClang-C.cmake"
@@ -43,6 +44,42 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/3.17.5/CMakeCCompiler.cmake"
   "CMakeFiles/3.17.5/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.17.5/CMakeSystem.cmake"
+  "../view/resources.qrc"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5/Qt5Config.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5/Qt5ConfigVersion.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5/Qt5ModuleLocation.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Core/Qt5CoreConfig.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Core/Qt5CoreMacros.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QCocoaIntegrationPlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QICNSPlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QMacHeifPlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QMacJp2Plugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QSvgIconPlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QSvgPlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QVirtualKeyboardPlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QWebGLIntegrationPlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QWebpPlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QXdgDesktopPortalThemePlugin.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake"
+  "/Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/cmake/Qt5Widgets/Qt5Widgets_QMacStylePlugin.cmake"
   )
 
 # The corresponding makefile is:
@@ -53,10 +90,13 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
+  "CMakeFiles/cpuStats_autogen.dir/AutogenInfo.json"
+  "CMakeFiles/cpuStats_autogen.dir/AutoRcc_resources_OTUN7GXZT4_Info.json"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/cpuStats.dir/DependInfo.cmake"
+  "CMakeFiles/cpuStats_autogen.dir/DependInfo.cmake"
   )

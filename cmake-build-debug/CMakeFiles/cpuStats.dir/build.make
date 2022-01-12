@@ -63,10 +63,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats
+CMAKE_SOURCE_DIR = "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug
+CMAKE_BINARY_DIR = "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug"
 
 # Include any dependencies generated for this target.
 include CMakeFiles/cpuStats.dir/depend.make
@@ -77,242 +77,375 @@ include CMakeFiles/cpuStats.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/cpuStats.dir/flags.make
 
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/resources.qrc
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: CMakeFiles/cpuStats_autogen.dir/AutoRcc_resources_OTUN7GXZT4_Info.json
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/bell-black.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/plus.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/radeon-logo.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/nvidia.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/settings-icon2.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/dell.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/zoom-in-icon.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/minus.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/background-image.png
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/fan-icon128.png
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/zoom-out-icon.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/preference-icon.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/bell-off.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/earth.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/office\ 2.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/home-icon.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/arrow-right.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/connection.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/equalizer-icon2.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/list-black.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/headphones.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/fan.png
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/contrast.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/keyboard.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/power.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/list.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/windows8.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/settings-icon.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/stats-icon.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/embed2.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/battery-icon2.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/bell.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/processor.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/application-logo.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/cpu-icon.png
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/arrow-left.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/delete.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/mouse.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/computer-icon.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/calendar.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/office.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/stats-bars.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/fan-icon2.png
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/code.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/folder-icon.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/background.png
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/intel-logo.png
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/amd.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/chevron-right.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/peripherals-icon.png
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/linux.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/chevron-left.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/pie-chart-icon.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/appleinc.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/display.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/app-color-theme.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/edit.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/monitor.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/activity.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/cpu.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/memory.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/devices.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/lenovo.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: ../view/images/battery-icon.svg
+cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp: /Users/bk.kacprzak/Qt/5.15.1/clang_64/bin/rcc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Automatic RCC for view/resources.qrc"
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E cmake_autorcc /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia\ 3/cmake-build-debug/CMakeFiles/cpuStats_autogen.dir/AutoRcc_resources_OTUN7GXZT4_Info.json Debug
+
+CMakeFiles/cpuStats.dir/cpuStats_autogen/mocs_compilation.cpp.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/cpuStats_autogen/mocs_compilation.cpp.o: cpuStats_autogen/mocs_compilation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/cpuStats.dir/cpuStats_autogen/mocs_compilation.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/cpuStats_autogen/mocs_compilation.cpp.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/cpuStats_autogen/mocs_compilation.cpp"
+
+CMakeFiles/cpuStats.dir/cpuStats_autogen/mocs_compilation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/cpuStats_autogen/mocs_compilation.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/cpuStats_autogen/mocs_compilation.cpp" > CMakeFiles/cpuStats.dir/cpuStats_autogen/mocs_compilation.cpp.i
+
+CMakeFiles/cpuStats.dir/cpuStats_autogen/mocs_compilation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/cpuStats_autogen/mocs_compilation.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/cpuStats_autogen/mocs_compilation.cpp" -o CMakeFiles/cpuStats.dir/cpuStats_autogen/mocs_compilation.cpp.s
+
 CMakeFiles/cpuStats.dir/main.mm.o: CMakeFiles/cpuStats.dir/flags.make
 CMakeFiles/cpuStats.dir/main.mm.o: ../main.mm
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/cpuStats.dir/main.mm.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/main.mm.o -c /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/main.mm
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/cpuStats.dir/main.mm.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/main.mm.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/main.mm"
 
 CMakeFiles/cpuStats.dir/main.mm.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/main.mm.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/main.mm > CMakeFiles/cpuStats.dir/main.mm.i
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/main.mm" > CMakeFiles/cpuStats.dir/main.mm.i
 
 CMakeFiles/cpuStats.dir/main.mm.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/main.mm.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/main.mm -o CMakeFiles/cpuStats.dir/main.mm.s
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/main.mm" -o CMakeFiles/cpuStats.dir/main.mm.s
 
-CMakeFiles/cpuStats.dir/controller/smc.cpp.o: CMakeFiles/cpuStats.dir/flags.make
-CMakeFiles/cpuStats.dir/controller/smc.cpp.o: ../controller/smc.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/cpuStats.dir/controller/smc.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/controller/smc.cpp.o -c /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/smc.cpp
+CMakeFiles/cpuStats.dir/model/smc.cpp.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/model/smc.cpp.o: ../model/smc.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/cpuStats.dir/model/smc.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/model/smc.cpp.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/smc.cpp"
 
-CMakeFiles/cpuStats.dir/controller/smc.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/controller/smc.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/smc.cpp > CMakeFiles/cpuStats.dir/controller/smc.cpp.i
+CMakeFiles/cpuStats.dir/model/smc.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/model/smc.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/smc.cpp" > CMakeFiles/cpuStats.dir/model/smc.cpp.i
 
-CMakeFiles/cpuStats.dir/controller/smc.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/controller/smc.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/smc.cpp -o CMakeFiles/cpuStats.dir/controller/smc.cpp.s
+CMakeFiles/cpuStats.dir/model/smc.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/model/smc.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/smc.cpp" -o CMakeFiles/cpuStats.dir/model/smc.cpp.s
 
-CMakeFiles/cpuStats.dir/controller/Generic/generic_device.cpp.o: CMakeFiles/cpuStats.dir/flags.make
-CMakeFiles/cpuStats.dir/controller/Generic/generic_device.cpp.o: ../controller/Generic/generic_device.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/cpuStats.dir/controller/Generic/generic_device.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/controller/Generic/generic_device.cpp.o -c /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Generic/generic_device.cpp
+CMakeFiles/cpuStats.dir/model/Generic/generic_device.cpp.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/model/Generic/generic_device.cpp.o: ../model/Generic/generic_device.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/cpuStats.dir/model/Generic/generic_device.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/model/Generic/generic_device.cpp.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Generic/generic_device.cpp"
 
-CMakeFiles/cpuStats.dir/controller/Generic/generic_device.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/controller/Generic/generic_device.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Generic/generic_device.cpp > CMakeFiles/cpuStats.dir/controller/Generic/generic_device.cpp.i
+CMakeFiles/cpuStats.dir/model/Generic/generic_device.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/model/Generic/generic_device.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Generic/generic_device.cpp" > CMakeFiles/cpuStats.dir/model/Generic/generic_device.cpp.i
 
-CMakeFiles/cpuStats.dir/controller/Generic/generic_device.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/controller/Generic/generic_device.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Generic/generic_device.cpp -o CMakeFiles/cpuStats.dir/controller/Generic/generic_device.cpp.s
+CMakeFiles/cpuStats.dir/model/Generic/generic_device.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/model/Generic/generic_device.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Generic/generic_device.cpp" -o CMakeFiles/cpuStats.dir/model/Generic/generic_device.cpp.s
 
-CMakeFiles/cpuStats.dir/controller/CPU/cpu_device.cpp.o: CMakeFiles/cpuStats.dir/flags.make
-CMakeFiles/cpuStats.dir/controller/CPU/cpu_device.cpp.o: ../controller/CPU/cpu_device.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/cpuStats.dir/controller/CPU/cpu_device.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/controller/CPU/cpu_device.cpp.o -c /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/CPU/cpu_device.cpp
+CMakeFiles/cpuStats.dir/model/CPU/cpu_model.cpp.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/model/CPU/cpu_model.cpp.o: ../model/CPU/cpu_model.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/cpuStats.dir/model/CPU/cpu_model.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/model/CPU/cpu_model.cpp.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/CPU/cpu_model.cpp"
 
-CMakeFiles/cpuStats.dir/controller/CPU/cpu_device.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/controller/CPU/cpu_device.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/CPU/cpu_device.cpp > CMakeFiles/cpuStats.dir/controller/CPU/cpu_device.cpp.i
+CMakeFiles/cpuStats.dir/model/CPU/cpu_model.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/model/CPU/cpu_model.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/CPU/cpu_model.cpp" > CMakeFiles/cpuStats.dir/model/CPU/cpu_model.cpp.i
 
-CMakeFiles/cpuStats.dir/controller/CPU/cpu_device.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/controller/CPU/cpu_device.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/CPU/cpu_device.cpp -o CMakeFiles/cpuStats.dir/controller/CPU/cpu_device.cpp.s
+CMakeFiles/cpuStats.dir/model/CPU/cpu_model.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/model/CPU/cpu_model.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/CPU/cpu_model.cpp" -o CMakeFiles/cpuStats.dir/model/CPU/cpu_model.cpp.s
 
-CMakeFiles/cpuStats.dir/controller/Utils/threadPool.cpp.o: CMakeFiles/cpuStats.dir/flags.make
-CMakeFiles/cpuStats.dir/controller/Utils/threadPool.cpp.o: ../controller/Utils/threadPool.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/cpuStats.dir/controller/Utils/threadPool.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/controller/Utils/threadPool.cpp.o -c /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Utils/threadPool.cpp
+CMakeFiles/cpuStats.dir/model/Utils/threadPool.cpp.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/model/Utils/threadPool.cpp.o: ../model/Utils/threadPool.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/cpuStats.dir/model/Utils/threadPool.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/model/Utils/threadPool.cpp.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Utils/threadPool.cpp"
 
-CMakeFiles/cpuStats.dir/controller/Utils/threadPool.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/controller/Utils/threadPool.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Utils/threadPool.cpp > CMakeFiles/cpuStats.dir/controller/Utils/threadPool.cpp.i
+CMakeFiles/cpuStats.dir/model/Utils/threadPool.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/model/Utils/threadPool.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Utils/threadPool.cpp" > CMakeFiles/cpuStats.dir/model/Utils/threadPool.cpp.i
 
-CMakeFiles/cpuStats.dir/controller/Utils/threadPool.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/controller/Utils/threadPool.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Utils/threadPool.cpp -o CMakeFiles/cpuStats.dir/controller/Utils/threadPool.cpp.s
+CMakeFiles/cpuStats.dir/model/Utils/threadPool.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/model/Utils/threadPool.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Utils/threadPool.cpp" -o CMakeFiles/cpuStats.dir/model/Utils/threadPool.cpp.s
 
-CMakeFiles/cpuStats.dir/controller/Fan/fan_controller.cpp.o: CMakeFiles/cpuStats.dir/flags.make
-CMakeFiles/cpuStats.dir/controller/Fan/fan_controller.cpp.o: ../controller/Fan/fan_controller.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/cpuStats.dir/controller/Fan/fan_controller.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/controller/Fan/fan_controller.cpp.o -c /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Fan/fan_controller.cpp
+CMakeFiles/cpuStats.dir/model/Fan/fan_model.cpp.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/model/Fan/fan_model.cpp.o: ../model/Fan/fan_model.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/cpuStats.dir/model/Fan/fan_model.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/model/Fan/fan_model.cpp.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Fan/fan_model.cpp"
 
-CMakeFiles/cpuStats.dir/controller/Fan/fan_controller.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/controller/Fan/fan_controller.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Fan/fan_controller.cpp > CMakeFiles/cpuStats.dir/controller/Fan/fan_controller.cpp.i
+CMakeFiles/cpuStats.dir/model/Fan/fan_model.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/model/Fan/fan_model.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Fan/fan_model.cpp" > CMakeFiles/cpuStats.dir/model/Fan/fan_model.cpp.i
 
-CMakeFiles/cpuStats.dir/controller/Fan/fan_controller.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/controller/Fan/fan_controller.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Fan/fan_controller.cpp -o CMakeFiles/cpuStats.dir/controller/Fan/fan_controller.cpp.s
+CMakeFiles/cpuStats.dir/model/Fan/fan_model.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/model/Fan/fan_model.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Fan/fan_model.cpp" -o CMakeFiles/cpuStats.dir/model/Fan/fan_model.cpp.s
 
-CMakeFiles/cpuStats.dir/controller/Battery/battery_controller.cpp.o: CMakeFiles/cpuStats.dir/flags.make
-CMakeFiles/cpuStats.dir/controller/Battery/battery_controller.cpp.o: ../controller/Battery/battery_controller.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/cpuStats.dir/controller/Battery/battery_controller.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/controller/Battery/battery_controller.cpp.o -c /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Battery/battery_controller.cpp
+CMakeFiles/cpuStats.dir/model/Battery/battery_model.cpp.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/model/Battery/battery_model.cpp.o: ../model/Battery/battery_model.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/cpuStats.dir/model/Battery/battery_model.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/model/Battery/battery_model.cpp.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Battery/battery_model.cpp"
 
-CMakeFiles/cpuStats.dir/controller/Battery/battery_controller.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/controller/Battery/battery_controller.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Battery/battery_controller.cpp > CMakeFiles/cpuStats.dir/controller/Battery/battery_controller.cpp.i
+CMakeFiles/cpuStats.dir/model/Battery/battery_model.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/model/Battery/battery_model.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Battery/battery_model.cpp" > CMakeFiles/cpuStats.dir/model/Battery/battery_model.cpp.i
 
-CMakeFiles/cpuStats.dir/controller/Battery/battery_controller.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/controller/Battery/battery_controller.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Battery/battery_controller.cpp -o CMakeFiles/cpuStats.dir/controller/Battery/battery_controller.cpp.s
+CMakeFiles/cpuStats.dir/model/Battery/battery_model.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/model/Battery/battery_model.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Battery/battery_model.cpp" -o CMakeFiles/cpuStats.dir/model/Battery/battery_model.cpp.s
 
-CMakeFiles/cpuStats.dir/controller/Network/network_controller.cpp.o: CMakeFiles/cpuStats.dir/flags.make
-CMakeFiles/cpuStats.dir/controller/Network/network_controller.cpp.o: ../controller/Network/network_controller.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/cpuStats.dir/controller/Network/network_controller.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/controller/Network/network_controller.cpp.o -c /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Network/network_controller.cpp
+CMakeFiles/cpuStats.dir/model/Network/network_model.cpp.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/model/Network/network_model.cpp.o: ../model/Network/network_model.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/cpuStats.dir/model/Network/network_model.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/model/Network/network_model.cpp.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Network/network_model.cpp"
 
-CMakeFiles/cpuStats.dir/controller/Network/network_controller.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/controller/Network/network_controller.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Network/network_controller.cpp > CMakeFiles/cpuStats.dir/controller/Network/network_controller.cpp.i
+CMakeFiles/cpuStats.dir/model/Network/network_model.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/model/Network/network_model.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Network/network_model.cpp" > CMakeFiles/cpuStats.dir/model/Network/network_model.cpp.i
 
-CMakeFiles/cpuStats.dir/controller/Network/network_controller.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/controller/Network/network_controller.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Network/network_controller.cpp -o CMakeFiles/cpuStats.dir/controller/Network/network_controller.cpp.s
+CMakeFiles/cpuStats.dir/model/Network/network_model.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/model/Network/network_model.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Network/network_model.cpp" -o CMakeFiles/cpuStats.dir/model/Network/network_model.cpp.s
 
-CMakeFiles/cpuStats.dir/controller/Generic/generic_class.cpp.o: CMakeFiles/cpuStats.dir/flags.make
-CMakeFiles/cpuStats.dir/controller/Generic/generic_class.cpp.o: ../controller/Generic/generic_class.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/cpuStats.dir/controller/Generic/generic_class.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/controller/Generic/generic_class.cpp.o -c /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Generic/generic_class.cpp
+CMakeFiles/cpuStats.dir/model/Generic/generic_class.cpp.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/model/Generic/generic_class.cpp.o: ../model/Generic/generic_class.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/cpuStats.dir/model/Generic/generic_class.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/model/Generic/generic_class.cpp.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Generic/generic_class.cpp"
 
-CMakeFiles/cpuStats.dir/controller/Generic/generic_class.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/controller/Generic/generic_class.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Generic/generic_class.cpp > CMakeFiles/cpuStats.dir/controller/Generic/generic_class.cpp.i
+CMakeFiles/cpuStats.dir/model/Generic/generic_class.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/model/Generic/generic_class.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Generic/generic_class.cpp" > CMakeFiles/cpuStats.dir/model/Generic/generic_class.cpp.i
 
-CMakeFiles/cpuStats.dir/controller/Generic/generic_class.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/controller/Generic/generic_class.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Generic/generic_class.cpp -o CMakeFiles/cpuStats.dir/controller/Generic/generic_class.cpp.s
+CMakeFiles/cpuStats.dir/model/Generic/generic_class.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/model/Generic/generic_class.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Generic/generic_class.cpp" -o CMakeFiles/cpuStats.dir/model/Generic/generic_class.cpp.s
 
-CMakeFiles/cpuStats.dir/controller/Network/network_speed.cpp.o: CMakeFiles/cpuStats.dir/flags.make
-CMakeFiles/cpuStats.dir/controller/Network/network_speed.cpp.o: ../controller/Network/network_speed.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/cpuStats.dir/controller/Network/network_speed.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/controller/Network/network_speed.cpp.o -c /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Network/network_speed.cpp
+CMakeFiles/cpuStats.dir/model/Network/network_speed.cpp.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/model/Network/network_speed.cpp.o: ../model/Network/network_speed.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/cpuStats.dir/model/Network/network_speed.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/model/Network/network_speed.cpp.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Network/network_speed.cpp"
 
-CMakeFiles/cpuStats.dir/controller/Network/network_speed.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/controller/Network/network_speed.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Network/network_speed.cpp > CMakeFiles/cpuStats.dir/controller/Network/network_speed.cpp.i
+CMakeFiles/cpuStats.dir/model/Network/network_speed.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/model/Network/network_speed.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Network/network_speed.cpp" > CMakeFiles/cpuStats.dir/model/Network/network_speed.cpp.i
 
-CMakeFiles/cpuStats.dir/controller/Network/network_speed.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/controller/Network/network_speed.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Network/network_speed.cpp -o CMakeFiles/cpuStats.dir/controller/Network/network_speed.cpp.s
+CMakeFiles/cpuStats.dir/model/Network/network_speed.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/model/Network/network_speed.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Network/network_speed.cpp" -o CMakeFiles/cpuStats.dir/model/Network/network_speed.cpp.s
 
-CMakeFiles/cpuStats.dir/controller/Peripherals/peripherals_controller.mm.o: CMakeFiles/cpuStats.dir/flags.make
-CMakeFiles/cpuStats.dir/controller/Peripherals/peripherals_controller.mm.o: ../controller/Peripherals/peripherals_controller.mm
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/cpuStats.dir/controller/Peripherals/peripherals_controller.mm.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/controller/Peripherals/peripherals_controller.mm.o -c /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Peripherals/peripherals_controller.mm
+CMakeFiles/cpuStats.dir/model/Peripherals/peripherals_model.mm.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/model/Peripherals/peripherals_model.mm.o: ../model/Peripherals/peripherals_model.mm
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/cpuStats.dir/model/Peripherals/peripherals_model.mm.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/model/Peripherals/peripherals_model.mm.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/peripherals_model.mm"
 
-CMakeFiles/cpuStats.dir/controller/Peripherals/peripherals_controller.mm.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/controller/Peripherals/peripherals_controller.mm.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Peripherals/peripherals_controller.mm > CMakeFiles/cpuStats.dir/controller/Peripherals/peripherals_controller.mm.i
+CMakeFiles/cpuStats.dir/model/Peripherals/peripherals_model.mm.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/model/Peripherals/peripherals_model.mm.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/peripherals_model.mm" > CMakeFiles/cpuStats.dir/model/Peripherals/peripherals_model.mm.i
 
-CMakeFiles/cpuStats.dir/controller/Peripherals/peripherals_controller.mm.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/controller/Peripherals/peripherals_controller.mm.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Peripherals/peripherals_controller.mm -o CMakeFiles/cpuStats.dir/controller/Peripherals/peripherals_controller.mm.s
+CMakeFiles/cpuStats.dir/model/Peripherals/peripherals_model.mm.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/model/Peripherals/peripherals_model.mm.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/peripherals_model.mm" -o CMakeFiles/cpuStats.dir/model/Peripherals/peripherals_model.mm.s
 
-CMakeFiles/cpuStats.dir/controller/Peripherals/generic_peripheral.mm.o: CMakeFiles/cpuStats.dir/flags.make
-CMakeFiles/cpuStats.dir/controller/Peripherals/generic_peripheral.mm.o: ../controller/Peripherals/generic_peripheral.mm
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/cpuStats.dir/controller/Peripherals/generic_peripheral.mm.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/controller/Peripherals/generic_peripheral.mm.o -c /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Peripherals/generic_peripheral.mm
+CMakeFiles/cpuStats.dir/model/Peripherals/generic_peripheral.mm.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/model/Peripherals/generic_peripheral.mm.o: ../model/Peripherals/generic_peripheral.mm
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/cpuStats.dir/model/Peripherals/generic_peripheral.mm.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/model/Peripherals/generic_peripheral.mm.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/generic_peripheral.mm"
 
-CMakeFiles/cpuStats.dir/controller/Peripherals/generic_peripheral.mm.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/controller/Peripherals/generic_peripheral.mm.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Peripherals/generic_peripheral.mm > CMakeFiles/cpuStats.dir/controller/Peripherals/generic_peripheral.mm.i
+CMakeFiles/cpuStats.dir/model/Peripherals/generic_peripheral.mm.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/model/Peripherals/generic_peripheral.mm.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/generic_peripheral.mm" > CMakeFiles/cpuStats.dir/model/Peripherals/generic_peripheral.mm.i
 
-CMakeFiles/cpuStats.dir/controller/Peripherals/generic_peripheral.mm.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/controller/Peripherals/generic_peripheral.mm.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Peripherals/generic_peripheral.mm -o CMakeFiles/cpuStats.dir/controller/Peripherals/generic_peripheral.mm.s
+CMakeFiles/cpuStats.dir/model/Peripherals/generic_peripheral.mm.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/model/Peripherals/generic_peripheral.mm.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/generic_peripheral.mm" -o CMakeFiles/cpuStats.dir/model/Peripherals/generic_peripheral.mm.s
 
-CMakeFiles/cpuStats.dir/controller/Peripherals/volume_storage_controller.mm.o: CMakeFiles/cpuStats.dir/flags.make
-CMakeFiles/cpuStats.dir/controller/Peripherals/volume_storage_controller.mm.o: ../controller/Peripherals/volume_storage_controller.mm
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/cpuStats.dir/controller/Peripherals/volume_storage_controller.mm.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/controller/Peripherals/volume_storage_controller.mm.o -c /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Peripherals/volume_storage_controller.mm
+CMakeFiles/cpuStats.dir/model/Peripherals/volume_storage_model.mm.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/model/Peripherals/volume_storage_model.mm.o: ../model/Peripherals/volume_storage_model.mm
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/cpuStats.dir/model/Peripherals/volume_storage_model.mm.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/model/Peripherals/volume_storage_model.mm.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/volume_storage_model.mm"
 
-CMakeFiles/cpuStats.dir/controller/Peripherals/volume_storage_controller.mm.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/controller/Peripherals/volume_storage_controller.mm.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Peripherals/volume_storage_controller.mm > CMakeFiles/cpuStats.dir/controller/Peripherals/volume_storage_controller.mm.i
+CMakeFiles/cpuStats.dir/model/Peripherals/volume_storage_model.mm.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/model/Peripherals/volume_storage_model.mm.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/volume_storage_model.mm" > CMakeFiles/cpuStats.dir/model/Peripherals/volume_storage_model.mm.i
 
-CMakeFiles/cpuStats.dir/controller/Peripherals/volume_storage_controller.mm.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/controller/Peripherals/volume_storage_controller.mm.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/Peripherals/volume_storage_controller.mm -o CMakeFiles/cpuStats.dir/controller/Peripherals/volume_storage_controller.mm.s
+CMakeFiles/cpuStats.dir/model/Peripherals/volume_storage_model.mm.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/model/Peripherals/volume_storage_model.mm.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/Peripherals/volume_storage_model.mm" -o CMakeFiles/cpuStats.dir/model/Peripherals/volume_storage_model.mm.s
 
-CMakeFiles/cpuStats.dir/controller/kStat_controller.mm.o: CMakeFiles/cpuStats.dir/flags.make
-CMakeFiles/cpuStats.dir/controller/kStat_controller.mm.o: ../controller/kStat_controller.mm
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/cpuStats.dir/controller/kStat_controller.mm.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/controller/kStat_controller.mm.o -c /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/kStat_controller.mm
+CMakeFiles/cpuStats.dir/model/kStats_model.mm.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/model/kStats_model.mm.o: ../model/kStats_model.mm
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/cpuStats.dir/model/kStats_model.mm.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/model/kStats_model.mm.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/kStats_model.mm"
 
-CMakeFiles/cpuStats.dir/controller/kStat_controller.mm.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/controller/kStat_controller.mm.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/kStat_controller.mm > CMakeFiles/cpuStats.dir/controller/kStat_controller.mm.i
+CMakeFiles/cpuStats.dir/model/kStats_model.mm.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/model/kStats_model.mm.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/kStats_model.mm" > CMakeFiles/cpuStats.dir/model/kStats_model.mm.i
 
-CMakeFiles/cpuStats.dir/controller/kStat_controller.mm.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/controller/kStat_controller.mm.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/kStat_controller.mm -o CMakeFiles/cpuStats.dir/controller/kStat_controller.mm.s
+CMakeFiles/cpuStats.dir/model/kStats_model.mm.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/model/kStats_model.mm.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/kStats_model.mm" -o CMakeFiles/cpuStats.dir/model/kStats_model.mm.s
 
-CMakeFiles/cpuStats.dir/controller/GPU/gpu_device.mm.o: CMakeFiles/cpuStats.dir/flags.make
-CMakeFiles/cpuStats.dir/controller/GPU/gpu_device.mm.o: ../controller/GPU/gpu_device.mm
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/cpuStats.dir/controller/GPU/gpu_device.mm.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/controller/GPU/gpu_device.mm.o -c /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/GPU/gpu_device.mm
+CMakeFiles/cpuStats.dir/model/GPU/gpu_device.mm.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/model/GPU/gpu_device.mm.o: ../model/GPU/gpu_device.mm
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/cpuStats.dir/model/GPU/gpu_device.mm.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/model/GPU/gpu_device.mm.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/GPU/gpu_device.mm"
 
-CMakeFiles/cpuStats.dir/controller/GPU/gpu_device.mm.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/controller/GPU/gpu_device.mm.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/GPU/gpu_device.mm > CMakeFiles/cpuStats.dir/controller/GPU/gpu_device.mm.i
+CMakeFiles/cpuStats.dir/model/GPU/gpu_device.mm.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/model/GPU/gpu_device.mm.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/GPU/gpu_device.mm" > CMakeFiles/cpuStats.dir/model/GPU/gpu_device.mm.i
 
-CMakeFiles/cpuStats.dir/controller/GPU/gpu_device.mm.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/controller/GPU/gpu_device.mm.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/controller/GPU/gpu_device.mm -o CMakeFiles/cpuStats.dir/controller/GPU/gpu_device.mm.s
+CMakeFiles/cpuStats.dir/model/GPU/gpu_device.mm.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/model/GPU/gpu_device.mm.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/model/GPU/gpu_device.mm" -o CMakeFiles/cpuStats.dir/model/GPU/gpu_device.mm.s
+
+CMakeFiles/cpuStats.dir/view/kStats_view.mm.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/view/kStats_view.mm.o: ../view/kStats_view.mm
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/cpuStats.dir/view/kStats_view.mm.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/view/kStats_view.mm.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/view/kStats_view.mm"
+
+CMakeFiles/cpuStats.dir/view/kStats_view.mm.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/view/kStats_view.mm.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/view/kStats_view.mm" > CMakeFiles/cpuStats.dir/view/kStats_view.mm.i
+
+CMakeFiles/cpuStats.dir/view/kStats_view.mm.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/view/kStats_view.mm.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/view/kStats_view.mm" -o CMakeFiles/cpuStats.dir/view/kStats_view.mm.s
+
+CMakeFiles/cpuStats.dir/controller/kStatsController.mm.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/controller/kStatsController.mm.o: ../controller/kStatsController.mm
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/cpuStats.dir/controller/kStatsController.mm.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/controller/kStatsController.mm.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/controller/kStatsController.mm"
+
+CMakeFiles/cpuStats.dir/controller/kStatsController.mm.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/controller/kStatsController.mm.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/controller/kStatsController.mm" > CMakeFiles/cpuStats.dir/controller/kStatsController.mm.i
+
+CMakeFiles/cpuStats.dir/controller/kStatsController.mm.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/controller/kStatsController.mm.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/controller/kStatsController.mm" -o CMakeFiles/cpuStats.dir/controller/kStatsController.mm.s
+
+CMakeFiles/cpuStats.dir/cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp.o: CMakeFiles/cpuStats.dir/flags.make
+CMakeFiles/cpuStats.dir/cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp.o: cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/cpuStats.dir/cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/cpuStats.dir/cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp.o -c "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp"
+
+CMakeFiles/cpuStats.dir/cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/cpuStats.dir/cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp" > CMakeFiles/cpuStats.dir/cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp.i
+
+CMakeFiles/cpuStats.dir/cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/cpuStats.dir/cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp" -o CMakeFiles/cpuStats.dir/cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp.s
 
 # Object files for target cpuStats
 cpuStats_OBJECTS = \
+"CMakeFiles/cpuStats.dir/cpuStats_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/cpuStats.dir/main.mm.o" \
-"CMakeFiles/cpuStats.dir/controller/smc.cpp.o" \
-"CMakeFiles/cpuStats.dir/controller/Generic/generic_device.cpp.o" \
-"CMakeFiles/cpuStats.dir/controller/CPU/cpu_device.cpp.o" \
-"CMakeFiles/cpuStats.dir/controller/Utils/threadPool.cpp.o" \
-"CMakeFiles/cpuStats.dir/controller/Fan/fan_controller.cpp.o" \
-"CMakeFiles/cpuStats.dir/controller/Battery/battery_controller.cpp.o" \
-"CMakeFiles/cpuStats.dir/controller/Network/network_controller.cpp.o" \
-"CMakeFiles/cpuStats.dir/controller/Generic/generic_class.cpp.o" \
-"CMakeFiles/cpuStats.dir/controller/Network/network_speed.cpp.o" \
-"CMakeFiles/cpuStats.dir/controller/Peripherals/peripherals_controller.mm.o" \
-"CMakeFiles/cpuStats.dir/controller/Peripherals/generic_peripheral.mm.o" \
-"CMakeFiles/cpuStats.dir/controller/Peripherals/volume_storage_controller.mm.o" \
-"CMakeFiles/cpuStats.dir/controller/kStat_controller.mm.o" \
-"CMakeFiles/cpuStats.dir/controller/GPU/gpu_device.mm.o"
+"CMakeFiles/cpuStats.dir/model/smc.cpp.o" \
+"CMakeFiles/cpuStats.dir/model/Generic/generic_device.cpp.o" \
+"CMakeFiles/cpuStats.dir/model/CPU/cpu_model.cpp.o" \
+"CMakeFiles/cpuStats.dir/model/Utils/threadPool.cpp.o" \
+"CMakeFiles/cpuStats.dir/model/Fan/fan_model.cpp.o" \
+"CMakeFiles/cpuStats.dir/model/Battery/battery_model.cpp.o" \
+"CMakeFiles/cpuStats.dir/model/Network/network_model.cpp.o" \
+"CMakeFiles/cpuStats.dir/model/Generic/generic_class.cpp.o" \
+"CMakeFiles/cpuStats.dir/model/Network/network_speed.cpp.o" \
+"CMakeFiles/cpuStats.dir/model/Peripherals/peripherals_model.mm.o" \
+"CMakeFiles/cpuStats.dir/model/Peripherals/generic_peripheral.mm.o" \
+"CMakeFiles/cpuStats.dir/model/Peripherals/volume_storage_model.mm.o" \
+"CMakeFiles/cpuStats.dir/model/kStats_model.mm.o" \
+"CMakeFiles/cpuStats.dir/model/GPU/gpu_device.mm.o" \
+"CMakeFiles/cpuStats.dir/view/kStats_view.mm.o" \
+"CMakeFiles/cpuStats.dir/controller/kStatsController.mm.o" \
+"CMakeFiles/cpuStats.dir/cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp.o"
 
 # External object files for target cpuStats
 cpuStats_EXTERNAL_OBJECTS =
 
+cpuStats: CMakeFiles/cpuStats.dir/cpuStats_autogen/mocs_compilation.cpp.o
 cpuStats: CMakeFiles/cpuStats.dir/main.mm.o
-cpuStats: CMakeFiles/cpuStats.dir/controller/smc.cpp.o
-cpuStats: CMakeFiles/cpuStats.dir/controller/Generic/generic_device.cpp.o
-cpuStats: CMakeFiles/cpuStats.dir/controller/CPU/cpu_device.cpp.o
-cpuStats: CMakeFiles/cpuStats.dir/controller/Utils/threadPool.cpp.o
-cpuStats: CMakeFiles/cpuStats.dir/controller/Fan/fan_controller.cpp.o
-cpuStats: CMakeFiles/cpuStats.dir/controller/Battery/battery_controller.cpp.o
-cpuStats: CMakeFiles/cpuStats.dir/controller/Network/network_controller.cpp.o
-cpuStats: CMakeFiles/cpuStats.dir/controller/Generic/generic_class.cpp.o
-cpuStats: CMakeFiles/cpuStats.dir/controller/Network/network_speed.cpp.o
-cpuStats: CMakeFiles/cpuStats.dir/controller/Peripherals/peripherals_controller.mm.o
-cpuStats: CMakeFiles/cpuStats.dir/controller/Peripherals/generic_peripheral.mm.o
-cpuStats: CMakeFiles/cpuStats.dir/controller/Peripherals/volume_storage_controller.mm.o
-cpuStats: CMakeFiles/cpuStats.dir/controller/kStat_controller.mm.o
-cpuStats: CMakeFiles/cpuStats.dir/controller/GPU/gpu_device.mm.o
+cpuStats: CMakeFiles/cpuStats.dir/model/smc.cpp.o
+cpuStats: CMakeFiles/cpuStats.dir/model/Generic/generic_device.cpp.o
+cpuStats: CMakeFiles/cpuStats.dir/model/CPU/cpu_model.cpp.o
+cpuStats: CMakeFiles/cpuStats.dir/model/Utils/threadPool.cpp.o
+cpuStats: CMakeFiles/cpuStats.dir/model/Fan/fan_model.cpp.o
+cpuStats: CMakeFiles/cpuStats.dir/model/Battery/battery_model.cpp.o
+cpuStats: CMakeFiles/cpuStats.dir/model/Network/network_model.cpp.o
+cpuStats: CMakeFiles/cpuStats.dir/model/Generic/generic_class.cpp.o
+cpuStats: CMakeFiles/cpuStats.dir/model/Network/network_speed.cpp.o
+cpuStats: CMakeFiles/cpuStats.dir/model/Peripherals/peripherals_model.mm.o
+cpuStats: CMakeFiles/cpuStats.dir/model/Peripherals/generic_peripheral.mm.o
+cpuStats: CMakeFiles/cpuStats.dir/model/Peripherals/volume_storage_model.mm.o
+cpuStats: CMakeFiles/cpuStats.dir/model/kStats_model.mm.o
+cpuStats: CMakeFiles/cpuStats.dir/model/GPU/gpu_device.mm.o
+cpuStats: CMakeFiles/cpuStats.dir/view/kStats_view.mm.o
+cpuStats: CMakeFiles/cpuStats.dir/controller/kStatsController.mm.o
+cpuStats: CMakeFiles/cpuStats.dir/cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp.o
 cpuStats: CMakeFiles/cpuStats.dir/build.make
 cpuStats: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libexpat.tbd
 cpuStats: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libcurl.tbd
+cpuStats: /Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/QtWidgets.framework/QtWidgets
+cpuStats: /Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/QtGui.framework/QtGui
+cpuStats: /Users/bk.kacprzak/Qt/5.15.1/clang_64/lib/QtCore.framework/QtCore
 cpuStats: CMakeFiles/cpuStats.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX executable cpuStats"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Linking CXX executable cpuStats"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/cpuStats.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -324,7 +457,7 @@ CMakeFiles/cpuStats.dir/clean:
 	$(CMAKE_COMMAND) -P CMakeFiles/cpuStats.dir/cmake_clean.cmake
 .PHONY : CMakeFiles/cpuStats.dir/clean
 
-CMakeFiles/cpuStats.dir/depend:
-	cd /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug /Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats/cmake-build-debug/CMakeFiles/cpuStats.dir/DependInfo.cmake --color=$(COLOR)
+CMakeFiles/cpuStats.dir/depend: cpuStats_autogen/OTUN7GXZT4/qrc_resources.cpp
+	cd "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3" "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3" "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug" "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug" "/Users/bk.kacprzak/Documents/PROGRAMOWANIE/C++/cpuStats-kopia 3/cmake-build-debug/CMakeFiles/cpuStats.dir/DependInfo.cmake" --color=$(COLOR)
 .PHONY : CMakeFiles/cpuStats.dir/depend
 

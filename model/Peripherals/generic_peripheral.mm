@@ -26,7 +26,7 @@ const std::string& GenericPeripheral::name() const {
     return _name;
 }
 
-std::string GenericPeripheral::deviceType() const {
+const std::string GenericPeripheral::deviceType() const {
     switch(_deviceType) {
         case KEYBOARD:
             return "Keyboard";
