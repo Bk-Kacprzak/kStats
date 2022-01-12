@@ -1,12 +1,14 @@
 #ifndef KSTATS_VIEW_H_KSTATS_VIEW_H
 #define KSTATS_VIEW_H_KSTATS_VIEW_H
 
-#ifndef VIEWYSDMTF_H
-#define VIEWYSDMTF_H
 #include "qt_libraries.h"
 #include <chrono>
 #include <time.h>
 #include <thread>
+#import <QVBoxLayout>
+#import <QHBoxLayout>
+#include "animation.h"
+#include <condition_variable>
 //#include "../controller/kStatsController.h"
 
 QT_BEGIN_NAMESPACE
@@ -33,7 +35,21 @@ private slots:
     void on_fanRightSetMaxSpeedButton_clicked();
 
     //internet
-    static void on_testConnectionSpeedButton_clicked();
+    void on_testConnectionSpeedButton_clicked();
+
+private:
+    void setContainerContent(QLabel *&);
+    void setupNetworkInfo();
+    void setupHomeInfo();
+    void setupCPU();
+    void setupFanSpeed();
+
+
+    void displayGPU();
+    void displayPeripherals();
+    void displayCPUTemperature();
+    void displayFanSpeed();
+
 public:
 
     QWidget *centralwidget;
@@ -194,7 +210,7 @@ public:
     QHBoxLayout *horizontalLayout_7;
     QLabel *label_78;
     QSpacerItem *horizontalSpacer_7;
-    QLabel *label_81;
+    QLabel *cpuModelName;
     QGridLayout *gridLayout_12;
     QHBoxLayout *horizontalLayout_35;
     QFrame *cpuTemperatureCoreContainer_1;
@@ -361,7 +377,7 @@ public:
     QFrame *chart_container_2;
     QHBoxLayout *horizontalLayout_24;
     QFrame *circularProgressBarBase_6;
-    QFrame *circuralProgress_8;
+    QFrame *circuralProgressDownloadSpeed;
     QFrame *circuralBg_8;
     QFrame *circuralContainer_8;
     QVBoxLayout *verticalLayout_56;
@@ -373,11 +389,11 @@ public:
     QFrame *chart_container_13;
     QHBoxLayout *horizontalLayout_38;
     QFrame *circularProgressBarBase_16;
-    QFrame *circuralProgress_18;
+    QFrame *circuralProgressUploadSpeed;
     QFrame *circuralBg_18;
     QFrame *circuralContainer_18;
     QVBoxLayout *verticalLayout_67;
-    QLabel *UploadSpeed;
+    QLabel *uploadSpeed;
     QLabel *chart_percentage_23;
     QSpacerItem *horizontalSpacer_13;
     QVBoxLayout *networkInformationContainer;
@@ -474,7 +490,6 @@ public:
     QFrame *frame_37;
     QVBoxLayout *verticalLayout_62;
     QTableWidget *statsTableWidget;
-
     void setupUi(QMainWindow *kStatsView)
     {
         if (kStatsView->objectName().isEmpty())
@@ -1245,9 +1260,7 @@ public:
         graphicsIcon_2->setObjectName(QString::fromUtf8("graphicsIcon_2"));
         graphicsIcon_2->setMinimumSize(QSize(45, 45));
         graphicsIcon_2->setMaximumSize(QSize(60, 60));
-        graphicsIcon_2->setStyleSheet(QString::fromUtf8("background:none;\n "
-                                                        "\n "
-                                                        "image: url(:/images/intel-logo.png);"));
+        graphicsIcon_2->setStyleSheet(QString::fromUtf8("background:none;\n "));
 
         graphics_2->addWidget(graphicsIcon_2);
 
@@ -1261,7 +1274,6 @@ public:
         graphicsModel_2->setWordWrap(true);
 
         graphics_2->addWidget(graphicsModel_2);
-
 
         verticalLayout_20->addLayout(graphics_2);
 
@@ -1447,8 +1459,8 @@ public:
         peripheralIcon_4->setObjectName(QString::fromUtf8("peripheralIcon_4"));
         peripheralIcon_4->setMinimumSize(QSize(45, 45));
         peripheralIcon_4->setMaximumSize(QSize(60, 60));
-        peripheralIcon_4->setStyleSheet(QString::fromUtf8("background:none;\n "
-                                                          "image: url(:/images/headphones.svg);"));
+//        peripheralIcon_4->setStyleSheet(QString::fromUtf8("background:none;\n "
+//                                                          "image: url(:/images/headphones.svg);"));
 
         peripheral_4->addWidget(peripheralIcon_4, 0, Qt::AlignHCenter|Qt::AlignVCenter);
 
@@ -2035,17 +2047,17 @@ public:
 
         horizontalLayout_7->addItem(horizontalSpacer_7);
 
-        label_81 = new QLabel(frame_23);
-        label_81->setObjectName(QString::fromUtf8("label_81"));
-        sizePolicy8.setHeightForWidth(label_81->sizePolicy().hasHeightForWidth());
-        label_81->setSizePolicy(sizePolicy8);
-        label_81->setFont(font1);
-        label_81->setStyleSheet(QString::fromUtf8("\n "
+        cpuModelName = new QLabel(frame_23);
+        cpuModelName->setObjectName(QString::fromUtf8("cpuModelName"));
+        sizePolicy8.setHeightForWidth(cpuModelName->sizePolicy().hasHeightForWidth());
+        cpuModelName->setSizePolicy(sizePolicy8);
+        cpuModelName->setFont(font1);
+        cpuModelName->setStyleSheet(QString::fromUtf8("\n "
                                                   "font: 25 32pt \"Helvetica Neue\"; letter-spacing: 3px;\n "
                                                   "background:none;"));
-        label_81->setWordWrap(true);
+        cpuModelName->setWordWrap(true);
 
-        horizontalLayout_7->addWidget(label_81);
+        horizontalLayout_7->addWidget(cpuModelName);
 
 
         gridLayout_6->addWidget(frame_23, 0, 0, 1, 3);
@@ -3607,18 +3619,18 @@ public:
         circularProgressBarBase_6->setFrameShape(QFrame::NoFrame);
         circularProgressBarBase_6->setFrameShadow(QFrame::Plain);
         circularProgressBarBase_6->setLineWidth(0);
-        circuralProgress_8 = new QFrame(circularProgressBarBase_6);
-        circuralProgress_8->setObjectName(QString::fromUtf8("circuralProgress_8"));
-        circuralProgress_8->setGeometry(QRect(0, 0, 200, 200));
-        circuralProgress_8->setMinimumSize(QSize(200, 200));
-        circuralProgress_8->setMaximumSize(QSize(200, 200));
-        circuralProgress_8->setStyleSheet(QString::fromUtf8("QFrame { \n "
+        circuralProgressDownloadSpeed = new QFrame(circularProgressBarBase_6);
+        circuralProgressDownloadSpeed->setObjectName(QString::fromUtf8("circuralProgressDownloadSpeed"));
+        circuralProgressDownloadSpeed->setGeometry(QRect(0, 0, 200, 200));
+        circuralProgressDownloadSpeed->setMinimumSize(QSize(200, 200));
+        circuralProgressDownloadSpeed->setMaximumSize(QSize(200, 200));
+        circuralProgressDownloadSpeed->setStyleSheet(QString::fromUtf8("QFrame { \n "
                                                             "	border-radius: 100px;\n "
                                                             "	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:-135, stop:0.749 rgba(255, 255, 255, 0), stop:0.750 #4798ff);\n "
                                                             "}"));
-        circuralProgress_8->setFrameShape(QFrame::NoFrame);
-        circuralProgress_8->setFrameShadow(QFrame::Plain);
-        circuralProgress_8->setLineWidth(0);
+        circuralProgressDownloadSpeed->setFrameShape(QFrame::NoFrame);
+        circuralProgressDownloadSpeed->setFrameShadow(QFrame::Plain);
+        circuralProgressDownloadSpeed->setLineWidth(0);
         circuralBg_8 = new QFrame(circularProgressBarBase_6);
         circuralBg_8->setObjectName(QString::fromUtf8("circuralBg_8"));
         circuralBg_8->setGeometry(QRect(0, 0, 200, 200));
@@ -3673,7 +3685,7 @@ public:
         verticalLayout_56->addWidget(downloadSpeed);
 
         circuralBg_8->raise();
-        circuralProgress_8->raise();
+        circuralProgressDownloadSpeed->raise();
         circuralContainer_8->raise();
 
         horizontalLayout_24->addWidget(circularProgressBarBase_6);
@@ -3727,18 +3739,18 @@ public:
         circularProgressBarBase_16->setFrameShape(QFrame::NoFrame);
         circularProgressBarBase_16->setFrameShadow(QFrame::Plain);
         circularProgressBarBase_16->setLineWidth(0);
-        circuralProgress_18 = new QFrame(circularProgressBarBase_16);
-        circuralProgress_18->setObjectName(QString::fromUtf8("circuralProgress_18"));
-        circuralProgress_18->setGeometry(QRect(0, 0, 200, 200));
-        circuralProgress_18->setMinimumSize(QSize(200, 200));
-        circuralProgress_18->setMaximumSize(QSize(200, 200));
-        circuralProgress_18->setStyleSheet(QString::fromUtf8("QFrame { \n "
+        circuralProgressUploadSpeed = new QFrame(circularProgressBarBase_16);
+        circuralProgressUploadSpeed->setObjectName(QString::fromUtf8("circuralProgressUploadSpeed"));
+        circuralProgressUploadSpeed->setGeometry(QRect(0, 0, 200, 200));
+        circuralProgressUploadSpeed->setMinimumSize(QSize(200, 200));
+        circuralProgressUploadSpeed->setMaximumSize(QSize(200, 200));
+        circuralProgressUploadSpeed->setStyleSheet(QString::fromUtf8("QFrame { \n "
                                                              "	border-radius: 100px;\n "
                                                              "	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:-135, stop:0.749 rgba(255, 255, 255, 0), stop:0.750 #4798ff);\n "
                                                              "}"));
-        circuralProgress_18->setFrameShape(QFrame::NoFrame);
-        circuralProgress_18->setFrameShadow(QFrame::Plain);
-        circuralProgress_18->setLineWidth(0);
+        circuralProgressUploadSpeed->setFrameShape(QFrame::NoFrame);
+        circuralProgressUploadSpeed->setFrameShadow(QFrame::Plain);
+        circuralProgressUploadSpeed->setLineWidth(0);
         circuralBg_18 = new QFrame(circularProgressBarBase_16);
         circuralBg_18->setObjectName(QString::fromUtf8("circuralBg_18"));
         circuralBg_18->setGeometry(QRect(0, 0, 200, 200));
@@ -3773,18 +3785,18 @@ public:
         verticalLayout_67->setSpacing(0);
         verticalLayout_67->setObjectName(QString::fromUtf8("verticalLayout_67"));
         verticalLayout_67->setContentsMargins(0, 0, 0, 0);
-        UploadSpeed = new QLabel(circuralContainer_18);
-        UploadSpeed->setObjectName(QString::fromUtf8("UploadSpeed"));
-        UploadSpeed->setFont(font9);
-        UploadSpeed->setStyleSheet(QString::fromUtf8("border:none;\n "
+        uploadSpeed = new QLabel(circuralContainer_18);
+        uploadSpeed->setObjectName(QString::fromUtf8("uploadSpeed"));
+        uploadSpeed->setFont(font9);
+        uploadSpeed->setStyleSheet(QString::fromUtf8("border:none;\n "
                                                      "color: #afafaf;\n "
                                                      "background:none;"));
-        UploadSpeed->setAlignment(Qt::AlignCenter);
+        uploadSpeed->setAlignment(Qt::AlignCenter);
 
-        verticalLayout_67->addWidget(UploadSpeed);
+        verticalLayout_67->addWidget(uploadSpeed);
 
         circuralBg_18->raise();
-        circuralProgress_18->raise();
+        circuralProgressUploadSpeed->raise();
         circuralContainer_18->raise();
 
         horizontalLayout_38->addWidget(circularProgressBarBase_16);
@@ -3829,13 +3841,14 @@ public:
         networkServer->setObjectName(QString::fromUtf8("networkServer"));
         networkServer->setFont(font2);
         networkServer->setStyleSheet(QString::fromUtf8("letter-spacing: 1px;\n "
-                                                       "background-color:none;"));
+                                                       "background-color:none;"
+                                                       "font-size: 17px"));
         networkServer->setTextFormat(Qt::RichText);
         networkServer->setScaledContents(false);
         networkServer->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
         networkServer->setWordWrap(true);
         networkServer->setMargin(10);
-
+        networkServer->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         networkServerContainer->addWidget(networkServer, 0, 1, 1, 1);
 
         frame_36 = new QFrame(fansPageContainer_2);
@@ -4801,6 +4814,7 @@ public:
         statisticsButton->setText(QCoreApplication::translate("kStatsView", "   Statistics", nullptr));
         label_41->setText(QString());
         label_24->setText(QCoreApplication::translate("kStatsView", "Device ", nullptr));
+        //todo: write a function to retrieve modelName, osVersion, ramCount
         deviceName->setText(QCoreApplication::translate("kStatsView", "Apple Macbook 15' 2019", nullptr));
         label_40->setText(QString());
         label_31->setText(QCoreApplication::translate("kStatsView", "Current OS", nullptr));
@@ -4808,13 +4822,13 @@ public:
         ramCount->setText(QCoreApplication::translate("kStatsView", "16 GB", nullptr));
         label_60->setText(QCoreApplication::translate("kStatsView", "Mass", nullptr));
         label_28->setText(QCoreApplication::translate("kStatsView", "Memory", nullptr));
-        totalMassMemoryCount->setText(QCoreApplication::translate("kStatsView", "256 GB", nullptr));
+        totalMassMemoryCount->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         label_43->setText(QString());
         label_62->setText(QCoreApplication::translate("kStatsView", "Random Access", nullptr));
         label_29->setText(QString());
         label_51->setText(QString());
         label_39->setText(QCoreApplication::translate("kStatsView", "Processor", nullptr));
-        processorModel->setText(QCoreApplication::translate("kStatsView", "Intel Core i7", nullptr));
+        processorModel->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         label_44->setText(QString());
         label_33->setText(QCoreApplication::translate("kStatsView", "IP Address", nullptr));
         ipAddress->setText(QCoreApplication::translate("kStatsView", "192.168.1.2", nullptr));
@@ -4822,7 +4836,7 @@ public:
         graphicsLeftButton->setText(QString());
         graphicsRightButton->setText(QString());
         graphicsIcon_1->setText(QString());
-        graphicsModel_1->setText(QCoreApplication::translate("kStatsView", "Radeon Pro 555X 4  GB", nullptr));
+        graphicsModel_1->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         graphicsIcon_2->setText(QString());
         graphicsModel_2->setText(QCoreApplication::translate("kStatsView", "Intel UHD Graphics 630 1536  MB", nullptr));
         label_47->setText(QCoreApplication::translate("kStatsView", "Peripherals", nullptr));
@@ -4835,7 +4849,7 @@ public:
         peripheralIcon_3->setText(QString());
         peripheralName_3->setText(QCoreApplication::translate("kStatsView", "Magic Keyboard", nullptr));
         peripheralIcon_4->setText(QString());
-        peripheralName_4->setText(QCoreApplication::translate("kStatsView", "Bose QC 35 II", nullptr));
+        peripheralName_4->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         cpuAverageTemperature->setText(QCoreApplication::translate("kStatsView", "35\302\260C", nullptr));
         label_84->setText(QCoreApplication::translate("kStatsView", "Temperature", nullptr));
         cpuUsage->setText(QCoreApplication::translate("kStatsView", "35\302\260C", nullptr));
@@ -4853,7 +4867,7 @@ public:
         label_71->setText(QCoreApplication::translate("kStatsView", "Architecture", nullptr));
         cpuArchitecture->setText(QCoreApplication::translate("kStatsView", "x86_64", nullptr));
         label_78->setText(QString());
-        label_81->setText(QCoreApplication::translate("kStatsView", "<strong>Intel</strong> Core i7-9750H", nullptr));
+        cpuModelName->setText(QCoreApplication::translate("kStatsView", "<strong>Intel</strong> Core i7-9750H", nullptr));
         cpuTemperatureCore_1->setText(QCoreApplication::translate("kStatsView", "35\302\260C", nullptr));
         label_90->setText(QCoreApplication::translate("kStatsView", "Core 1", nullptr));
         cpuTemperatureCore_2->setText(QCoreApplication::translate("kStatsView", "35\302\260C", nullptr));
@@ -4892,31 +4906,31 @@ public:
         fanRightSetMaxSpeedButton->setText(QCoreApplication::translate("kStatsView", "Set maximum speed", nullptr));
         label_99->setText(QCoreApplication::translate("kStatsView", "Network", nullptr));
         networkIcon->setText(QString());
-        ssidName->setText(QCoreApplication::translate("kStatsView", "TP_LINK_BK", nullptr));
+//        ssidName->setText(QCoreApplication::translate("kStatsView", "TP_LINK_BK", nullptr));
         label_69->setText(QCoreApplication::translate("kStatsView", "IPv4 Address", nullptr));
-        ipv4Address->setText(QCoreApplication::translate("kStatsView", "172.20.10.2", nullptr));
+//        ipv4Address->setText(QCoreApplication::translate("kStatsView", "172.20.10.2", nullptr));
         label_101->setText(QCoreApplication::translate("kStatsView", "IPv6 Address", nullptr));
-        ipv6Address->setText(QCoreApplication::translate("kStatsView", "TP_LINK_BK", nullptr));
+//        ipv6Address->setText(QCoreApplication::translate("kStatsView", "TP_LINK_BK", nullptr));
         label_104->setText(QCoreApplication::translate("kStatsView", "MAC Address", nullptr));
-        macAddress->setText(QCoreApplication::translate("kStatsView", "TP_LINK_BK", nullptr));
+//        macAddress->setText(QCoreApplication::translate("kStatsView", "TP_LINK_BK", nullptr));
         label_106->setText(QCoreApplication::translate("kStatsView", "Connection speed", nullptr));
         testConnectionSpeedButton->setText(QCoreApplication::translate("kStatsView", "Test Connection", nullptr));
-        downloadSpeed->setText(QCoreApplication::translate("kStatsView", "102 MB/s", nullptr));
+//        downloadSpeed->setText(QCoreApplication::translate("kStatsView", "102 MB/s", nullptr));
         chart_percentage_20->setText(QCoreApplication::translate("kStatsView", "<strong>Download</strong>\n "
                                                                                "\n "
                                                                                "", nullptr));
-        UploadSpeed->setText(QCoreApplication::translate("kStatsView", "102 MB/s", nullptr));
-        chart_percentage_23->setText(QCoreApplication::translate("kStatsView", "<strong>Upload</strong>\n "
+//        uploadSpeed->setText(QCoreApplication::translate("kStatsView", "102 MB/s", nullptr));
+        chart_percentage_23->setText(QCoreApplication::translate("kStatsView", "<strong>Upload< /strong>\n "
                                                                                "\n "
                                                                                "", nullptr));
         label_107->setText(QCoreApplication::translate("kStatsView", "Server", nullptr));
-        networkServer->setText(QCoreApplication::translate("kStatsView", "warsaw.netia.pl", nullptr));
+        networkServer->setText(QCoreApplication::translate("kStatsView", "  ", nullptr));
         label_112->setText(QCoreApplication::translate("kStatsView", "Download speed", nullptr));
-        downloadSpeedTable->setText(QCoreApplication::translate("kStatsView", "43 Mb/s", nullptr));
+//        downloadSpeedTable->setText(QCoreApplication::translate("kStatsView", "43 Mb/s", nullptr));
         label_114->setText(QCoreApplication::translate("kStatsView", "Upload speed", nullptr));
-        uploadSpeedTable->setText(QCoreApplication::translate("kStatsView", "18 Mb/s", nullptr));
+//        uploadSpeedTable->setText(QCoreApplication::translate("kStatsView", "18 Mb/s", nullptr));
         label_116->setText(QCoreApplication::translate("kStatsView", "Ping", nullptr));
-        connectionPing->setText(QCoreApplication::translate("kStatsView", "43", nullptr));
+//        connectionPing->setText(QCoreApplication::translate("kStatsView", "43", nullptr));
         label_131->setText(QCoreApplication::translate("kStatsView", "Mass Memory", nullptr));
         massMemoryModel->setText(QCoreApplication::translate("kStatsView", "Macintosh HD", nullptr));
         label_129->setText(QCoreApplication::translate("kStatsView", "Available memory", nullptr));
@@ -5029,6 +5043,11 @@ public:
         QTableWidgetItem *___qtablewidgetitem39 = statsTableWidget->item(20, 0);
         ___qtablewidgetitem39->setText(QCoreApplication::translate("kStatsView", "76", nullptr));
         statsTableWidget->setSortingEnabled(__sortingEnabled);
+        setupHomeInfo();
+        setupNetworkInfo();
+        setupCPU();
+        setupFanSpeed();
+        displayFanSpeed();
 
     } // retranslateUi
 };
@@ -5042,6 +5061,5 @@ private:
 
 QT_END_NAMESPACE
 
-#endif // VIEWYSDMTF_H
 
 #endif //KSTATS_VIEW_H_KSTATS_VIEW_H
