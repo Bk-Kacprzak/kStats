@@ -18,31 +18,42 @@ public:
     const ushort& getCPUPhysicalCoreCount();
     const ushort& getCPUCacheSize();
     const ushort& getCPUByteOrder();
-    const ushort& getCPUArchitecture();
+    std::string getCPUArchitecture();
 
     //fans
     void setFanSpeed(const int& speed);
+    const std::array<int, 2> && getFansCurrentSpeed();
+    const std::array<int, 4> && getFansMinMaxSpeed();
+
+
         //left
-    const std::array<float, 3>& getLeftFanSpeed();
+    const std::array<int, 3>& getLeftFanSpeed();
 //    const float& getCurrentLeftFanSpeed();
         //right
-    const std::array<float, 3>& getRightFanSpeed();
+    const std::array<int, 3>& getRightFanSpeed();
 
     //gpu
     const std::vector<std::string>& getEachGPUModelName();
     const std::array<float, GPU_ALL_TEMP>& getEachGPUTemperature();
 
     //network
-    const std::string& getWifiIP();
-    const std::string& getAddressIPv6();
+    const char * getWifiIP();
+    const char * getAddressIPv6();
     const std::string& getWifiMacAddress();
     const std::string& getWifiSSID();
-    void testConnectionSpeed();
-    const ConnectionStats& getConnectionsStats();
+    void lockConnectionSpeedTest();
+    ConnectionStats& getConnectionsStats();
     bool isTestingConnection();
+    std::string getBestServer();
+    float getDownloadSpeed();
+    float getUploadSpeed();
+    int getLatency();
+    void closeConnectionSpeedTest();
 
     //peripherals
     const std::vector<GenericPeripheral> &getDevices();
+    std::vector<std::string> getDeviceTypes();
+    std::vector<std::string> getDeviceNames();
 
     //volume storage
     const std::string &getVolumeStorageName();

@@ -44,27 +44,27 @@ const ushort &kStatsController::getCPUByteOrder() {
     return model.Cpu().ByteOrder();
 }
 
-const ushort &kStatsController::getCPUArchitecture() {
-    return model.Cpu().Architecture();
+std::string kStatsController::getCPUArchitecture() {
+    return (model.Cpu().Architecture() == 1 ? "x86_64" : "x86");
 }
 
 void kStatsController::setFanSpeed(const int& speed) {
 //todo: find out how to do it
 }
 
-const std::array<float, 3> &kStatsController::getLeftFanSpeed() {
+const std::array<int, 3> &kStatsController::getLeftFanSpeed() {
     model.Fans().retrieveEachFanSpeedRPM();
     return model.Fans().FanLeft();
 }
 
 
-const std::array<float, 3> &kStatsController::getRightFanSpeed() {
+const std::array<int, 3> &kStatsController::getRightFanSpeed() {
     model.Fans().retrieveEachFanSpeedRPM();
     return model.Fans().FanRight();
 }
 
 const std::vector<std::string> &kStatsController::getEachGPUModelName() {
-    model.Gpu().retrieveModelName();
+//    model.Gpu().retrieveModelName();
     return model.Gpu().ModelName();
 }
 
@@ -74,11 +74,11 @@ const std::array<float, GPU_ALL_TEMP> &kStatsController::getEachGPUTemperature()
     model.Gpu().Temperatures();
 }
 
-const std::string &kStatsController::getWifiIP() {
+const char * kStatsController::getWifiIP() {
     return model.Network().WifiIP();
 }
 
-const std::string &kStatsController::getAddressIPv6() {
+const char * kStatsController::getAddressIPv6() {
     return model.Network().AddressIPv6();
 }
 
@@ -90,12 +90,12 @@ const std::string &kStatsController::getWifiSSID() {
     return model.Network().WifiSSID();
 }
 
-const ConnectionStats &kStatsController::getConnectionsStats() {
+ConnectionStats &kStatsController::getConnectionsStats() {
     return model.Network().ConnectionSpeed();
 }
 
-void kStatsController::testConnectionSpeed() {
-    model.Network().setConnectionStats();
+void kStatsController::lockConnectionSpeedTest() {
+    model.Network().lockConnectionSpeedTest();
 }
 
 const std::vector<GenericPeripheral> &kStatsController::getDevices() {
@@ -121,6 +121,46 @@ const float &kStatsController::getVolumeStorageFreeMemory() {
 bool kStatsController::isTestingConnection() {
     return model.Network().IsTestingConnection();
 }
+
+std::string kStatsController::getBestServer() {
+    return model.Network().getBestServer();
+}
+
+float  kStatsController::getDownloadSpeed() {
+    return model.Network().getDownloadSpeed();
+}
+
+float kStatsController::getUploadSpeed() {
+    return model.Network().getUploadSpeed();
+}
+
+int kStatsController::getLatency() {
+    return model.Network().getLatency();
+}
+
+void kStatsController::closeConnectionSpeedTest() {
+    model.Network().closeConnectionSpeedTest();
+}
+
+std::vector<std::string> kStatsController::getDeviceTypes() {
+    return model.Peripherals().deviceTypes();
+}
+
+std::vector<std::string> kStatsController::getDeviceNames() {
+    return model.Peripherals().deviceNames();
+}
+
+const std::array<int, 2> &&kStatsController::getFansCurrentSpeed() {
+    model.Fans().getEachFanSpeedRPM(FanModel::CURRENT_SPEED);
+    return model.Fans().FansCurrentSpeed();
+}
+
+const std::array<int, 4> &&kStatsController::getFansMinMaxSpeed() {
+    model.Fans().getEachFanSpeedRPM(FanModel::MINIMUM_SPEED);
+    model.Fans().getEachFanSpeedRPM(FanModel::MAXIMUM_SPEED);
+    return model.Fans().FansMinMaxSpeed();
+}
+
 
 
 
