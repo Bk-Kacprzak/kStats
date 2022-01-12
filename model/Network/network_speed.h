@@ -11,6 +11,7 @@
 #include <cmath>
 #include <curl/curl.h>
 #include "expat.h"
+#include <string>
 
 
 #define URL_LENGTH_MAX       255
@@ -42,14 +43,19 @@
 #define ARRAY_SIZE(x) (sizeof(x)/sizeof(x[0]))
 
 struct ConnectionStats {
+    std::mutex mtx;
+    std::condition_variable cv;
+
     double latency = -1;
     double download_speed = -1;
     double upload_speed = -1;
+    std::string best_server;
     ConnectionStats() = default;
     ConnectionStats(const ConnectionStats& obj);
     ConnectionStats(ConnectionStats &&obj);
     ConnectionStats(const double& latency, const double& download_speed, const double& upload_speed);
-    ConnectionStats& operator=(ConnectionStats&& data) noexcept;
+    ConnectionStats& operator=(ConnectionStats &&data) noexcept;
+    std::string& getBestServer();
 };
 
 struct thread_para
@@ -755,36 +761,48 @@ namespace knet {
             get_client_info(&client);
         }
 
-        static void initializeServer() {
+        static std::string initializeServer() {
             get_closest_server();
             get_best_server(&sindex);
             sscanf(servers[sindex].url, "http://%[^/]/speedtest/upload.%4s", server_url, ext);
             printf("Bestest server: %s(%0.2fKM)\n", server_url, servers[sindex].distance);
+            return server_url;
         }
-
-        static ConnectionStats retrieveData() {
-            curl_global_init(CURL_GLOBAL_ALL);
+        static double retrieveLatency() {
             latency = test_latency(server_url);
             if (latency == DBL_MAX)
                 exit(-1);
 
-//            printf("Server latency is %0.0fms\n", latency);
+            return latency;
+        }
+
+        static double retreiveDownloadSpeed() {
             speed = test_download(server_url, num_thread, dsize, 0);
             dsize = get_download_filename(speed, num_thread);
             fprintf(stderr, "Testing download speed");
             download_speed = test_download(server_url, num_thread, dsize, 1);
-            printf("Download speed: %0.2fMbps\n", ((download_speed*8)/(1024*1024)));
+            download_speed = round((download_speed*8)/(1024*1024) * 10) / 10 ;
 
+            printf("Download speed: %0.2fMbps\n", download_speed);
+
+            return download_speed;
+        }
+
+        static double retreiveUploadSpeed() {
             if (ext[0] == 0 && get_upload_extension(server_url, ext) != OK)
                 exit(-1);
 
-            speed = test_upload(server_url, num_thread, speed/10, ext, 0);
+            speed = test_upload(server_url, num_thread, speed / 10, ext, 0);
             fprintf(stderr, "Testing upload speed");
-            upload_speed = test_upload(server_url, num_thread, speed*SPEEDTEST_TIME_MAX, ext, 1);
-            printf("Upload speed: %0.2fMbps\n", ((upload_speed*8)/(1024*1024)));
+            upload_speed = test_upload(server_url, num_thread, speed * SPEEDTEST_TIME_MAX, ext, 1);
+            upload_speed = round((upload_speed * 8) / (1024 * 1024) * 10) / 10;
+            printf("Upload speed: %0.2fMbps\n", upload_speed);
 
-            return ConnectionStats(latency, download_speed, upload_speed);
-        };
+            return upload_speed;
+        }
+
+
+
     };
 }
 
