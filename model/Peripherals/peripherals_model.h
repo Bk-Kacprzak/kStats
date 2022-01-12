@@ -14,12 +14,13 @@ private:
     void loadScreenDevices();
 public:
     Peripherals();
-    const std::vector<GenericPeripheral> &getDevices() const;
+    const std::vector<GenericPeripheral> &Devices() const;
+    std::vector<std::string> deviceTypes();
+    std::vector<std::string> deviceNames();
+
 };
 
 #endif //CPUSTATS_PERIPHERALS_CONTROLLER_H
-
-
 
 
 //#include <IOKit/IOKitLib.h>
