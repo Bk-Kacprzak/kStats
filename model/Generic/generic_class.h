@@ -11,6 +11,8 @@ struct ValueContainer {
     T value;
     ValueContainer(){ }
     ValueContainer(T _value) : value(_value) {}
+    ValueContainer(const ValueContainer &&) = delete;
+    ValueContainer(const ValueContainer &) = delete;
 };
 
 class GenericClass {
