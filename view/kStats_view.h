@@ -9,6 +9,7 @@
 #import <QHBoxLayout>
 #include "animation.h"
 #include <condition_variable>
+#import <QString>
 //#include "../controller/kStatsController.h"
 
 QT_BEGIN_NAMESPACE
@@ -38,17 +39,45 @@ private slots:
     void on_testConnectionSpeedButton_clicked();
 
 private:
+    //setup's
     void setContainerContent(QLabel *&);
     void setupNetworkInfo();
     void setupHomeInfo();
     void setupCPU();
     void setupFanSpeed();
+    void setupHardware();
+    void setupGPU();
+    void setupPeripherals();
 
+    void addLabelAndPicture(const std::vector<std::string>&,
+                            const std::vector<QLabel*>&,
+                            const std::vector<QLabel*>&,
+                            const std::vector<QString>&,
+                            const std::vector<std::string>&,
+                            const std::vector<std::string>&)
+    //loop functions
+    template<typename containerType, typename inputType, size_t S>
+    void displayValues(const std::array<containerType ,S> &,
+                       std::function<const std::array<inputType,S>()>,
+                       const QString &&,
+                       const int &);
+    template<typename containerType, typename inputType, size_t S>
+    void displayValues(const std::array<containerType ,S> &,
+                       std::function<const std::array<inputType,S>()>,
+                       const QString &,
+                       const int &,
+                       QTableWidget* tableWidget);
 
-    void displayGPU();
-    void displayPeripherals();
     void displayCPUTemperature();
     void displayFanSpeed();
+    void displayBatteryVoltage();
+    void displayAllTemperatures();
+
+    template<size_t S>
+    std::array<QTableWidgetItem *, S> getLabels(short begin, short end);
+
+protected:
+    std::atomic<int> currentWidgetIndex;
 
 public:
 
@@ -72,8 +101,8 @@ public:
     QPushButton *hardwareButton;
     QHBoxLayout *horizontalLayout_28;
     QPushButton *statisticsButton;
-    QFrame *contentContainer;
     QVBoxLayout *verticalLayout_9;
+    QFrame *contentContainer;
     QStackedWidget *stackedWidget;
     QWidget *homePage;
     QVBoxLayout *verticalLayout_11;
@@ -4932,31 +4961,31 @@ public:
         label_116->setText(QCoreApplication::translate("kStatsView", "Ping", nullptr));
 //        connectionPing->setText(QCoreApplication::translate("kStatsView", "43", nullptr));
         label_131->setText(QCoreApplication::translate("kStatsView", "Mass Memory", nullptr));
-        massMemoryModel->setText(QCoreApplication::translate("kStatsView", "Macintosh HD", nullptr));
+        massMemoryModel->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         label_129->setText(QCoreApplication::translate("kStatsView", "Available memory", nullptr));
-        massAvailableMemory->setText(QCoreApplication::translate("kStatsView", "65 GB", nullptr));
+        massAvailableMemory->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         label_149->setText(QCoreApplication::translate("kStatsView", "Total Memory", nullptr));
-        massTotalMemory->setText(QCoreApplication::translate("kStatsView", "256 GB", nullptr));
+        massTotalMemory->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         label_147->setText(QCoreApplication::translate("kStatsView", "File Format", nullptr));
-        massfileFormat->setText(QCoreApplication::translate("kStatsView", "APFS (Encrypted)", nullptr));
+        massfileFormat->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         label_119->setText(QCoreApplication::translate("kStatsView", "Battery", nullptr));
         label_120->setText(QCoreApplication::translate("kStatsView", "Cell 1 ", nullptr));
         label_122->setText(QCoreApplication::translate("kStatsView", "Voltage", nullptr));
-        batteryCellVoltage_1->setText(QCoreApplication::translate("kStatsView", "4.192V", nullptr));
+        batteryCellVoltage_1->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         label_124->setText(QCoreApplication::translate("kStatsView", "Capacity", nullptr));
-        batteryCellCapacity_1->setText(QCoreApplication::translate("kStatsView", "4.192V", nullptr));
+        batteryCellCapacity_1->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         label_121->setText(QCoreApplication::translate("kStatsView", "Cell 2", nullptr));
         label_133->setText(QCoreApplication::translate("kStatsView", "Voltage", nullptr));
-        batteryCellVoltage_2->setText(QCoreApplication::translate("kStatsView", "4.192V", nullptr));
+        batteryCellVoltage_2->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         label_135->setText(QCoreApplication::translate("kStatsView", "Capacity", nullptr));
-        batteryCellCapacity_2->setText(QCoreApplication::translate("kStatsView", "4.192V", nullptr));
+        batteryCellCapacity_2->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         label_137->setText(QCoreApplication::translate("kStatsView", "Cell 3", nullptr));
         label_138->setText(QCoreApplication::translate("kStatsView", "Voltage", nullptr));
-        batteryCellVoltage_3->setText(QCoreApplication::translate("kStatsView", "4.192V", nullptr));
+        batteryCellVoltage_3->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         label_140->setText(QCoreApplication::translate("kStatsView", "Capacity", nullptr));
-        batteryCellCapacity_3->setText(QCoreApplication::translate("kStatsView", "4.192V", nullptr));
+        batteryCellCapacity_3->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         label_143->setText(QCoreApplication::translate("kStatsView", "Cycle count", nullptr));
-        batteryCycleCount->setText(QCoreApplication::translate("kStatsView", "97", nullptr));
+        batteryCycleCount->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         label_145->setText(QCoreApplication::translate("kStatsView", "Total Amperage", nullptr));
         batteryAmperage->setText(QCoreApplication::translate("kStatsView", "0mA", nullptr));
         QTableWidgetItem *___qtablewidgetitem = statsTableWidget->horizontalHeaderItem(0);
@@ -4984,13 +5013,13 @@ public:
         QTableWidgetItem *___qtablewidgetitem11 = statsTableWidget->verticalHeaderItem(10);
         ___qtablewidgetitem11->setText(QCoreApplication::translate("kStatsView", "Battery Cell 1 Voltage", nullptr));
         QTableWidgetItem *___qtablewidgetitem12 = statsTableWidget->verticalHeaderItem(11);
-        ___qtablewidgetitem12->setText(QCoreApplication::translate("kStatsView", "Battery Cell 1 Amperage", nullptr));
+        ___qtablewidgetitem12->setText(QCoreApplication::translate("kStatsView", "Battery Cell 2 Voltage", nullptr));
         QTableWidgetItem *___qtablewidgetitem13 = statsTableWidget->verticalHeaderItem(12);
-        ___qtablewidgetitem13->setText(QCoreApplication::translate("kStatsView", "Battery Cell 2 Voltage", nullptr));
+        ___qtablewidgetitem13->setText(QCoreApplication::translate("kStatsView", "Battery Cell 3 Voltage", nullptr));
         QTableWidgetItem *___qtablewidgetitem14 = statsTableWidget->verticalHeaderItem(13);
-        ___qtablewidgetitem14->setText(QCoreApplication::translate("kStatsView", "Battery Cell 2 Amperage", nullptr));
+        ___qtablewidgetitem14->setText(QCoreApplication::translate("kStatsView", "Battery Cell 1 Amperage", nullptr));
         QTableWidgetItem *___qtablewidgetitem15 = statsTableWidget->verticalHeaderItem(14);
-        ___qtablewidgetitem15->setText(QCoreApplication::translate("kStatsView", "Battery Cell 3 Voltage", nullptr));
+        ___qtablewidgetitem15->setText(QCoreApplication::translate("kStatsView", "Battery Cell 2 Amperage", nullptr));
         QTableWidgetItem *___qtablewidgetitem16 = statsTableWidget->verticalHeaderItem(15);
         ___qtablewidgetitem16->setText(QCoreApplication::translate("kStatsView", "Battery Cell 3 Amperage", nullptr));
         QTableWidgetItem *___qtablewidgetitem17 = statsTableWidget->verticalHeaderItem(16);
@@ -5043,12 +5072,15 @@ public:
         QTableWidgetItem *___qtablewidgetitem39 = statsTableWidget->item(20, 0);
         ___qtablewidgetitem39->setText(QCoreApplication::translate("kStatsView", "76", nullptr));
         statsTableWidget->setSortingEnabled(__sortingEnabled);
-        setupHomeInfo();
-        setupNetworkInfo();
-        setupCPU();
-        setupFanSpeed();
-        displayFanSpeed();
 
+
+        threadPool.push([this] {setupHomeInfo();});
+        threadPool.push([this] {setupNetworkInfo();});
+        threadPool.push([this] {setupCPU();});
+        threadPool.push([this] {setupFanSpeed();});
+        threadPool.push([this] {setupHardware();});
+        threadPool.push([this] {displayFanSpeed();});
+        threadPool.push([this] {displayBatteryVoltage();});
     } // retranslateUi
 };
 
