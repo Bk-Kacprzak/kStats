@@ -18,7 +18,7 @@ namespace knet {
         std::condition_variable dataCondition;
         std::atomic<bool> acceptFunctions;
         std::vector<std::thread> threads;
-
+        
     public:
         threadPool();
         ~threadPool();

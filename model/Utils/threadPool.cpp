@@ -36,17 +36,19 @@ void knet::threadPool::exit() {
 void knet::threadPool::inifiniteLoop() {
     std::function<void()> func;
     while(true) {
-        std::unique_lock<std::mutex> lock(mutexLock);
-        dataCondition.wait(lock, [this]() {
-            return !functionQueue.empty() || acceptFunctions;
-        });
+        {
+            std::unique_lock<std::mutex> lock(mutexLock);
+            dataCondition.wait(lock, [this]() {
+                return !functionQueue.empty() || acceptFunctions;
+            });
 
-        if(functionQueue.empty() && !acceptFunctions)
-            return;
+            if (functionQueue.empty() && !acceptFunctions)
+                return;
 
-        func = std::move(functionQueue.front());
-        functionQueue.pop();
-        //release the lock
+            func = std::move(functionQueue.front());
+            functionQueue.pop();
+            //release the lock
+        }
         func();
     }
 }
