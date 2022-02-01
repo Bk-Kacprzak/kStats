@@ -86,10 +86,4 @@ void BatteryModel::retrieveTotalAmperage() {
     });
 }
 
-void BatteryModel::getAllInformation() {
-    retrieveEachBatteryVoltage();
-    retrieveEachBatteryCapacity();
-    retrieveCycleCount();
-    retrieveTotalVoltage();
-    retrieveTotalAmperage();
-}
+
