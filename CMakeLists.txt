@@ -25,7 +25,7 @@ set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Qt5::Widgets)
 include_directories(${EXPAT_INCLUDE_DIRS})
 
 IF(CURL_FOUND)
-    INCLUDE_DIRECTORIES(${CURL_INCLUDE_DIR})
+    INCLUDE_DIRECTORIES(${CURL_INCLUDE_DIR})#
     SET(requiredlibs ${requiredlibs} ${CURL_LIBRARIES} )
 ELSE(CURL_FOUND)
     MESSAGE(FATAL_ERROR "Could not find the CURL library and development files.")
@@ -38,5 +38,5 @@ set(FOUNDATION_LIBS ${FOUNDATION_LIBRARY})
 set(CORE_LIBS ${CORE_FOUNDATION})
 qt5_add_resources(view/resources.qrc)
 
-add_executable(${PROJECT_NAME} main.mm model/smc.cpp model/smc.h model/Generic/generic_device.cpp model/Generic/generic_device.h model/CPU/cpu_model.cpp model/CPU/cpu_model.h model/Utils/utilsConverter.h model/Utils/keys.h model/Utils/utils.h model/Utils/threadPool.cpp model/Utils/threadPool.h model/Fan/fan_model.cpp model/Fan/fan_model.h model/Battery/battery_model.cpp model/Battery/battery_model.h model/Network/network_model.cpp model/Network/network_model.h model/Generic/generic_class.h model/Generic/generic_class.cpp model/Network/network_speed.cpp model/Network/network_speed.h model/Peripherals/peripherals_model.mm model/Peripherals/peripherals_model.h model/Peripherals/generic_peripheral.mm model/Peripherals/generic_peripheral.h model/Peripherals/volume_storage_model.mm model/Peripherals/volume_storage_model.h model/kStats_model.mm model/kStats_model.h model/Peripherals/iokit_libraries.h model/GPU/gpu_device.mm model/GPU/gpu_device.h view/kStats_view.h view/kStats_view.mm view/resources.qrc global.h controller/kStatsController.mm controller/kStatsController.h view/qt_libraries.h view/animation.h)
+add_executable(${PROJECT_NAME} main.mm model/smc.cpp model/smc.h model/Generic/generic_device.cpp model/Generic/generic_device.h model/CPU/cpu_model.cpp model/CPU/cpu_model.h model/Utils/utilsConverter.h model/Utils/keys.h model/Utils/utils.h model/Utils/threadPool.cpp model/Utils/threadPool.h model/Fan/fan_model.cpp model/Fan/fan_model.h model/Battery/battery_model.cpp model/Battery/battery_model.h model/Network/network_model.cpp model/Network/network_model.h model/Generic/generic_class.h model/Generic/generic_class.cpp model/Network/network_speed.cpp model/Network/network_speed.h model/Peripherals/peripherals_model.mm model/Peripherals/peripherals_model.h model/Peripherals/generic_peripheral.mm model/Peripherals/generic_peripheral.h model/Peripherals/volume_storage_model.mm model/Peripherals/volume_storage_model.h model/kStats_model.mm model/kStats_model.h model/Peripherals/iokit_libraries.h model/GPU/gpu_device.mm model/GPU/gpu_device.h view/kStats_view.h view/kStats_view.mm view/resources.qrc global.h controller/kStatsController.mm controller/kStatsController.h view/qt_libraries.h view/animation.h "model/Main Device/MainDeviceModel.cpp" "model/Main Device/MainDeviceModel.h")
 target_link_libraries(${PROJECT_NAME} PRIVATE ${EXTRA_LIBS} ${EXPAT_LIBRARIES} ${CURL_LIBRARIES} ${BLUETOOTH_LIBS} ${FOUNDATION_LIBS} ${CORE_LIBS} ${APPKIT_LIBRARY} ${METAL_LIBRARY} ${REQUIRED_LIBS_QUALIFIED})
