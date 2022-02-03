@@ -6,6 +6,11 @@
 class kStatsController : public GenericClass{
 public:
     kStatsController() = default;
+
+    //MainDevice
+    const char * getMainDeviceName();
+    const char * getOsVersion();
+
     //battery
     const std::array<float, batteryNum>& getEachBatteryVoltage();
     const std::array<int, batteryNum>& getEachBatteryCapacity();

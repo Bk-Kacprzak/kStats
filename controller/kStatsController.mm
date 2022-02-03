@@ -161,6 +161,14 @@ const std::array<int, 4> &&kStatsController::getFansMinMaxSpeed() {
     return model.Fans().FansMinMaxSpeed();
 }
 
+const char * kStatsController::getMainDeviceName() {
+    return model.MainDevice().DeviceName();
+}
+
+const char * kStatsController::getOsVersion() {
+    return model.MainDevice().OsVersion();
+}
+
 
 
 
