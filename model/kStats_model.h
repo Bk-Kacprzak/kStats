@@ -7,6 +7,7 @@
 #include "Network/network_model.h"
 #include "Peripherals/peripherals_model.h"
 #include "Peripherals/volume_storage_model.h"
+#include "Main Device/MainDeviceModel.h"
 #include "GPU/gpu_device.h"
 class kStatsModel {
     BatteryModel _battery;
@@ -16,9 +17,12 @@ class kStatsModel {
     NetworkModel _network;
     Peripherals _peripherals;
     VolumeStorage _volumeStorage;
+    MainDeviceModel _mainDevice;
+
 public:
     kStatsModel();
     ~kStatsModel();
+    MainDeviceModel &MainDevice();
     BatteryModel &Battery();
     CPU &Cpu();
     GPU &Gpu();

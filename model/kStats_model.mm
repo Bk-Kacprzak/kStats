@@ -38,4 +38,8 @@ GPU &kStatsModel::Gpu() {
     return _gpu;
 }
 
+MainDeviceModel &kStatsModel::MainDevice() {
+    return _mainDevice;
+}
+
 
