@@ -30,15 +30,12 @@ public:
     static constexpr SMC_KEY totalVoltageKey = SMC_KEY_BATTERY_VOLTAGE;
     static constexpr SMC_KEY cycleCountKey = SMC_KEY_BATTERY_CYCLECOUNT;
 
-//todo: change std::array's to ValueContainers
 
     std::array<float, batteryNum> batteryVoltageValue = {};
     std::array<int, batteryNum> batteryCapacityValue = {};
     float totalAmperageValue;
     float totalVoltageValue;
     uint cycleCountValue;
-
-    std::mutex battery_mutex;
 
     void readBatteryKey(BatteryModel::KEYTYPE keytype, const int &index = -1);
 

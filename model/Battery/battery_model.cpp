@@ -13,37 +13,28 @@ void BatteryModel::readBatteryKey(KEYTYPE keytype, const int &index) {
         case CELL_CAPACITY: {
             result = readKey(batteryCapacityKeys[index]);
             std::cout<<"Battery Cell " << index << " capacity: "<<result.i<< " mAh \n";
-            std::lock_guard<std::mutex> lock(controller_mutex);
-//            controller_mutex.lock();
             batteryCapacityValue[index] = result.i;
-//            controller_mutex.unlock();
             break;
         }
         case TOTAL_AMPERAGE: {
             result = readKey(totalAmperageKey);
             std::cout<<"Battery total amperage: "<<result.f<< " mA\n";
             std::lock_guard<std::mutex> lock(controller_mutex);
-//            controller_mutex.lock();
             totalAmperageValue = result.f;
-//            controller_mutex.unlock();
             break;
         }
         case TOTAL_VOLTAGE: {
             result = readKey(totalVoltageKey);
             std::cout<<"Battery total voltage: "<<(float)result.i/1000<< " V\n";
             std::lock_guard<std::mutex> lock(controller_mutex);
-//            controller_mutex.lock();
             totalVoltageValue = (float)result.i/1000;
-//            controller_mutex.unlock();
             break;
         }
         case CYCLE_COUNT: {
             result = readKey(cycleCountKey);
             std::cout<<"Battery cycle count: "<<result.i<< " cycles\n";
             std::lock_guard<std::mutex> lock(controller_mutex);
-//            controller_mutex.lock();
             cycleCountValue = result.i;
-//            controller_mutex.unlock();
             break;
         }
         default:
