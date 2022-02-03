@@ -30,28 +30,17 @@ void CPU::setKey(CPU::KEYTYPE keytype, const ushort id) {
 
 void CPU::retrieveTemperature(const int &core) {
     try {
-        if(core >= temperature.size())
+        if (core >= temperature.size())
             throw std::invalid_argument("Invalid core number.\n");
 
         int return_value = readKey(temperature[core]).i;
-
         std::lock_guard<std::mutex> lock(CPUTemperature.mtx);
-        CPUTemperature.value[core] = (int)(return_value/256.0);
-//todo: delete printing
-        if(core == 6)  {
-            //avg temp
-//            std::cout<<"Core average: "<<CPUTemperature.value[core]<<std::endl;
-        }
-        else if (core == 7) {
-//            std::cout<<"Core PECI: "<<CPUTemperature.value[core]<<std::endl;
-        } else {
-//            std::cout<<"Core "<<core + 1 <<": "<<CPUTemperature.value[core]<<std::endl;
-        }
+        CPUTemperature.value[core] = (int) (return_value / 256.0);
     }
 
     catch (const std::exception& e) {
-       std::cout<<e.what();
-       exit(0);
+        std::cout<<e.what();
+        exit(0);
     }
 }
 
@@ -78,11 +67,6 @@ CPU::~CPU() {
 
 }
 
-template<typename T>
-void CPU::sysctlCall(ValueContainer<T>& _value, const char * command, size_t max_byte_size) {
-    std::lock_guard<std::mutex> lock(_value.mtx);
-    sysctlbyname(command, &_value.value, &max_byte_size, nullptr, 0);
-}
 
 const char *CPU::ProcessorModel() const {
     std::unique_lock<std::mutex> lock(processorModel.mtx);
@@ -152,7 +136,6 @@ void CPU::retrieveCPUInformation() {
         std::cout<<"Architecture: " <<(Architecture() == 1 ? "x86_64" : "x86")<<std::endl;
     });
 }
-
 
 
 

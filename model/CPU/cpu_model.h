@@ -5,7 +5,6 @@
 #include "../Utils/keys.h"
 #include <mutex>
 #include <vector>
-#include <sys/sysctl.h>
 
 
 class CPU : public GenericDevice {
@@ -52,11 +51,7 @@ private:
     ValueContainer<ushort> architecture;
     mutable std::condition_variable cv;
 
-private:
-
     void retrieveCPUInformation();
-    template<typename T>
-    void sysctlCall(ValueContainer<T> &, const char*, size_t max_byte_size);
 public:
     enum KEYTYPE {
         TEMPERATURE = 0,
@@ -77,5 +72,7 @@ public:
     ushort CacheSize() const;
     ushort ByteOrder() const;
     ushort Architecture() const;
+
+
 };
 #endif //CPUSTATS_CPU_DEVICE_H
