@@ -4,15 +4,11 @@
 GenericDevice::GenericDevice() {
 
 }
+
 GenericDevice::kernReturnValue GenericDevice::readKey(std::mutex& mtx, const char* key) {
     SMCVal_t val;
     kern_return_t result;
     result = SMCReadKey(mtx,key, &val);
-//    std::cout<<"\nBytes: "<<val.bytes<<std::endl;
-//    std::cout<<"\nData Type: "<<val.dataType<<std::endl;
-//    std::cout<<"\nData size: "<<val.dataSize<<std::endl;
-//    std::cout<<"\nKey: "<<val.key<<std::endl;
-
 
     kernReturnValue value;
     if (result == kIOReturnSuccess) {
@@ -72,6 +68,8 @@ void GenericDevice::writeKey(SMCVal_t *writeValue) {
     kern_return_t result = SMCWriteKey(writeValue);
     if(result == kIOReturnSuccess)
         std::cout<<"Value set to key: "<<writeValue->key<<std::endl;
+    else
+        std::cout<<"writeKey Error\n";
 }
 
 
@@ -79,12 +77,6 @@ GenericDevice::kernReturnValue GenericDevice::readKey(const char *key) {
     SMCVal_t val;
     kern_return_t result;
     result = SMCReadKey(key, &val);
-
-//    std::cout<<"\nBytes: "<<val.bytes<<std::endl;
-//    std::cout<<"\nData Type: "<<val.dataType<<std::endl;
-//    std::cout<<"\nData size: "<<val.dataSize<<std::endl;
-//    std::cout<<"\nKey: "<<val.key<<std::endl;
-
 
     kernReturnValue value;
     if (result == kIOReturnSuccess) {
@@ -154,3 +146,6 @@ void GenericDevice::writeKey(const char *key, const SMCBytes_t value) {
         std::cout<<"kIOReturnSuccess returns false\n";
 
 }
+
+
+
