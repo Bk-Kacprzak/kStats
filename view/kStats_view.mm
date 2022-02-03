@@ -16,17 +16,21 @@ std::vector<QString> GPUBrandIcons{"url(:/images/intel-logo.png)","url(:/images/
 std::vector<std::string> peripheralTypes{"keyboard", "headphones", "mouse", "monitor"};
 std::vector<QString> peripheralIcons{"url(:/images/keyboard.svg)","url(:/images/headphones.svg)","url(:/images/mouse.svg)","url(:/images/monitor.svg)"};
 
-
-
-//add mutex everywhere when widget is clicked.
-//add condition_variable -> when something is clicked - notify one and stop executing threads.
-//if current index doesnt change - wait for 1 sec (create your own timer to do that, when something happens - stop executing)
-//if current index changed - notify one, instantly change the widget, concurrently compute what specific thread had to, but don't freeze program for a second.
-
 kStatsView::kStatsView(QMainWindow *parent) {
     setupUi(this);
     this->currentWidgetIndex = 0;
     this->show();
+    initializeContent();
+}
+
+void Ui_MainWindow::initializeContent() {
+    threadPool.push([this] {setupHomeInfo();});
+    threadPool.push([this] {setupNetworkInfo();});
+    threadPool.push([this] {setupCPU();});
+    threadPool.push([this] {setupFanSpeed();});
+    threadPool.push([this] {setupHardware();});
+    threadPool.push([this] {displayFanSpeed();});
+    threadPool.push([this] {displayBatteryVoltage();});
 }
 
 //ON_CLICKED EVENTS
@@ -78,11 +82,15 @@ void Ui_MainWindow::on_hardwareButton_clicked()
 
     currentWidgetIndex = 4;
     stackedWidget->setCurrentIndex(4);
-
-    threadPool.push([=] {
-        setupHardware();
-        displayBatteryVoltage();
+    threadPool.push([&] {
+        displayBatteryCapacity();
     });
+
+    threadPool.push([&] {
+        displayBatteryVoltage();
+        setupHardware();
+    });
+
 }
 
 void Ui_MainWindow::on_statisticsButton_clicked()
@@ -107,9 +115,10 @@ void Ui_MainWindow::displayValues(const std::array<containerType, S> &labels, st
     std::array<inputType,S> values{0};
     do {
         values = getterFunction();
-        for (int i = 0; i < labels.size(); i++)
+        for (int i = 0; i < labels.size(); i++) {
             labels[i]->setText(QString::number(values[i]) + unit);
 
+        }
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     } while (widgetIndex == currentWidgetIndex);
 }
@@ -124,7 +133,6 @@ void Ui_MainWindow::displayValues(const std::array<containerType, S> &labels, st
         for (int i = 0; i < labels.size(); i++)
             labels[i]->setText(QString::number(values[i]) + unit);
 
-
         if (tableWidget)
                 tableWidget->update();
 
@@ -133,7 +141,7 @@ void Ui_MainWindow::displayValues(const std::array<containerType, S> &labels, st
 }
 
 
-void addLabelAndPicture(const std::vector<std::string>& dataName,
+void Ui_MainWindow::addLabelAndPicture(const std::vector<std::string>& dataName,
                         const std::vector<QLabel*>& icons,
                         const std::vector<QLabel*>& labels,
                         const std::vector<QString>& deviceIconPath,
@@ -167,6 +175,10 @@ void addLabelAndPicture(const std::vector<std::string>& dataName,
 //INITIALIZING METHODS
 
 void Ui_MainWindow::setupHomeInfo() {
+    threadPool.push([=] {
+        deviceName->setText(QString::fromStdString(ApplicationController.getMainDeviceName()));
+        osVersion->setText(QString::fromStdString(ApplicationController.getOsVersion()));
+    });
     //todo: write a function to retrieve modelName and osVersion
     threadPool.push([=] {
         processorModel->setText(QString::fromStdString(ApplicationController.getCPUProcessorModel()));
@@ -197,7 +209,6 @@ void Ui_MainWindow::setupPeripherals() {
     std::vector<std::string> deviceTypes = ApplicationController.getDeviceTypes();
     std::vector<QLabel*> deviceIcon{peripheralIcon_1, peripheralIcon_2, peripheralIcon_3, peripheralIcon_4};
     std::vector<QLabel*> deviceLabel{peripheralName_1,peripheralName_2,peripheralName_3,peripheralName_4};
-
     addLabelAndPicture(deviceNames, deviceIcon, deviceLabel, peripheralIcons, peripheralTypes, deviceTypes);
 }
 
@@ -228,9 +239,13 @@ void Ui_MainWindow::displayCPUTemperature() {
     std::array<QLabel *, 8> cpuTemperatureLabels{cpuTemperatureCore_1, cpuTemperatureCore_2, cpuTemperatureCore_3,
                                                cpuTemperatureCore_4, cpuTemperatureCore_5, cpuTemperatureCore_6,
                                                cpuAverageTemperature, cpuTemperaturePeci};
+    std::array<QFrame *, 8> cpuCircuralProgress{circuralProgressCpuTemperatureCore_1, circuralProgressCpuTemperatureCore_2, circuralProgressCpuTemperatureCore_3, circuralProgressCpuTemperatureCore_4, circuralProgressCpuTemperatureCore_5, circuralProgressCpuTemperatureCore_6, circuralProgressCpuAvgTemperature, circuralProgressCpuTemperatureCorePECI};
+
 
     displayValues<QLabel*, float,8>(cpuTemperatureLabels, [&] {
-        return ApplicationController.getCPUTemperature();
+        auto temperatures = ApplicationController.getCPUTemperature();
+        Animation::circuralProgressAnimation(cpuCircuralProgress, temperatures);
+        return temperatures;
     },"\302\260C", 1);
 }
 
@@ -267,8 +282,8 @@ void Ui_MainWindow::on_testConnectionSpeedButton_clicked() {
 
         downloadSpeedTable->setText(download_speed);
         downloadSpeed->setText(download_speed);
-        Animation::circuralProgressAnimation(circuralProgressDownloadSpeed);
-        Animation::circuralProgressAnimation(circuralProgressUploadSpeed);
+//        Animation::circuralProgressAnimation(circuralProgressDownloadSpeed);
+//        Animation::circuralProgressAnimation(circuralProgressUploadSpeed);
 
         QString upload_speed = QString::number(ApplicationController.getUploadSpeed()) + " Mb/s";
 
@@ -286,17 +301,26 @@ void Ui_MainWindow::setupHardware() {
     massTotalMemory->setText(QString::number(ApplicationController.getVolumeStorageTotalMemory()) + " GB");
     massfileFormat->setText(QString::fromStdString(ApplicationController.getVolumeStorageFormatDescription()));
     batteryCycleCount->setText(QString::number(ApplicationController.getCycleCount()));
+    displayBatteryCapacity();
 }
 
 void Ui_MainWindow::displayBatteryVoltage() {
     std::array<QLabel *, 3> batteryVoltageLabels{batteryCellVoltage_1, batteryCellVoltage_2,batteryCellVoltage_3};
     std::array<float , 3> batteryVoltage{0};
-        displayValues<QLabel*, float,3>(batteryVoltageLabels, [&] {
-            return ApplicationController.getEachBatteryVoltage();
-        }," V", 4);
+    displayValues<QLabel*, float,3>(batteryVoltageLabels, [&] {
+        return ApplicationController.getEachBatteryVoltage();
+    }," V", 4);
 }
 
 
+void Ui_MainWindow::displayBatteryCapacity() {
+    std::array<QLabel *, 3> batteryCapacityLabels{batteryCellCapacity_1, batteryCellCapacity_2,batteryCellCapacity_3};
+    std::array<float , 3> batteryCapacity{0};
+
+    displayValues<QLabel*, int,3>(batteryCapacityLabels, [&] {
+        return ApplicationController.getEachBatteryCapacity();
+    }," MAh", 5);
+}
 
 void Ui_MainWindow::displayAllTemperatures() {
     std::array<QTableWidgetItem*, 8>  cpuTempLabels = (getLabels<8>(1, 8));
@@ -360,17 +384,3 @@ void Ui_MainWindow::on_fanRightSetMaxSpeedButton_clicked()
 {
 
 }
-
-
-
-
-
-//void Ui_MainWindow::displayBatteryCapacity() {
-//    std::array<QLabel *, 3> batteryCapacityLabels{batteryCellCapacity_1, batteryCellCapacity_2, batteryCellCapacity_3};
-//    std::array<int, 3> batteryCapacity{0};
-//
-//        batteryCapacity = ApplicationController.getEachBatteryCapacity();
-//        for (int i = 0; i < batteryCapacityLabels.size(); i++)
-//            batteryCapacityLabels[i]->setText(QString::number(batteryCapacity[i]) + " Wh");
-//
-//}

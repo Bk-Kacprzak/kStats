@@ -40,7 +40,6 @@ private slots:
 
 private:
     //setup's
-    void setContainerContent(QLabel *&);
     void setupNetworkInfo();
     void setupHomeInfo();
     void setupCPU();
@@ -49,12 +48,12 @@ private:
     void setupGPU();
     void setupPeripherals();
 
-    void addLabelAndPicture(const std::vector<std::string>&,
-                            const std::vector<QLabel*>&,
-                            const std::vector<QLabel*>&,
-                            const std::vector<QString>&,
-                            const std::vector<std::string>&,
-                            const std::vector<std::string>&)
+    void addLabelAndPicture(const std::vector<std::string>& dataName,
+                            const std::vector<QLabel*>& icons,
+                            const std::vector<QLabel*>& labels,
+                            const std::vector<QString>& deviceIconPath,
+                            const std::vector<std::string>& deviceName,
+                            const std::vector<std::string>& dataType);
     //loop functions
     template<typename containerType, typename inputType, size_t S>
     void displayValues(const std::array<containerType ,S> &,
@@ -71,6 +70,7 @@ private:
     void displayCPUTemperature();
     void displayFanSpeed();
     void displayBatteryVoltage();
+    void displayBatteryCapacity();
     void displayAllTemperatures();
 
     template<size_t S>
@@ -78,6 +78,7 @@ private:
 
 protected:
     std::atomic<int> currentWidgetIndex;
+    void initializeContent();
 
 public:
 
@@ -191,7 +192,7 @@ public:
     QFrame *chart_container;
     QHBoxLayout *horizontalLayout_22;
     QFrame *circularProgressBarBase_4;
-    QFrame *circuralProgress_6;
+    QFrame *circuralProgressCpuAvgTemperature;
     QFrame *circuralBg_6;
     QFrame *circuralContainer_6;
     QVBoxLayout *verticalLayout_37;
@@ -202,7 +203,7 @@ public:
     QFrame *chart_container_3;
     QHBoxLayout *horizontalLayout_23;
     QFrame *circularProgressBarBase_5;
-    QFrame *circuralProgress_7;
+    QFrame *circuralProgressCpuUsage;
     QFrame *circuralBg_7;
     QFrame *circuralContainer_7;
     QVBoxLayout *verticalLayout_39;
@@ -247,7 +248,7 @@ public:
     QFrame *chart_container_6;
     QHBoxLayout *horizontalLayout_27;
     QFrame *circularProgressBarBase_10;
-    QFrame *circuralProgress_12;
+    QFrame *circuralProgressCpuTemperatureCore_1;
     QFrame *circuralBg_12;
     QFrame *circuralContainer_12;
     QVBoxLayout *verticalLayout_38;
@@ -259,7 +260,7 @@ public:
     QFrame *chart_container_5;
     QHBoxLayout *horizontalLayout_26;
     QFrame *circularProgressBarBase_9;
-    QFrame *circuralProgress_11;
+    QFrame *circuralProgressCpuTemperatureCore_2;
     QFrame *circuralBg_11;
     QFrame *circuralContainer_11;
     QVBoxLayout *verticalLayout_47;
@@ -271,7 +272,7 @@ public:
     QFrame *chart_container_7;
     QHBoxLayout *horizontalLayout_29;
     QFrame *circularProgressBarBase_11;
-    QFrame *circuralProgress_13;
+    QFrame *circuralProgressCpuTemperatureCore_3;
     QFrame *circuralBg_13;
     QFrame *circuralContainer_13;
     QVBoxLayout *verticalLayout_50;
@@ -283,7 +284,7 @@ public:
     QFrame *chart_container_9;
     QHBoxLayout *horizontalLayout_31;
     QFrame *circularProgressBarBase_13;
-    QFrame *circuralProgress_15;
+    QFrame *circuralProgressCpuTemperatureCore_4;
     QFrame *circuralBg_15;
     QFrame *circuralContainer_15;
     QVBoxLayout *verticalLayout_55;
@@ -295,7 +296,7 @@ public:
     QFrame *chart_container_10;
     QHBoxLayout *horizontalLayout_33;
     QFrame *circularProgressBarBase_14;
-    QFrame *circuralProgress_16;
+    QFrame *circuralProgressCpuTemperatureCore_5;
     QFrame *circuralBg_16;
     QFrame *circuralContainer_16;
     QVBoxLayout *verticalLayout_58;
@@ -307,7 +308,7 @@ public:
     QFrame *chart_container_11;
     QHBoxLayout *horizontalLayout_34;
     QFrame *circularProgressBarBase_15;
-    QFrame *circuralProgress_17;
+    QFrame *circuralProgressCpuTemperatureCore_6;
     QFrame *circuralBg_17;
     QFrame *circuralContainer_17;
     QVBoxLayout *verticalLayout_60;
@@ -318,7 +319,7 @@ public:
     QFrame *chart_container_8;
     QHBoxLayout *horizontalLayout_30;
     QFrame *circularProgressBarBase_12;
-    QFrame *circuralProgress_14;
+    QFrame *circuralProgressCpuTemperatureCorePECI;
     QFrame *circuralBg_14;
     QFrame *circuralContainer_14;
     QVBoxLayout *verticalLayout_52;
@@ -1558,18 +1559,15 @@ public:
         circularProgressBarBase_4->setFrameShape(QFrame::NoFrame);
         circularProgressBarBase_4->setFrameShadow(QFrame::Plain);
         circularProgressBarBase_4->setLineWidth(0);
-        circuralProgress_6 = new QFrame(circularProgressBarBase_4);
-        circuralProgress_6->setObjectName(QString::fromUtf8("circuralProgress_6"));
-        circuralProgress_6->setGeometry(QRect(0, 0, 140, 140));
-        circuralProgress_6->setMinimumSize(QSize(140, 140));
-        circuralProgress_6->setMaximumSize(QSize(140, 140));
-        circuralProgress_6->setStyleSheet(QString::fromUtf8("QFrame { \n "
-                                                            "	border-radius: 70px;\n "
-                                                            "	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:-135, stop:0.749 rgba(255, 255, 255, 0), stop:0.750 #4798ff);\n "
-                                                            "}"));
-        circuralProgress_6->setFrameShape(QFrame::NoFrame);
-        circuralProgress_6->setFrameShadow(QFrame::Plain);
-        circuralProgress_6->setLineWidth(0);
+        circuralProgressCpuAvgTemperature = new QFrame(circularProgressBarBase_4);
+        circuralProgressCpuAvgTemperature->setObjectName(QString::fromUtf8("circuralProgressCpuAvgTemperature"));
+        circuralProgressCpuAvgTemperature->setGeometry(QRect(0, 0, 140, 140));
+        circuralProgressCpuAvgTemperature->setMinimumSize(QSize(140, 140));
+        circuralProgressCpuAvgTemperature->setMaximumSize(QSize(140, 140));
+        circuralProgressCpuAvgTemperature->setStyleSheet(QString::fromUtf8("QFrame { \nborder-radius: 70px;\nbackground-color: qconicalgradient(cx:0.5 cy:0.5 angle:225, stop: 0.1 rgba(255, 255, 255, 0), stop:1 #4798ff);\n}"));
+        circuralProgressCpuAvgTemperature->setFrameShape(QFrame::NoFrame);
+        circuralProgressCpuAvgTemperature->setFrameShadow(QFrame::Plain);
+        circuralProgressCpuAvgTemperature->setLineWidth(0);
         circuralBg_6 = new QFrame(circularProgressBarBase_4);
         circuralBg_6->setObjectName(QString::fromUtf8("circuralBg_6"));
         circuralBg_6->setGeometry(QRect(0, 0, 140, 140));
@@ -1624,7 +1622,7 @@ public:
         verticalLayout_37->addWidget(cpuAverageTemperature);
 
         circuralBg_6->raise();
-        circuralProgress_6->raise();
+        circuralProgressCpuAvgTemperature->raise();
         circuralContainer_6->raise();
 
         horizontalLayout_22->addWidget(circularProgressBarBase_4);
@@ -1677,18 +1675,15 @@ public:
         circularProgressBarBase_5->setFrameShape(QFrame::NoFrame);
         circularProgressBarBase_5->setFrameShadow(QFrame::Plain);
         circularProgressBarBase_5->setLineWidth(0);
-        circuralProgress_7 = new QFrame(circularProgressBarBase_5);
-        circuralProgress_7->setObjectName(QString::fromUtf8("circuralProgress_7"));
-        circuralProgress_7->setGeometry(QRect(0, 0, 140, 140));
-        circuralProgress_7->setMinimumSize(QSize(140, 140));
-        circuralProgress_7->setMaximumSize(QSize(140, 140));
-        circuralProgress_7->setStyleSheet(QString::fromUtf8("QFrame { \n "
-                                                            "	border-radius: 70px;\n "
-                                                            "	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:-135, stop:0.749 rgba(255, 255, 255, 0), stop:0.750 #f82f5f);\n "
-                                                            "}"));
-        circuralProgress_7->setFrameShape(QFrame::NoFrame);
-        circuralProgress_7->setFrameShadow(QFrame::Plain);
-        circuralProgress_7->setLineWidth(0);
+        circuralProgressCpuUsage = new QFrame(circularProgressBarBase_5);
+        circuralProgressCpuUsage->setObjectName(QString::fromUtf8("circuralProgressCpuUsage"));
+        circuralProgressCpuUsage->setGeometry(QRect(0, 0, 140, 140));
+        circuralProgressCpuUsage->setMinimumSize(QSize(140, 140));
+        circuralProgressCpuUsage->setMaximumSize(QSize(140, 140));
+        circuralProgressCpuUsage->setStyleSheet(QString::fromUtf8("QFrame { \nborder-radius: 70px;\nbackground-color: qconicalgradient(cx:0.5 cy:0.5 angle:225, stop: 0.1 rgba(255, 255, 255, 0), stop:1 #4798ff);\n}"));
+        circuralProgressCpuUsage->setFrameShape(QFrame::NoFrame);
+        circuralProgressCpuUsage->setFrameShadow(QFrame::Plain);
+        circuralProgressCpuUsage->setLineWidth(0);
         circuralBg_7 = new QFrame(circularProgressBarBase_5);
         circuralBg_7->setObjectName(QString::fromUtf8("circuralBg_7"));
         circuralBg_7->setGeometry(QRect(0, 0, 140, 140));
@@ -1734,7 +1729,7 @@ public:
         verticalLayout_39->addWidget(cpuUsage);
 
         circuralBg_7->raise();
-        circuralProgress_7->raise();
+        circuralProgressCpuUsage->raise();
         circuralContainer_7->raise();
 
         horizontalLayout_23->addWidget(circularProgressBarBase_5);
@@ -2125,18 +2120,15 @@ public:
         circularProgressBarBase_10->setFrameShape(QFrame::NoFrame);
         circularProgressBarBase_10->setFrameShadow(QFrame::Plain);
         circularProgressBarBase_10->setLineWidth(0);
-        circuralProgress_12 = new QFrame(circularProgressBarBase_10);
-        circuralProgress_12->setObjectName(QString::fromUtf8("circuralProgress_12"));
-        circuralProgress_12->setGeometry(QRect(0, 0, 140, 140));
-        circuralProgress_12->setMinimumSize(QSize(140, 140));
-        circuralProgress_12->setMaximumSize(QSize(140, 140));
-        circuralProgress_12->setStyleSheet(QString::fromUtf8("QFrame { \n "
-                                                             "	border-radius: 70px;\n "
-                                                             "	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:-135, stop:0.749 rgba(255, 255, 255, 0), stop:0.750 #4798ff);\n "
-                                                             "}"));
-        circuralProgress_12->setFrameShape(QFrame::NoFrame);
-        circuralProgress_12->setFrameShadow(QFrame::Plain);
-        circuralProgress_12->setLineWidth(0);
+        circuralProgressCpuTemperatureCore_1 = new QFrame(circularProgressBarBase_10);
+        circuralProgressCpuTemperatureCore_1->setObjectName(QString::fromUtf8("circuralProgressCpuTemperatureCore_1"));
+        circuralProgressCpuTemperatureCore_1->setGeometry(QRect(0, 0, 140, 140));
+        circuralProgressCpuTemperatureCore_1->setMinimumSize(QSize(140, 140));
+        circuralProgressCpuTemperatureCore_1->setMaximumSize(QSize(140, 140));
+        circuralProgressCpuTemperatureCore_1->setStyleSheet(QString::fromUtf8("QFrame { \nborder-radius: 70px;\nbackground-color: qconicalgradient(cx:0.5 cy:0.5 angle:225, stop: 0.1 rgba(255, 255, 255, 0), stop:1 #4798ff);\n}"));
+        circuralProgressCpuTemperatureCore_1->setFrameShape(QFrame::NoFrame);
+        circuralProgressCpuTemperatureCore_1->setFrameShadow(QFrame::Plain);
+        circuralProgressCpuTemperatureCore_1->setLineWidth(0);
         circuralBg_12 = new QFrame(circularProgressBarBase_10);
         circuralBg_12->setObjectName(QString::fromUtf8("circuralBg_12"));
         circuralBg_12->setGeometry(QRect(0, 0, 140, 140));
@@ -2182,7 +2174,7 @@ public:
         verticalLayout_38->addWidget(cpuTemperatureCore_1);
 
         circuralBg_12->raise();
-        circuralProgress_12->raise();
+        circuralProgressCpuTemperatureCore_1->raise();
         circuralContainer_12->raise();
 
         horizontalLayout_27->addWidget(circularProgressBarBase_10);
@@ -2236,18 +2228,15 @@ public:
         circularProgressBarBase_9->setFrameShape(QFrame::NoFrame);
         circularProgressBarBase_9->setFrameShadow(QFrame::Plain);
         circularProgressBarBase_9->setLineWidth(0);
-        circuralProgress_11 = new QFrame(circularProgressBarBase_9);
-        circuralProgress_11->setObjectName(QString::fromUtf8("circuralProgress_11"));
-        circuralProgress_11->setGeometry(QRect(0, 0, 140, 140));
-        circuralProgress_11->setMinimumSize(QSize(140, 140));
-        circuralProgress_11->setMaximumSize(QSize(140, 140));
-        circuralProgress_11->setStyleSheet(QString::fromUtf8("QFrame { \n "
-                                                             "	border-radius: 70px;\n "
-                                                             "	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:-135, stop:0.749 rgba(255, 255, 255, 0), stop:0.750 #f82f5f);\n "
-                                                             "}"));
-        circuralProgress_11->setFrameShape(QFrame::NoFrame);
-        circuralProgress_11->setFrameShadow(QFrame::Plain);
-        circuralProgress_11->setLineWidth(0);
+        circuralProgressCpuTemperatureCore_2 = new QFrame(circularProgressBarBase_9);
+        circuralProgressCpuTemperatureCore_2->setObjectName(QString::fromUtf8("circuralProgressCpuTemperatureCore_2"));
+        circuralProgressCpuTemperatureCore_2->setGeometry(QRect(0, 0, 140, 140));
+        circuralProgressCpuTemperatureCore_2->setMinimumSize(QSize(140, 140));
+        circuralProgressCpuTemperatureCore_2->setMaximumSize(QSize(140, 140));
+        circuralProgressCpuTemperatureCore_2->setStyleSheet(QString::fromUtf8("QFrame { \nborder-radius: 70px;\nbackground-color: qconicalgradient(cx:0.5 cy:0.5 angle:225, stop: 0.1 rgba(255, 255, 255, 0), stop:1 #4798ff);\n}"));
+        circuralProgressCpuTemperatureCore_2->setFrameShape(QFrame::NoFrame);
+        circuralProgressCpuTemperatureCore_2->setFrameShadow(QFrame::Plain);
+        circuralProgressCpuTemperatureCore_2->setLineWidth(0);
         circuralBg_11 = new QFrame(circularProgressBarBase_9);
         circuralBg_11->setObjectName(QString::fromUtf8("circuralBg_11"));
         circuralBg_11->setGeometry(QRect(0, 0, 140, 140));
@@ -2293,7 +2282,7 @@ public:
         verticalLayout_47->addWidget(cpuTemperatureCore_2);
 
         circuralBg_11->raise();
-        circuralProgress_11->raise();
+        circuralProgressCpuTemperatureCore_2->raise();
         circuralContainer_11->raise();
 
         horizontalLayout_26->addWidget(circularProgressBarBase_9);
@@ -2347,18 +2336,15 @@ public:
         circularProgressBarBase_11->setFrameShape(QFrame::NoFrame);
         circularProgressBarBase_11->setFrameShadow(QFrame::Plain);
         circularProgressBarBase_11->setLineWidth(0);
-        circuralProgress_13 = new QFrame(circularProgressBarBase_11);
-        circuralProgress_13->setObjectName(QString::fromUtf8("circuralProgress_13"));
-        circuralProgress_13->setGeometry(QRect(0, 0, 140, 140));
-        circuralProgress_13->setMinimumSize(QSize(140, 140));
-        circuralProgress_13->setMaximumSize(QSize(140, 140));
-        circuralProgress_13->setStyleSheet(QString::fromUtf8("QFrame { \n "
-                                                             "	border-radius: 70px;\n "
-                                                             "	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:-135, stop:0.749 rgba(255, 255, 255, 0), stop:0.750 #f82f5f);\n "
-                                                             "}"));
-        circuralProgress_13->setFrameShape(QFrame::NoFrame);
-        circuralProgress_13->setFrameShadow(QFrame::Plain);
-        circuralProgress_13->setLineWidth(0);
+        circuralProgressCpuTemperatureCore_3 = new QFrame(circularProgressBarBase_11);
+        circuralProgressCpuTemperatureCore_3->setObjectName(QString::fromUtf8("circuralProgressCpuTemperatureCore_3"));
+        circuralProgressCpuTemperatureCore_3->setGeometry(QRect(0, 0, 140, 140));
+        circuralProgressCpuTemperatureCore_3->setMinimumSize(QSize(140, 140));
+        circuralProgressCpuTemperatureCore_3->setMaximumSize(QSize(140, 140));
+        circuralProgressCpuTemperatureCore_3->setStyleSheet(QString::fromUtf8("QFrame { \nborder-radius: 70px;\nbackground-color: qconicalgradient(cx:0.5 cy:0.5 angle:225, stop: 0.1 rgba(255, 255, 255, 0), stop:1 #4798ff);\n}"));
+        circuralProgressCpuTemperatureCore_3->setFrameShape(QFrame::NoFrame);
+        circuralProgressCpuTemperatureCore_3->setFrameShadow(QFrame::Plain);
+        circuralProgressCpuTemperatureCore_3->setLineWidth(0);
         circuralBg_13 = new QFrame(circularProgressBarBase_11);
         circuralBg_13->setObjectName(QString::fromUtf8("circuralBg_13"));
         circuralBg_13->setGeometry(QRect(0, 0, 140, 140));
@@ -2404,7 +2390,7 @@ public:
         verticalLayout_50->addWidget(cpuTemperatureCore_3);
 
         circuralBg_13->raise();
-        circuralProgress_13->raise();
+        circuralProgressCpuTemperatureCore_3->raise();
         circuralContainer_13->raise();
 
         horizontalLayout_29->addWidget(circularProgressBarBase_11);
@@ -2460,18 +2446,15 @@ public:
         circularProgressBarBase_13->setFrameShape(QFrame::NoFrame);
         circularProgressBarBase_13->setFrameShadow(QFrame::Plain);
         circularProgressBarBase_13->setLineWidth(0);
-        circuralProgress_15 = new QFrame(circularProgressBarBase_13);
-        circuralProgress_15->setObjectName(QString::fromUtf8("circuralProgress_15"));
-        circuralProgress_15->setGeometry(QRect(0, 0, 140, 140));
-        circuralProgress_15->setMinimumSize(QSize(140, 140));
-        circuralProgress_15->setMaximumSize(QSize(140, 140));
-        circuralProgress_15->setStyleSheet(QString::fromUtf8("QFrame { \n "
-                                                             "	border-radius: 70px;\n "
-                                                             "	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:-135, stop:0.749 rgba(255, 255, 255, 0), stop:0.750 #f82f5f);\n "
-                                                             "}"));
-        circuralProgress_15->setFrameShape(QFrame::NoFrame);
-        circuralProgress_15->setFrameShadow(QFrame::Plain);
-        circuralProgress_15->setLineWidth(0);
+        circuralProgressCpuTemperatureCore_4 = new QFrame(circularProgressBarBase_13);
+        circuralProgressCpuTemperatureCore_4->setObjectName(QString::fromUtf8("circuralProgressCpuTemperatureCore_4"));
+        circuralProgressCpuTemperatureCore_4->setGeometry(QRect(0, 0, 140, 140));
+        circuralProgressCpuTemperatureCore_4->setMinimumSize(QSize(140, 140));
+        circuralProgressCpuTemperatureCore_4->setMaximumSize(QSize(140, 140));
+        circuralProgressCpuTemperatureCore_4->setStyleSheet(QString::fromUtf8("QFrame { \nborder-radius: 70px;\nbackground-color: qconicalgradient(cx:0.5 cy:0.5 angle:225, stop: 0.1 rgba(255, 255, 255, 0), stop:1 #4798ff);\n}"));
+        circuralProgressCpuTemperatureCore_4->setFrameShape(QFrame::NoFrame);
+        circuralProgressCpuTemperatureCore_4->setFrameShadow(QFrame::Plain);
+        circuralProgressCpuTemperatureCore_4->setLineWidth(0);
         circuralBg_15 = new QFrame(circularProgressBarBase_13);
         circuralBg_15->setObjectName(QString::fromUtf8("circuralBg_15"));
         circuralBg_15->setGeometry(QRect(0, 0, 140, 140));
@@ -2517,7 +2500,7 @@ public:
         verticalLayout_55->addWidget(cpuTemperatureCore_4);
 
         circuralBg_15->raise();
-        circuralProgress_15->raise();
+        circuralProgressCpuTemperatureCore_4->raise();
         circuralContainer_15->raise();
 
         horizontalLayout_31->addWidget(circularProgressBarBase_13);
@@ -2571,18 +2554,15 @@ public:
         circularProgressBarBase_14->setFrameShape(QFrame::NoFrame);
         circularProgressBarBase_14->setFrameShadow(QFrame::Plain);
         circularProgressBarBase_14->setLineWidth(0);
-        circuralProgress_16 = new QFrame(circularProgressBarBase_14);
-        circuralProgress_16->setObjectName(QString::fromUtf8("circuralProgress_16"));
-        circuralProgress_16->setGeometry(QRect(0, 0, 140, 140));
-        circuralProgress_16->setMinimumSize(QSize(140, 140));
-        circuralProgress_16->setMaximumSize(QSize(140, 140));
-        circuralProgress_16->setStyleSheet(QString::fromUtf8("QFrame { \n "
-                                                             "	border-radius: 70px;\n "
-                                                             "	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:-135, stop:0.749 rgba(255, 255, 255, 0), stop:0.750 #f82f5f);\n "
-                                                             "}"));
-        circuralProgress_16->setFrameShape(QFrame::NoFrame);
-        circuralProgress_16->setFrameShadow(QFrame::Plain);
-        circuralProgress_16->setLineWidth(0);
+        circuralProgressCpuTemperatureCore_5 = new QFrame(circularProgressBarBase_14);
+        circuralProgressCpuTemperatureCore_5->setObjectName(QString::fromUtf8("circuralProgressCpuTemperatureCore_5"));
+        circuralProgressCpuTemperatureCore_5->setGeometry(QRect(0, 0, 140, 140));
+        circuralProgressCpuTemperatureCore_5->setMinimumSize(QSize(140, 140));
+        circuralProgressCpuTemperatureCore_5->setMaximumSize(QSize(140, 140));
+        circuralProgressCpuTemperatureCore_5->setStyleSheet(QString::fromUtf8("QFrame { \nborder-radius: 70px;\nbackground-color: qconicalgradient(cx:0.5 cy:0.5 angle:225, stop: 0.1 rgba(255, 255, 255, 0), stop:1 #4798ff);\n}"));
+        circuralProgressCpuTemperatureCore_5->setFrameShape(QFrame::NoFrame);
+        circuralProgressCpuTemperatureCore_5->setFrameShadow(QFrame::Plain);
+        circuralProgressCpuTemperatureCore_5->setLineWidth(0);
         circuralBg_16 = new QFrame(circularProgressBarBase_14);
         circuralBg_16->setObjectName(QString::fromUtf8("circuralBg_16"));
         circuralBg_16->setGeometry(QRect(0, 0, 140, 140));
@@ -2628,7 +2608,7 @@ public:
         verticalLayout_58->addWidget(cpuTemperatureCore_5);
 
         circuralBg_16->raise();
-        circuralProgress_16->raise();
+        circuralProgressCpuTemperatureCore_5->raise();
         circuralContainer_16->raise();
 
         horizontalLayout_33->addWidget(circularProgressBarBase_14);
@@ -2682,18 +2662,15 @@ public:
         circularProgressBarBase_15->setFrameShape(QFrame::NoFrame);
         circularProgressBarBase_15->setFrameShadow(QFrame::Plain);
         circularProgressBarBase_15->setLineWidth(0);
-        circuralProgress_17 = new QFrame(circularProgressBarBase_15);
-        circuralProgress_17->setObjectName(QString::fromUtf8("circuralProgress_17"));
-        circuralProgress_17->setGeometry(QRect(0, 0, 140, 140));
-        circuralProgress_17->setMinimumSize(QSize(140, 140));
-        circuralProgress_17->setMaximumSize(QSize(140, 140));
-        circuralProgress_17->setStyleSheet(QString::fromUtf8("QFrame { \n "
-                                                             "	border-radius: 70px;\n "
-                                                             "	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:-135, stop:0.749 rgba(255, 255, 255, 0), stop:0.750 #f82f5f);\n "
-                                                             "}"));
-        circuralProgress_17->setFrameShape(QFrame::NoFrame);
-        circuralProgress_17->setFrameShadow(QFrame::Plain);
-        circuralProgress_17->setLineWidth(0);
+        circuralProgressCpuTemperatureCore_6 = new QFrame(circularProgressBarBase_15);
+        circuralProgressCpuTemperatureCore_6->setObjectName(QString::fromUtf8("circuralProgressCpuTemperatureCore_6"));
+        circuralProgressCpuTemperatureCore_6->setGeometry(QRect(0, 0, 140, 140));
+        circuralProgressCpuTemperatureCore_6->setMinimumSize(QSize(140, 140));
+        circuralProgressCpuTemperatureCore_6->setMaximumSize(QSize(140, 140));
+        circuralProgressCpuTemperatureCore_6->setStyleSheet(QString::fromUtf8("QFrame { \nborder-radius: 70px;\nbackground-color: qconicalgradient(cx:0.5 cy:0.5 angle:225, stop: 0.1 rgba(255, 255, 255, 0), stop:1 #4798ff);\n}"));
+        circuralProgressCpuTemperatureCore_6->setFrameShape(QFrame::NoFrame);
+        circuralProgressCpuTemperatureCore_6->setFrameShadow(QFrame::Plain);
+        circuralProgressCpuTemperatureCore_6->setLineWidth(0);
         circuralBg_17 = new QFrame(circularProgressBarBase_15);
         circuralBg_17->setObjectName(QString::fromUtf8("circuralBg_17"));
         circuralBg_17->setGeometry(QRect(0, 0, 140, 140));
@@ -2739,7 +2716,7 @@ public:
         verticalLayout_60->addWidget(cpuTemperatureCore_6);
 
         circuralBg_17->raise();
-        circuralProgress_17->raise();
+        circuralProgressCpuTemperatureCore_6->raise();
         circuralContainer_17->raise();
 
         horizontalLayout_34->addWidget(circularProgressBarBase_15);
@@ -2793,18 +2770,15 @@ public:
         circularProgressBarBase_12->setFrameShape(QFrame::NoFrame);
         circularProgressBarBase_12->setFrameShadow(QFrame::Plain);
         circularProgressBarBase_12->setLineWidth(0);
-        circuralProgress_14 = new QFrame(circularProgressBarBase_12);
-        circuralProgress_14->setObjectName(QString::fromUtf8("circuralProgress_14"));
-        circuralProgress_14->setGeometry(QRect(0, 0, 140, 140));
-        circuralProgress_14->setMinimumSize(QSize(140, 140));
-        circuralProgress_14->setMaximumSize(QSize(140, 140));
-        circuralProgress_14->setStyleSheet(QString::fromUtf8("QFrame { \n "
-                                                             "	border-radius: 70px;\n "
-                                                             "	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:-135, stop:0.749 rgba(255, 255, 255, 0), stop:0.750 #f82f5f);\n "
-                                                             "}"));
-        circuralProgress_14->setFrameShape(QFrame::NoFrame);
-        circuralProgress_14->setFrameShadow(QFrame::Plain);
-        circuralProgress_14->setLineWidth(0);
+        circuralProgressCpuTemperatureCorePECI = new QFrame(circularProgressBarBase_12);
+        circuralProgressCpuTemperatureCorePECI->setObjectName(QString::fromUtf8("circuralProgressCpuTemperatureCorePECI"));
+        circuralProgressCpuTemperatureCorePECI->setGeometry(QRect(0, 0, 140, 140));
+        circuralProgressCpuTemperatureCorePECI->setMinimumSize(QSize(140, 140));
+        circuralProgressCpuTemperatureCorePECI->setMaximumSize(QSize(140, 140));
+        circuralProgressCpuTemperatureCorePECI->setStyleSheet(QString::fromUtf8("QFrame { \nborder-radius: 70px;\nbackground-color: qconicalgradient(cx:0.5 cy:0.5 angle:225, stop: 0.1 rgba(255, 255, 255, 0), stop:1 #4798ff);\n}"));
+        circuralProgressCpuTemperatureCorePECI->setFrameShape(QFrame::NoFrame);
+        circuralProgressCpuTemperatureCorePECI->setFrameShadow(QFrame::Plain);
+        circuralProgressCpuTemperatureCorePECI->setLineWidth(0);
         circuralBg_14 = new QFrame(circularProgressBarBase_12);
         circuralBg_14->setObjectName(QString::fromUtf8("circuralBg_14"));
         circuralBg_14->setGeometry(QRect(0, 0, 140, 140));
@@ -2850,7 +2824,7 @@ public:
         verticalLayout_52->addWidget(cpuTemperaturePeci);
 
         circuralBg_14->raise();
-        circuralProgress_14->raise();
+        circuralProgressCpuTemperatureCorePECI->raise();
         circuralContainer_14->raise();
 
         horizontalLayout_30->addWidget(circularProgressBarBase_12);
@@ -5073,20 +5047,13 @@ public:
         ___qtablewidgetitem39->setText(QCoreApplication::translate("kStatsView", "76", nullptr));
         statsTableWidget->setSortingEnabled(__sortingEnabled);
 
-
-        threadPool.push([this] {setupHomeInfo();});
-        threadPool.push([this] {setupNetworkInfo();});
-        threadPool.push([this] {setupCPU();});
-        threadPool.push([this] {setupFanSpeed();});
-        threadPool.push([this] {setupHardware();});
-        threadPool.push([this] {displayFanSpeed();});
-        threadPool.push([this] {displayBatteryVoltage();});
     } // retranslateUi
 };
 
 class kStatsView: public Ui_MainWindow {
 public:
     kStatsView(QMainWindow * parent = nullptr);
+
 private:
     QMainWindow *ui;
 };
