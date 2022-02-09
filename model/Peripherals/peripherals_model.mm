@@ -6,8 +6,6 @@
 Peripherals::Peripherals() {
     loadBluetoothDevices();
     loadScreenDevices();
-    for(auto &device : devices)
-        std::cout<<"Connected device: " << device.name()<<std::endl;
 }
 
 void Peripherals::loadBluetoothDevices() {
@@ -43,7 +41,6 @@ std::vector<std::string> Peripherals::deviceNames() {
     for(const auto& device : devices)
             names.push_back(device.name());
 
-    std::cout<<names.capacity();
     return names;
 }
 
