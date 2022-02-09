@@ -85,10 +85,15 @@ void Ui_MainWindow::on_hardwareButton_clicked()
 
     currentWidgetIndex = 4;
     stackedWidget->setCurrentIndex(4);
-    threadPool.push([&] {
-        batteryCycleCount->setText(QString::number(ApplicationController.getCycleCount()));
-        batteryAmperage->setText(QString::number(ApplicationController.getBatteryAmperage()) + " mA");
-    });
+
+//    multiple threads to set properties causes
+//libc++abi: terminating with uncaught exception of type std::__1::system_error: condition_variable wait failed: Invalid argument
+
+//buggy
+//    threadPool.push([&] {
+//        batteryCycleCount->setText(QString::number(ApplicationController.getCycleCount()));
+//        batteryAmperage->setText(QString::number(ApplicationController.getBatteryAmperage()) + " mA");
+//    });
 
     threadPool.push([&] {
         displayBatteryCapacity();
