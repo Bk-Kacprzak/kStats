@@ -6,15 +6,6 @@
 static constexpr size_t batteryNum = 3;
 
 class BatteryModel : public GenericDevice {
-public:
-    BatteryModel() = default;
-    enum KEYTYPE {
-        CELL_VOLTAGE = 0,
-        CELL_CAPACITY = 1,
-        TOTAL_AMPERAGE = 2,
-        TOTAL_VOLTAGE = 3,
-        CYCLE_COUNT = 4
-    };
     static constexpr keyContainer<batteryNum> batteryVoltageKeys = {
             SMC_KEY_BATTERY_CELL1_VOLTAGE,
             SMC_KEY_BATTERY_CELL2_VOLTAGE,
@@ -26,26 +17,42 @@ public:
             SMC_KEY_BATTERY_CELL3_CAPACITY,
     };
 
+    ValueContainer<std::array<float, batteryNum>> batteryVoltage = {};
+    ValueContainer<std::array<int, batteryNum>> batteryCapacity = {};
     static constexpr SMC_KEY totalAmperageKey = SMC_KEY_BATTERY_AMPERAGE;
     static constexpr SMC_KEY totalVoltageKey = SMC_KEY_BATTERY_VOLTAGE;
     static constexpr SMC_KEY cycleCountKey = SMC_KEY_BATTERY_CYCLECOUNT;
+    ValueContainer<float> totalAmperage;
+    ValueContainer<float> totalVoltage;
+    ValueContainer<uint> cycleCount;
+    std::condition_variable cv;
+public:
+    BatteryModel() = default;
+    enum KEYTYPE {
+        CELL_VOLTAGE = 0,
+        CELL_CAPACITY = 1,
+        TOTAL_AMPERAGE = 2,
+        TOTAL_VOLTAGE = 3,
+        CYCLE_COUNT = 4
+    };
 
 
-    std::array<float, batteryNum> batteryVoltageValue = {};
-    std::array<int, batteryNum> batteryCapacityValue = {};
-    float totalAmperageValue;
-    float totalVoltageValue;
-    uint cycleCountValue;
 
+
+    //readers
     void readBatteryKey(BatteryModel::KEYTYPE keytype, const int &index = -1);
-
-    //getters
-    void retrieveEachBatteryVoltage();
-    void retrieveEachBatteryCapacity();
-    void retrieveCycleCount();
-    void retrieveTotalVoltage();
-    void retrieveTotalAmperage();
+    void readEachBatteryVoltage();
+    void readEachBatteryCapacity();
+    void readCycleCount();
+    void readTotalVoltage();
+    void readTotalAmperage();
     void getAllInformation();
+
+    const std::array<int, batteryNum>& BatteryCapacity();
+    const std::array<float, batteryNum>& BatteryVoltage();
+    const uint& CycleCount();
+    const float& TotalAmperage();
+    const float& TotalVoltage();
 };
 
 
