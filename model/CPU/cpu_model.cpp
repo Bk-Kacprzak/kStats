@@ -6,7 +6,7 @@
 #include <vector>
 
 CPU::CPU() : physicalCoreCount(0), cacheSize(0), byteOrder(-1), architecture(-1) {
-    retrieveCPUInformation();
+    readCPUInformation();
 }
 
 void CPU::setKey(CPU::KEYTYPE keytype, const ushort id) {
@@ -28,14 +28,15 @@ void CPU::setKey(CPU::KEYTYPE keytype, const ushort id) {
     }
 }
 
-void CPU::retrieveTemperature(const int &core) {
+void CPU::readTemperature(const int &index) {
     try {
-        if (core >= temperature.size())
-            throw std::invalid_argument("Invalid core number.\n");
+        if (index >= temperature.size())
+            throw std::invalid_argument("Invalid index number.\n");
 
-        int return_value = readKey(temperature[core]).i;
-        std::lock_guard<std::mutex> lock(CPUTemperature.mtx);
-        CPUTemperature.value[core] = (int) (return_value / 256.0);
+        int return_value = readKey(temperature[index]).i;
+        std::lock_guard<std::mutex> lock(temperatures.mtx);
+        temperatures.value[index] = (int)(return_value / 256.0);
+        cv.notify_one();
     }
 
     catch (const std::exception& e) {
@@ -48,19 +49,26 @@ ushort CPU::getCoreNumber() {
     return 6;
 }
 
-const std::array<float, 8> & CPU::EachCoreTemperature() {
+const std::array<float, CPU_MAX_COUNT> & CPU::Temperatures() {
     for(int i = 0; i<physicalCoreCount.value+2; i++) {
         threadPool.push([=] {
-            retrieveTemperature(i);
+            readTemperature(i);
         });
     }
 
-    std::unique_lock<std::mutex> lock(CPUTemperature.mtx);
-    cv.wait(lock,[this] {
-        return !CPUTemperature.value.empty();
+    std::unique_lock<std::mutex> lock(temperatures.mtx);
+    bool isFinished;
+    cv.wait(lock,[&] {
+        isFinished = true;
+        for(const auto& value : temperatures.value)
+            if(value == 0) {
+                isFinished = false;
+                break;
+            }
+        return isFinished;
     });
 
-    return CPUTemperature.value;
+    return temperatures.value;
 }
 
 CPU::~CPU() {
@@ -108,32 +116,27 @@ ushort CPU::Architecture() const {
     return architecture.value;
 }
 
-void CPU::retrieveCPUInformation() {
+void CPU::readCPUInformation() {
     //if they are not empty, dont do anything.
     // those values are
     threadPool.push([&] {
         sysctlCall(processorModel,"machdep.cpu.brand_string", 128);
-        std::cout<<"Model name: "<<ProcessorModel()<<std::endl;
     });
 
     threadPool.push([&] {
         sysctlCall(physicalCoreCount,"machdep.cpu.core_count", 64);
-        std::cout<<"Core count: "<<PhysicalCoreCount()<<std::endl;
     });
 
     threadPool.push([&] {
         sysctlCall(cacheSize,"machdep.cpu.cache.size", 64);
-        std::cout<<"Cache Size: "<<CacheSize()<<std::endl;
     });
 
     threadPool.push([&] {
         sysctlCall(byteOrder,"hw.byteorder", 64);
-        std::cout<<"Cache Size: "<<(ByteOrder() == 1234 ? "Little Endian" : "Big Endian" )<<std::endl;
     });
 
     threadPool.push([&] {
         sysctlCall(architecture, "hw.optional.x86_64", 64);
-        std::cout<<"Architecture: " <<(Architecture() == 1 ? "x86_64" : "x86")<<std::endl;
     });
 }
 
