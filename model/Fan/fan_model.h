@@ -48,7 +48,7 @@ public:
     //getters
     void getFanSpeedRPM(const FANTYPE fan,const KEYTYPE speedType = KEYTYPE::ALL);
     void getEachFanSpeedRPM(const KEYTYPE speedType = KEYTYPE::ALL);
-    void retrieveEachFanSpeedRPM();
+    void readEachFanSpeedRPM();
     const std::array<int, 3>& FanLeft();
     const std::array<int, 3>& FanRight();
     const std::array<int, 2> &&FansCurrentSpeed();

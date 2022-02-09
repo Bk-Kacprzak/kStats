@@ -1,7 +1,7 @@
 #include "fan_model.h"
 
 FanModel::FanModel() {
-        retrieveEachFanSpeedRPM();
+    readEachFanSpeedRPM();
 }
 
 void FanModel::getFanSpeedRPM(const FanModel::FANTYPE fan, const FanModel::KEYTYPE speedType) {
@@ -28,7 +28,7 @@ void FanModel::getFanSpeedRPM(const FanModel::FANTYPE fan, const FanModel::KEYTY
 //        knet::threadPool::exceptionPointer = std::current_exception();
     }
 }
-void FanModel::retrieveEachFanSpeedRPM() {
+void FanModel::readEachFanSpeedRPM() {
     getEachFanSpeedRPM(CURRENT_SPEED);
     getEachFanSpeedRPM(MAXIMUM_SPEED);
     getEachFanSpeedRPM(MINIMUM_SPEED);
@@ -41,29 +41,6 @@ void FanModel::getEachFanSpeedRPM(const FanModel::KEYTYPE speedType) {
     threadPool.push([=] {
         getFanSpeedRPM(RIGHT, speedType);
     });
-}
-
-void FanModel::setFanSpeed(const FanModel::FANTYPE fan, const float speed) {
-//    if (!(speed > MIN_SPEED && speed < MAX_SPEED))
-//        return;
-//
-//    int index;
-//    if(fan == LEFT)
-//        index = 0;
-//    else if(fan == RIGHT)
-//        index = 3;
-//
-//    SMCVal_t val;
-//    memcpy(val.dataType, DATATYPE_FLT, 5);
-//    memcpy(val.key, fanSpeed[index], 5);
-//    //-536870207
-//
-//    val.dataSize = DATATYPE_FLT_DATASIZE;
-//    Converter::floatToFlt(speed,val.bytes);
-//
-//    writeKey(&val);
-//    std::lock_guard<std::mutex> lock(fan_mutex);
-//    fanSpeedContainer[index] = speed;
 }
 
 const std::array<int, 3> &FanModel::FanLeft() {
@@ -87,5 +64,25 @@ const std::array<int, 4> FanModel::FansMinMaxSpeed() {
     std::lock_guard<std::mutex> lockRight(fanRight.mtx);
     return std::array<int,4>{fanLeft.value[1],fanLeft.value[2],fanRight.value[1], fanRight.value[2]};
 }
-
-
+void FanModel::setFanSpeed(const FanModel::FANTYPE fan, const float speed) {
+//    if (!(speed > MIN_SPEED && speed < MAX_SPEED))
+//        return;
+//
+//    int index;
+//    if(fan == LEFT)
+//        index = 0;
+//    else if(fan == RIGHT)
+//        index = 3;
+//
+//    SMCVal_t val;
+//    memcpy(val.dataType, DATATYPE_FLT, 5);
+//    memcpy(val.key, fanSpeed[index], 5);
+//    //-536870207
+//
+//    val.dataSize = DATATYPE_FLT_DATASIZE;
+//    Converter::floatToFlt(speed,val.bytes);
+//
+//    writeKey(&val);
+//    std::lock_guard<std::mutex> lock(fan_mutex);
+//    fanSpeed[index] = speed;
+}
