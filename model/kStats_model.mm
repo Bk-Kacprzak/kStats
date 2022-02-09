@@ -42,4 +42,8 @@ MainDeviceModel &kStatsModel::MainDevice() {
     return _mainDevice;
 }
 
+RamModel &kStatsModel::Ram() {
+    return _ram;
+}
+
 
