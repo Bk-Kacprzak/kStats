@@ -6,34 +6,19 @@
 #include <Metal/Metal.h>
 
 GPU::GPU() {
-    retrieveModelName();
+    getModelName();
 //    retrieveAllTemperatureValues();
 }
 
-void GPU::retrieveTemperature(const int &property) {
+void GPU::readTemperature(const int &index) {
     try {
-        int return_value = readKey(temperature[property]).i;
-        std::lock_guard<std::mutex> lock(temperatures.mtx);
-        temperatures.value[property] = return_value / 256.0;
-        switch(property){
-            case 0: {
-                std::cout << "GPU PROXIMITY: " << temperatures.value[property] << std::endl;
-                break;
-            }
-            case 1: {
-                std::cout << "GPU Radeon : " << temperatures.value[property] << std::endl;
-                break;
-            }
-            case 2: {
-                std::cout << "GPU Intel: " << temperatures.value[property] << std::endl;
-                break;
-            }
-            case 3: {
-                std::cout << "GPU Heatsink: " << temperatures.value[property] << std::endl;
-                break;
-            }
-        }
+        if (index >= temperature.size())
+            throw std::invalid_argument("Invalid gpu number.\n");
 
+        int return_value = readKey(temperature[index]).i;
+        std::lock_guard<std::mutex> lock(temperatures.mtx);
+        temperatures.value[index] = (int)(return_value / 256.0);
+        cv.notify_one();
     }
 
     catch (const std::exception& e) {
@@ -42,7 +27,7 @@ void GPU::retrieveTemperature(const int &property) {
     }
 }
 
-void GPU::retrieveModelName() {
+void GPU::getModelName() {
     NSArray<id <MTLDevice>> *deviceList = nil;
     deviceList = MTLCopyAllDevices();
     for(id<MTLDevice> device : deviceList) {
@@ -51,13 +36,6 @@ void GPU::retrieveModelName() {
     }
 }
 
-void GPU::retrieveAllTemperatureValues() {
-    for(int i = 0; i < GPU_TEMP_COUNT; i++) {
-        threadPool.push([=] () {
-            retrieveTemperature(i);
-        });
-    }
-}
 
 const std::vector<std::string> &GPU::ModelName() {
     std::unique_lock<std::mutex> lock(modelName.mtx);
@@ -68,9 +46,24 @@ const std::vector<std::string> &GPU::ModelName() {
 }
 
 const std::array<float, GPU_ALL_TEMP> &GPU::Temperatures() {
+    for(int i = 0; i < GPU_TEMP_COUNT; i++) {
+
+        threadPool.push([=] () {
+            readTemperature(i);
+        });
+    }
+
     std::unique_lock<std::mutex> lock(temperatures.mtx);
-    cv.wait(lock,[this] {
-        return !temperatures.value.empty();
+    bool isFinished;
+
+    cv.wait(lock,[& ] {
+        isFinished = true;
+        for(const auto& value : temperatures.value)
+            if(value == 0) {
+                isFinished = false;
+                break;
+            }
+        return isFinished;
     });
     return temperatures.value;
 }
