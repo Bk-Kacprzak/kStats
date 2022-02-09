@@ -6,9 +6,9 @@
 #include <mutex>
 #include <vector>
 
-
-class CPU : public GenericDevice {
 #define CPU_MAX_COUNT 8
+
+class CPU : public GenericDevice  {
 
 private:
     static constexpr keyContainer<CPU_MAX_COUNT> temperature = {
@@ -23,11 +23,8 @@ private:
             SMC_KEY_CPU_TEMP_CORE_AVG,
             SMC_KEY_CPU_TEMP_CORE_PECI,
     };
-//    static constexpr char temperature[10][5] = {
-//
-//    };
 
-    static constexpr keyContainer<8> power = {
+    static constexpr keyContainer<CPU_MAX_COUNT> power = {
             SMC_KEY_CPU_POWER_CORE1,
             SMC_KEY_CPU_POWER_CORE2,
             SMC_KEY_CPU_POWER_CORE3,
@@ -38,20 +35,21 @@ private:
             SMC_KEY_CPU_POWER_CORE8,
     };
 
-    //concurrency
-//    std::vector<std::thread> threads;
-//    knet::threadPool threadPool;
-    ValueContainer<std::array<float, 8>> CPUTemperature;
-//    void retrieveCPUInformation();
+    //via SMC Keys
+    ValueContainer<std::array<float, CPU_MAX_COUNT>> temperatures;
 
+    //via sysctl
     ValueContainer<char [64]> processorModel;
     ValueContainer<ushort> physicalCoreCount;
     ValueContainer<ushort> cacheSize;
     ValueContainer<ushort> byteOrder;
     ValueContainer<ushort> architecture;
+
     mutable std::condition_variable cv;
 
-    void retrieveCPUInformation();
+    void readCPUInformation();
+    void readTemperature(const int& index);
+
 public:
     enum KEYTYPE {
         TEMPERATURE = 0,
@@ -62,9 +60,8 @@ public:
 
     CPU();
     ~CPU();
-    //kernel getters
-    void retrieveTemperature(const int& core);
-    const std::array<float, 8> & EachCoreTemperature();
+
+    const std::array<float, CPU_MAX_COUNT> & Temperatures();
     void setKey(KEYTYPE,const ushort id);
     ushort getCoreNumber();
     const char*  ProcessorModel() const;
