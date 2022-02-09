@@ -20,9 +20,9 @@ private:
     ValueContainer<ConnectionStats> connectionSpeed;
     ValueContainer<bool> isTesting;
 
-    void retrieveWifiInformation();
+    void readWifiInformation();
     void testConnectionSpeed();
-    void retrieveSSID();
+    void getSSID();
     mutable std::condition_variable cv;
 public:
     NetworkModel();

@@ -10,22 +10,15 @@ NetworkModel::NetworkModel() : isTesting(false) {
     wifiMACAddress.value.clear();
     wifiSSID.value.clear();
     threadPool.push([&] {
-        retrieveWifiInformation();
-        std::cout<<"Wifi IP Address: " <<WifiIP() << std::endl;
-        std::cout<<"IPv6 Address: " << AddressIPv6()<<std::endl;
-        std::cout << "Wi-Fi MAC Address: " << WifiMacAddress() << std::endl;
+        readWifiInformation();
     });
 
     threadPool.push([&] {
-        retrieveSSID();
-        std::cout<<"Wifi SSID: " <<WifiSSID()<<std::endl;
+        getSSID();
     });
-//    threadPool.push([&] {
-//        setConnectionStats();
-//    });
 }
 
-void NetworkModel::retrieveWifiInformation() {
+void NetworkModel::readWifiInformation() {
     IPv4 inet_addr;
     IPv6 inet6_addr;
     std::string mac_addr;
@@ -111,8 +104,6 @@ void NetworkModel::setConnectionStats() {
 
         if(!isTesting.value) {
             isTesting.value = true;
-            std::cout << "Setting connection speed\n";
-            //removed for test
 //            threadPool.push([&] {
                 testConnectionSpeed();
 //            });
@@ -124,7 +115,7 @@ void NetworkModel::testConnectionSpeed() {
 
 //    connectionSpeed.value = std::move(knet::NetworkSpeed::retrieveData());
 }
-void NetworkModel::retrieveSSID() {
+void NetworkModel::getSSID() {
     const char* wifi = "/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep -w SSID: ";
     char buffer[128];
     std::shared_ptr<FILE> pipe(popen(wifi, "r"), pclose);
@@ -140,7 +131,7 @@ void NetworkModel::retrieveSSID() {
         }
     }
     if(ssid.empty())
-        std::cout<<"Wifi connection not found. \n";
+        ssid = "Wifi connection not found";
     else {
         ssid = ssid.replace(0, ssid.find(":") + 2, "");
         std::lock_guard<std::mutex> lock(wifiSSID.mtx);
@@ -150,13 +141,13 @@ void NetworkModel::retrieveSSID() {
 
 const char* NetworkModel::AddressIPv6() const {
     //todo: prevent from std::__1::system_error: mutex lock failed: Invalid argument
-    //
-//    std::unique_lock<std::mutex> lock(addressIPv6.mtx);
-//    cv.wait(lock,[this] {
-//        return strlen(addressIPv6.value) > 0;
-//    });
-//    return addressIPv6.value;
-return "";
+    //r
+    std::unique_lock<std::mutex> lock(addressIPv6.mtx);
+    cv.wait(lock,[this] {
+        return strlen(addressIPv6.value) > 0;
+    });
+    return addressIPv6.value;
+//return "";
 }
 
 const std::string& NetworkModel::WifiMacAddress() const {
@@ -178,12 +169,9 @@ const std::string& NetworkModel::WifiSSID() const {
 ConnectionStats& NetworkModel::ConnectionSpeed()  {
     //if connection.value is not set -> wait for results
     std::unique_lock<std::mutex> lock(isTesting.mtx);
-    std::cout<<"IM LOCKING! \n";
-
     cv.wait(lock, [=] {
         return !isTesting.value;
     });
-    std::cout<<"Waiting here";
     return connectionSpeed.value;
 }
 
@@ -206,7 +194,6 @@ void NetworkModel::lockConnectionSpeedTest() {
         isTesting.mtx.unlock();
 
         curl_global_init(CURL_GLOBAL_ALL); // good place for curl init ????
-        std::cout << "Setting connection speed\n";
         testConnectionSpeed();
         knet::NetworkSpeed::initializeClient();
 
@@ -226,20 +213,20 @@ std::string NetworkModel::getBestServer() {
 
 float NetworkModel::getDownloadSpeed() {
     std::lock_guard<std::mutex> lock(connectionSpeed.mtx);
-    connectionSpeed.value.download_speed = knet::NetworkSpeed::retreiveDownloadSpeed();
+    connectionSpeed.value.download_speed = knet::NetworkSpeed::readDownloadSpeed();
     return connectionSpeed.value.download_speed;
 }
 
 float NetworkModel::getUploadSpeed() {
     std::lock_guard<std::mutex> lock(connectionSpeed.mtx);
-    connectionSpeed.value.upload_speed = knet::NetworkSpeed::retreiveUploadSpeed();
+    connectionSpeed.value.upload_speed = knet::NetworkSpeed::readUploadSpeed();
     return connectionSpeed.value.upload_speed;
 
 }
 
 int NetworkModel::getLatency() {
     std::lock_guard<std::mutex> lock(connectionSpeed.mtx);
-    connectionSpeed.value.latency = knet::NetworkSpeed::retrieveLatency();
+    connectionSpeed.value.latency = knet::NetworkSpeed::readLatency();
     return connectionSpeed.value.latency;
 }
 
