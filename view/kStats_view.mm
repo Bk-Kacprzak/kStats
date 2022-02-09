@@ -16,6 +16,8 @@ std::vector<QString> GPUBrandIcons{"url(:/images/intel-logo.png)","url(:/images/
 std::vector<std::string> peripheralTypes{"keyboard", "headphones", "mouse", "monitor"};
 std::vector<QString> peripheralIcons{"url(:/images/keyboard.svg)","url(:/images/headphones.svg)","url(:/images/mouse.svg)","url(:/images/monitor.svg)"};
 
+//todo: fix bug related to condition_variable error while clicking on Hardware widget
+
 kStatsView::kStatsView(QMainWindow *parent) {
     setupUi(this);
     this->currentWidgetIndex = 0;
@@ -48,6 +50,7 @@ void Ui_MainWindow::on_cpuButton_clicked()
 
     currentWidgetIndex = 1;
     stackedWidget->setCurrentIndex(1);
+
     threadPool.push([=] {
         displayCPUTemperature();
     });
@@ -61,7 +64,7 @@ void Ui_MainWindow::on_fansButton_clicked()
     currentWidgetIndex = 2;
     stackedWidget->setCurrentIndex(2);
     threadPool.push([=] {
-        setupFanSpeed();
+//        setupFanSpeed();
         displayFanSpeed();
     });
 }
@@ -83,14 +86,14 @@ void Ui_MainWindow::on_hardwareButton_clicked()
     currentWidgetIndex = 4;
     stackedWidget->setCurrentIndex(4);
     threadPool.push([&] {
-        displayBatteryCapacity();
+        batteryCycleCount->setText(QString::number(ApplicationController.getCycleCount()));
+        batteryAmperage->setText(QString::number(ApplicationController.getBatteryAmperage()) + " mA");
     });
 
     threadPool.push([&] {
+        displayBatteryCapacity();
         displayBatteryVoltage();
-        setupHardware();
     });
-
 }
 
 void Ui_MainWindow::on_statisticsButton_clicked()
@@ -179,10 +182,11 @@ void Ui_MainWindow::setupHomeInfo() {
         deviceName->setText(QString::fromStdString(ApplicationController.getMainDeviceName()));
         osVersion->setText(QString::fromStdString(ApplicationController.getOsVersion()));
     });
-    //todo: write a function to retrieve modelName and osVersion
     threadPool.push([=] {
         processorModel->setText(QString::fromStdString(ApplicationController.getCPUProcessorModel()));
+        ipAddress->setText(QString(ApplicationController.getWifiIP()));
         totalMassMemoryCount->setText(QString::number(ApplicationController.getVolumeStorageTotalMemory()) + " GB");
+        ramSize->setText(QString::number(ApplicationController.getRamSize()) + " GB");
     });
 
     threadPool.push([=] {
@@ -222,7 +226,7 @@ void Ui_MainWindow::setupCPU() {
     });
 
     threadPool.push([=] {
-        displayCPUTemperature();
+//        displayCPUTemperature();
     });
 }
 
@@ -265,7 +269,6 @@ void Ui_MainWindow::setupFanSpeed() {
     auto fanMinMaxSpeed = ApplicationController.getFansMinMaxSpeed();
     for (int i = 0; i < fanMinMaxLabels.size(); i++) {
         fanMinMaxLabels[i]->setText(QString::number(fanMinMaxSpeed[i]) + " RPM");
-        std::cout<<fanMinMaxSpeed[i]<<std::endl;
     }
 }
 
@@ -273,20 +276,45 @@ void Ui_MainWindow::on_testConnectionSpeedButton_clicked() {
     if (ApplicationController.isTestingConnection())
         return;
 
+    //reset values
+    networkServer->setText("");
+    downloadSpeedTable->setText("");
+    downloadSpeed->setText("");
+    uploadSpeedTable->setText("");
+    uploadSpeed->setText("");
+    connectionPing->setText("");
+
     ApplicationController.lockConnectionSpeedTest();
     threadPool.push([&] {
         QString bestServer = QString::fromStdString(ApplicationController.getBestServer());
         networkServer->setText(bestServer);
 
-        QString download_speed = QString::number(ApplicationController.getDownloadSpeed()) + " Mb/s";
+        QString download_speed = "";
+
+        threadPool.push([&] {
+            Animation::networkAnimation(downloadSpeedTable, download_speed);
+        });
+        threadPool.push([&] {
+            Animation::networkAnimation(downloadSpeed, download_speed);
+        });
+
+        download_speed = QString::number(ApplicationController.getDownloadSpeed()) + " Mb/s";
+
 
         downloadSpeedTable->setText(download_speed);
         downloadSpeed->setText(download_speed);
-//        Animation::circuralProgressAnimation(circuralProgressDownloadSpeed);
-//        Animation::circuralProgressAnimation(circuralProgressUploadSpeed);
 
-        QString upload_speed = QString::number(ApplicationController.getUploadSpeed()) + " Mb/s";
 
+        QString upload_speed = "";
+
+        threadPool.push([&] {
+            Animation::networkAnimation(uploadSpeedTable, upload_speed);
+        });
+        threadPool.push([&] {
+            Animation::networkAnimation(uploadSpeed, upload_speed);
+        });
+
+        upload_speed = QString::number(ApplicationController.getUploadSpeed()) + " Mb/s";
         uploadSpeedTable->setText(upload_speed);
         uploadSpeed->setText(upload_speed);
         connectionPing->setText(QString::number(ApplicationController.getLatency()));
@@ -300,8 +328,9 @@ void Ui_MainWindow::setupHardware() {
     massAvailableMemory->setText(QString::number(ApplicationController.getVolumeStorageFreeMemory()) +" GB");
     massTotalMemory->setText(QString::number(ApplicationController.getVolumeStorageTotalMemory()) + " GB");
     massfileFormat->setText(QString::fromStdString(ApplicationController.getVolumeStorageFormatDescription()));
-    batteryCycleCount->setText(QString::number(ApplicationController.getCycleCount()));
-    displayBatteryCapacity();
+//    batteryCycleCount->setText(QString::number(ApplicationController.getCycleCount()));
+//    batteryAmperage->setText(QString::number(ApplicationController.getBatteryAmperage()) + " mA");
+//    displayBatteryCapacity();
 }
 
 void Ui_MainWindow::displayBatteryVoltage() {
@@ -312,20 +341,25 @@ void Ui_MainWindow::displayBatteryVoltage() {
     }," V", 4);
 }
 
+void Ui_MainWindow::displayTotalAmperage() {
+//    std::array<QLabel*, 1> x {batteryAmperage};
+//    displayValues<QLabel*, float, 1>(x,[&] {
+//        return ApplicationController.getBatteryAmperage();
+//    })
+}
 
 void Ui_MainWindow::displayBatteryCapacity() {
     std::array<QLabel *, 3> batteryCapacityLabels{batteryCellCapacity_1, batteryCellCapacity_2,batteryCellCapacity_3};
-    std::array<float , 3> batteryCapacity{0};
-
-    displayValues<QLabel*, int,3>(batteryCapacityLabels, [&] {
-        return ApplicationController.getEachBatteryCapacity();
-    }," MAh", 5);
+    std::array<int , 3> batteryCapacity = ApplicationController.getEachBatteryCapacity();
+    for(int i =0; i<batteryCapacity.size(); i++) {
+        batteryCapacityLabels[i]->setText(QString::number(batteryCapacity[i]) + " mAh");
+    }
 }
 
 void Ui_MainWindow::displayAllTemperatures() {
     std::array<QTableWidgetItem*, 8>  cpuTempLabels = (getLabels<8>(1, 8));
     std::array<QTableWidgetItem*, 3>  batteryVoltageLabels = (getLabels<3>(10, 12));
-    std::array<QTableWidgetItem*, 3>  batteryAmperageLabels = (getLabels<3>(13, 15));
+    std::array<QTableWidgetItem*, 3>  batteryCapacityLabels = (getLabels<3>(13, 15));
     std::array<QTableWidgetItem*, 4>  gpuTempLabels = (getLabels<4>(17, 20));
 
     threadPool.push([=]{
@@ -339,6 +373,12 @@ void Ui_MainWindow::displayAllTemperatures() {
             return ApplicationController.getCPUTemperature();
         },"\302\260C ", 5, statsTableWidget);
     });
+
+    threadPool.push([=] {
+        displayValues<QTableWidgetItem*, float ,4>(gpuTempLabels, [&] {
+            return ApplicationController.getEachGPUTemperature();
+        },"\302\260C ", 5, statsTableWidget);
+    });
 }
 
 template<size_t S>
@@ -348,7 +388,6 @@ std::array<QTableWidgetItem *, S> Ui_MainWindow::getLabels(short begin, short en
     int index = 0;
     for(int i = begin; i <= end; i++) {
         labels[index] = statsTableWidget->item(i,0);
-        qDebug()<<labels[index]->text();
         index++;
     }
     return labels;
@@ -384,3 +423,4 @@ void Ui_MainWindow::on_fanRightSetMaxSpeedButton_clicked()
 {
 
 }
+

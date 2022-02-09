@@ -72,6 +72,7 @@ private:
     void displayBatteryVoltage();
     void displayBatteryCapacity();
     void displayAllTemperatures();
+    void displayTotalAmperage();
 
     template<size_t S>
     std::array<QTableWidgetItem *, S> getLabels(short begin, short end);
@@ -125,7 +126,7 @@ public:
     QFrame *frame_17;
     QFrame *memoryContainer;
     QGridLayout *gridLayout_5;
-    QLabel *ramCount;
+    QLabel *ramSize;
     QLabel *label_60;
     QLabel *label_28;
     QLabel *totalMassMemoryCount;
@@ -952,14 +953,14 @@ public:
         gridLayout_5 = new QGridLayout(memoryContainer);
         gridLayout_5->setObjectName(QString::fromUtf8("gridLayout_5"));
         gridLayout_5->setContentsMargins(22, -1, -1, -1);
-        ramCount = new QLabel(memoryContainer);
-        ramCount->setObjectName(QString::fromUtf8("ramCount"));
-        ramCount->setFont(font2);
-        ramCount->setStyleSheet(QString::fromUtf8("letter-spacing: 3px;\n "
+        ramSize = new QLabel(memoryContainer);
+        ramSize->setObjectName(QString::fromUtf8("ramSize"));
+        ramSize->setFont(font2);
+        ramSize->setStyleSheet(QString::fromUtf8("letter-spacing: 3px;\n "
                                                   "background:none;"));
-        ramCount->setAlignment(Qt::AlignCenter);
+        ramSize->setAlignment(Qt::AlignCenter);
 
-        gridLayout_5->addWidget(ramCount, 1, 3, 1, 1);
+        gridLayout_5->addWidget(ramSize, 1, 3, 1, 1);
 
         label_60 = new QLabel(memoryContainer);
         label_60->setObjectName(QString::fromUtf8("label_60"));
@@ -3629,8 +3630,11 @@ public:
         circuralProgressDownloadSpeed->setMaximumSize(QSize(200, 200));
         circuralProgressDownloadSpeed->setStyleSheet(QString::fromUtf8("QFrame { \n "
                                                             "	border-radius: 100px;\n "
-                                                            "	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:-135, stop:0.749 rgba(255, 255, 255, 0), stop:0.750 #4798ff);\n "
+                                                            "	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:-135, stop:0.749 rgba(255, 255, 255, 0), stop:1 #4798ff);\n "
                                                             "}"));
+
+
+
         circuralProgressDownloadSpeed->setFrameShape(QFrame::NoFrame);
         circuralProgressDownloadSpeed->setFrameShadow(QFrame::Plain);
         circuralProgressDownloadSpeed->setLineWidth(0);
@@ -3848,7 +3852,8 @@ public:
                                                        "font-size: 17px"));
         networkServer->setTextFormat(Qt::RichText);
         networkServer->setScaledContents(false);
-        networkServer->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        networkServer->setMinimumWidth(350);
+        networkServer->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
         networkServer->setWordWrap(true);
         networkServer->setMargin(10);
         networkServer->setText(QCoreApplication::translate("kStatsView", "", nullptr));
@@ -3882,7 +3887,9 @@ public:
         downloadSpeedTable->setFont(font2);
         downloadSpeedTable->setStyleSheet(QString::fromUtf8("letter-spacing: 1px;\n "
                                                             "background-color:none;"));
-        downloadSpeedTable->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        downloadSpeedTable->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+        downloadSpeedTable->setMinimumWidth(200);
+
         downloadSpeedTable->setMargin(10);
 
         downloadSpeedTableContainer->addWidget(downloadSpeedTable, 0, 1, 1, 1);
@@ -3915,7 +3922,9 @@ public:
         uploadSpeedTable->setFont(font2);
         uploadSpeedTable->setStyleSheet(QString::fromUtf8("letter-spacing: 1px;\n "
                                                           "background-color:none;"));
-        uploadSpeedTable->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        uploadSpeedTable->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
+        uploadSpeedTable->setMinimumWidth(200);
+
         uploadSpeedTable->setMargin(10);
 
         uploadSpeedTableContainer->addWidget(uploadSpeedTable, 0, 1, 1, 1);
@@ -3948,7 +3957,7 @@ public:
         connectionPing->setFont(font2);
         connectionPing->setStyleSheet(QString::fromUtf8("letter-spacing: 1px;\n "
                                                         "background-color:none;"));
-        connectionPing->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        connectionPing->setAlignment(Qt::AlignHCenter|Qt::AlignVCenter);
         connectionPing->setMargin(10);
 
         connectionPingContainer->addWidget(connectionPing, 0, 1, 1, 1);
@@ -4817,12 +4826,11 @@ public:
         statisticsButton->setText(QCoreApplication::translate("kStatsView", "   Statistics", nullptr));
         label_41->setText(QString());
         label_24->setText(QCoreApplication::translate("kStatsView", "Device ", nullptr));
-        //todo: write a function to retrieve modelName, osVersion, ramCount
-        deviceName->setText(QCoreApplication::translate("kStatsView", "Apple Macbook 15' 2019", nullptr));
+        deviceName->setText(QCoreApplication::translate("kStatsView", "Unknown", nullptr));
         label_40->setText(QString());
         label_31->setText(QCoreApplication::translate("kStatsView", "Current OS", nullptr));
-        osVersion->setText(QCoreApplication::translate("kStatsView", "MacOS Big Sur 11.4", nullptr));
-        ramCount->setText(QCoreApplication::translate("kStatsView", "16 GB", nullptr));
+        osVersion->setText(QCoreApplication::translate("kStatsView", "Unknown", nullptr));
+        ramSize->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         label_60->setText(QCoreApplication::translate("kStatsView", "Mass", nullptr));
         label_28->setText(QCoreApplication::translate("kStatsView", "Memory", nullptr));
         totalMassMemoryCount->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
@@ -4831,26 +4839,26 @@ public:
         label_29->setText(QString());
         label_51->setText(QString());
         label_39->setText(QCoreApplication::translate("kStatsView", "Processor", nullptr));
-        processorModel->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
+        processorModel->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         label_44->setText(QString());
         label_33->setText(QCoreApplication::translate("kStatsView", "IP Address", nullptr));
-        ipAddress->setText(QCoreApplication::translate("kStatsView", "192.168.1.2", nullptr));
+        ipAddress->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         label_37->setText(QCoreApplication::translate("kStatsView", "Graphics", nullptr));
         graphicsLeftButton->setText(QString());
         graphicsRightButton->setText(QString());
         graphicsIcon_1->setText(QString());
         graphicsModel_1->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         graphicsIcon_2->setText(QString());
-        graphicsModel_2->setText(QCoreApplication::translate("kStatsView", "Intel UHD Graphics 630 1536  MB", nullptr));
+        graphicsModel_2->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         label_47->setText(QCoreApplication::translate("kStatsView", "Peripherals", nullptr));
-        graphicsLeftButton_2->setText(QString());
-        graphicsRightButton_2->setText(QString());
+//        graphicsLeftButton_2->setText(QString());
+//        graphicsRightButton_2->setText(QString());
         peripheralIcon_1->setText(QString());
-        peripheralName_1->setText(QCoreApplication::translate("kStatsView", "Magic Mouse 2", nullptr));
+        peripheralName_1->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         peripheralIcon_2->setText(QString());
-        peripheralName_2->setText(QCoreApplication::translate("kStatsView", "Monitor 23'", nullptr));
+        peripheralName_2->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         peripheralIcon_3->setText(QString());
-        peripheralName_3->setText(QCoreApplication::translate("kStatsView", "Magic Keyboard", nullptr));
+        peripheralName_3->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         peripheralIcon_4->setText(QString());
         peripheralName_4->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         cpuAverageTemperature->setText(QCoreApplication::translate("kStatsView", "35\302\260C", nullptr));
@@ -5010,41 +5018,41 @@ public:
         const bool __sortingEnabled = statsTableWidget->isSortingEnabled();
         statsTableWidget->setSortingEnabled(false);
         QTableWidgetItem *___qtablewidgetitem22 = statsTableWidget->item(1, 0);
-        ___qtablewidgetitem22->setText(QCoreApplication::translate("kStatsView", "84 C", nullptr));
+        ___qtablewidgetitem22->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         QTableWidgetItem *___qtablewidgetitem23 = statsTableWidget->item(2, 0);
-        ___qtablewidgetitem23->setText(QCoreApplication::translate("kStatsView", "32", nullptr));
+        ___qtablewidgetitem23->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         QTableWidgetItem *___qtablewidgetitem24 = statsTableWidget->item(3, 0);
-        ___qtablewidgetitem24->setText(QCoreApplication::translate("kStatsView", "78 C", nullptr));
+        ___qtablewidgetitem24->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         QTableWidgetItem *___qtablewidgetitem25 = statsTableWidget->item(4, 0);
-        ___qtablewidgetitem25->setText(QCoreApplication::translate("kStatsView", "543", nullptr));
+        ___qtablewidgetitem25->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         QTableWidgetItem *___qtablewidgetitem26 = statsTableWidget->item(5, 0);
-        ___qtablewidgetitem26->setText(QCoreApplication::translate("kStatsView", "334", nullptr));
+        ___qtablewidgetitem26->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         QTableWidgetItem *___qtablewidgetitem27 = statsTableWidget->item(6, 0);
-        ___qtablewidgetitem27->setText(QCoreApplication::translate("kStatsView", "44", nullptr));
+        ___qtablewidgetitem27->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         QTableWidgetItem *___qtablewidgetitem28 = statsTableWidget->item(7, 0);
-        ___qtablewidgetitem28->setText(QCoreApplication::translate("kStatsView", "77", nullptr));
+        ___qtablewidgetitem28->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         QTableWidgetItem *___qtablewidgetitem29 = statsTableWidget->item(8, 0);
-        ___qtablewidgetitem29->setText(QCoreApplication::translate("kStatsView", "67", nullptr));
+        ___qtablewidgetitem29->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         QTableWidgetItem *___qtablewidgetitem30 = statsTableWidget->item(10, 0);
-        ___qtablewidgetitem30->setText(QCoreApplication::translate("kStatsView", "3.654", nullptr));
+        ___qtablewidgetitem30->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         QTableWidgetItem *___qtablewidgetitem31 = statsTableWidget->item(11, 0);
-        ___qtablewidgetitem31->setText(QCoreApplication::translate("kStatsView", "3.677", nullptr));
+        ___qtablewidgetitem31->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         QTableWidgetItem *___qtablewidgetitem32 = statsTableWidget->item(12, 0);
-        ___qtablewidgetitem32->setText(QCoreApplication::translate("kStatsView", "3.765", nullptr));
+        ___qtablewidgetitem32->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         QTableWidgetItem *___qtablewidgetitem33 = statsTableWidget->item(13, 0);
-        ___qtablewidgetitem33->setText(QCoreApplication::translate("kStatsView", "4.656", nullptr));
+        ___qtablewidgetitem33->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         QTableWidgetItem *___qtablewidgetitem34 = statsTableWidget->item(14, 0);
-        ___qtablewidgetitem34->setText(QCoreApplication::translate("kStatsView", "3.656", nullptr));
+        ___qtablewidgetitem34->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         QTableWidgetItem *___qtablewidgetitem35 = statsTableWidget->item(15, 0);
-        ___qtablewidgetitem35->setText(QCoreApplication::translate("kStatsView", "7.767", nullptr));
+        ___qtablewidgetitem35->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         QTableWidgetItem *___qtablewidgetitem36 = statsTableWidget->item(17, 0);
-        ___qtablewidgetitem36->setText(QCoreApplication::translate("kStatsView", "76", nullptr));
+        ___qtablewidgetitem36->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         QTableWidgetItem *___qtablewidgetitem37 = statsTableWidget->item(18, 0);
-        ___qtablewidgetitem37->setText(QCoreApplication::translate("kStatsView", "45", nullptr));
+        ___qtablewidgetitem37->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         QTableWidgetItem *___qtablewidgetitem38 = statsTableWidget->item(19, 0);
-        ___qtablewidgetitem38->setText(QCoreApplication::translate("kStatsView", "88", nullptr));
+        ___qtablewidgetitem38->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         QTableWidgetItem *___qtablewidgetitem39 = statsTableWidget->item(20, 0);
-        ___qtablewidgetitem39->setText(QCoreApplication::translate("kStatsView", "76", nullptr));
+        ___qtablewidgetitem39->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         statsTableWidget->setSortingEnabled(__sortingEnabled);
 
     } // retranslateUi
