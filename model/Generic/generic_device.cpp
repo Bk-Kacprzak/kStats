@@ -28,7 +28,6 @@ GenericDevice::kernReturnValue GenericDevice::readKey(std::mutex& mtx, const cha
             else if (strcmp(val.dataType, DATATYPE_FLT) == 0) {
                 // convert flt value to float
                 value.f = Converter::fltToFloat((unsigned char*) val.bytes);
-                std::cout<<"Value: " <<value.f << std::endl;
                 return value;
             }
             else if(strcmp(val.dataType, DATATYPE_UINT16) == 0) {
@@ -40,7 +39,6 @@ GenericDevice::kernReturnValue GenericDevice::readKey(std::mutex& mtx, const cha
             } else if(strcmp(val.dataType, DATATYPE_UINT32) == 0) {
 
                 value.i = Converter::ui32ToInteger(val.bytes);
-                std::cout<<"HERE: "<<value.i<<std::endl;
                 return value;
             } else {
                 throw std::invalid_argument("Unknown type.\n");
@@ -57,19 +55,14 @@ GenericDevice::kernReturnValue GenericDevice::readKey(std::mutex& mtx, const cha
 
 void GenericDevice::writeKey(std::mutex &mtx, SMCVal_t *writeValue) {
     kern_return_t result = SMCWriteKey(writeValue);
-    if(result == kIOReturnSuccess)
-        std::cout<<"SUCCESS\n";
-    else
-        std::cout<<"SHit happens\n";
-
+    if(result != kIOReturnSuccess)
+        throw std::runtime_error("writeKey result != kIOReturnSuccess");
 }
 
 void GenericDevice::writeKey(SMCVal_t *writeValue) {
     kern_return_t result = SMCWriteKey(writeValue);
-    if(result == kIOReturnSuccess)
-        std::cout<<"Value set to key: "<<writeValue->key<<std::endl;
-    else
-        std::cout<<"writeKey Error\n";
+    if(result != kIOReturnSuccess)
+        throw std::runtime_error("writeKey result != kIOReturnSuccess");
 }
 
 
@@ -107,14 +100,10 @@ GenericDevice::kernReturnValue GenericDevice::readKey(const char *key) {
             } else if(strcmp(val.dataType, DATATYPE_UINT32) == 0) {
 
                 value.i = Converter::ui32ToInteger(val.bytes);
-                std::cout<<"HERE: "<<value.i<<std::endl;
                 return value;
             } else if (strcmp(val.dataType, DATATYPE_CH8) == 0) {
-                std::cout<<"BYTES: " << val.bytes<<std::endl;
             } else if (strcmp(val.dataType, DATATYPE_UINT8) == 0) {
-                std::cout<<"BYTES: " << (int)val.bytes[0]<<std::endl;
             }else if (strcmp(val.dataType, DATATYPE_HEX) == 0) {
-                std::cout<<"BYTES: " << val.bytes<<std::endl;
             }
             else {
                 const char* error_msg= ("Unknown type: %s\n",val.dataType);
@@ -128,7 +117,6 @@ GenericDevice::kernReturnValue GenericDevice::readKey(const char *key) {
         }
     } else
         throw std::runtime_error("SMC Key read failed. kIOReturnSuccess = false\n");
-
 }
 
 void GenericDevice::writeKey(const char *key, const SMCBytes_t value) {
@@ -140,11 +128,8 @@ void GenericDevice::writeKey(const char *key, const SMCBytes_t value) {
     writeVal.dataSize = 4;
 
     kern_return_t result = SMCWriteKey(&writeVal);
-    if(result == kIOReturnSuccess)
-        std::cout<<"SUCCESS\n";
-    else
-        std::cout<<"kIOReturnSuccess returns false\n";
-
+    if(result != kIOReturnSuccess)
+        throw std::runtime_error("writeKey result != kIOReturnSuccess");
 }
 
 
