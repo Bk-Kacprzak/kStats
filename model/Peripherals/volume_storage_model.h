@@ -13,7 +13,7 @@ class VolumeStorage {
     float totalMemory;
     mutable std::mutex mtx;
 
-    void retrieveVolumeInformation();
+    void readVolumeStorageInformation();
 public:
     VolumeStorage();
     ~VolumeStorage() = default;

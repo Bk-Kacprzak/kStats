@@ -2,10 +2,10 @@
 #include <iostream>
 #include <iomanip>
 VolumeStorage::VolumeStorage() {
-    retrieveVolumeInformation();
+    readVolumeStorageInformation();
 }
 
-void VolumeStorage::retrieveVolumeInformation() {
+void VolumeStorage::readVolumeStorageInformation() {
     NSURL *fileURL = [[NSURL alloc] initFileURLWithPath:@"/System/Volumes/Data/"];
     NSError *error = nil;
     NSDictionary *results = [fileURL resourceValuesForKeys:@[
@@ -36,8 +36,6 @@ void VolumeStorage::retrieveVolumeInformation() {
             freeMemory = static_cast<NSNumber*>(values[i]).floatValue/1000000000;
         }
     }
-
-    std::cout<<name<<"\t"<<formatDescription<<"\t"<<std::setprecision(4)<<freeMemory<<"\t"<<std::setprecision(5)<<totalMemory<<"\n";
 }
 
 const std::string &VolumeStorage::Name() const {
