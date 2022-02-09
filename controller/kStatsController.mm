@@ -5,27 +5,27 @@
 #include "kStatsController.h"
 
 const std::array<float, batteryNum>& kStatsController::getEachBatteryVoltage() {
-    model.Battery().retrieveEachBatteryVoltage();
-    return model.Battery().batteryVoltageValue;
+    model.Battery().readEachBatteryVoltage();
+    return model.Battery().BatteryVoltage();
 }
 
 const std::array<int, batteryNum>& kStatsController::getEachBatteryCapacity() {
-    model.Battery().retrieveEachBatteryCapacity();
-    return model.Battery().batteryCapacityValue;
+//    model.Battery().readEachBatteryCapacity();
+    return model.Battery().BatteryCapacity();
 }
 
 const uint &kStatsController::getCycleCount() {
-    model.Battery().retrieveCycleCount();
-    return model.Battery().cycleCountValue;
+    model.Battery().readCycleCount();
+    return model.Battery().CycleCount();
 }
 
 const float &kStatsController::getBatteryAmperage() {
-    model.Battery().retrieveTotalAmperage();
-    return model.Battery().totalAmperageValue;
+    model.Battery().readTotalAmperage();
+    return model.Battery().TotalAmperage();
 }
 
 const std::array<float, 8> &kStatsController::getCPUTemperature() {
-    return model.Cpu().EachCoreTemperature();
+    return model.Cpu().Temperatures();
 }
 
 const char *kStatsController::getCPUProcessorModel() {
@@ -53,25 +53,24 @@ void kStatsController::setFanSpeed(const int& speed) {
 }
 
 const std::array<int, 3> &kStatsController::getLeftFanSpeed() {
-    model.Fans().retrieveEachFanSpeedRPM();
+    model.Fans().readEachFanSpeedRPM();
     return model.Fans().FanLeft();
 }
 
 
 const std::array<int, 3> &kStatsController::getRightFanSpeed() {
-    model.Fans().retrieveEachFanSpeedRPM();
+    model.Fans().readEachFanSpeedRPM();
     return model.Fans().FanRight();
 }
 
 const std::vector<std::string> &kStatsController::getEachGPUModelName() {
-//    model.Gpu().retrieveModelName();
+//    model.Gpu().getModelName();
     return model.Gpu().ModelName();
 }
 
 
 const std::array<float, GPU_ALL_TEMP> &kStatsController::getEachGPUTemperature() {
-    model.Gpu().retrieveAllTemperatureValues();
-    model.Gpu().Temperatures();
+    return model.Gpu().Temperatures();
 }
 
 const char * kStatsController::getWifiIP() {
@@ -167,6 +166,10 @@ const char * kStatsController::getMainDeviceName() {
 
 const char * kStatsController::getOsVersion() {
     return model.MainDevice().OsVersion();
+}
+
+const long &kStatsController::getRamSize() {
+    return model.Ram().RamSize();
 }
 
 

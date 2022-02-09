@@ -25,11 +25,13 @@ public:
     const ushort& getCPUByteOrder();
     std::string getCPUArchitecture();
 
+    //ram
+    const long& getRamSize();
+
     //fans
     void setFanSpeed(const int& speed);
     const std::array<int, 2> && getFansCurrentSpeed();
     const std::array<int, 4> && getFansMinMaxSpeed();
-
 
         //left
     const std::array<int, 3>& getLeftFanSpeed();
