@@ -4,8 +4,8 @@
 
 #include "peripherals_model.h"
 Peripherals::Peripherals() {
-    loadBluetoothDevices();
-    loadScreenDevices();
+//    loadBluetoothDevices();
+//    loadScreenDevices();
 }
 
 void Peripherals::loadBluetoothDevices() {
@@ -13,6 +13,7 @@ void Peripherals::loadBluetoothDevices() {
     for(const IOBluetoothDevice *device : paired_devices) {
         std::string deviceName = device.name.UTF8String;
         size_t additionalInfo = deviceName.find("(");
+        //delete unnecessary info in brackets
         if(additionalInfo!=std::string::npos)
             deviceName.erase(deviceName.begin()+additionalInfo,deviceName.end());
 
@@ -24,12 +25,19 @@ void Peripherals::loadBluetoothDevices() {
 
 void Peripherals::loadScreenDevices() {
     NSArray<NSScreen *> *screens = [NSScreen screens];
-    for(const NSScreen * screen : screens) {
-        std::string screen_name = screen.localizedName.UTF8String;
-        size_t found = screen_name.find("Built-in"); //ignore built in screen
-        if(found==std::string::npos)
-            devices.emplace_back(screen_name, GenericPeripheral::SCREEN);
+    if(screens.count > 1) {
+        for(const NSScreen * screen : screens) {
+            std::string screen_name = screen.localizedName.UTF8String;
+            size_t found = screen_name.find("Built-in"); //ignore built in screen
+            if(found==std::string::npos)
+                devices.emplace_back(screen_name, GenericPeripheral::SCREEN);
+        }
     }
+
+    else {
+        devices.emplace_back(screens[0].localizedName.UTF8String, GenericPeripheral::SCREEN);
+    }
+
 }
 
 const std::vector<GenericPeripheral> &Peripherals::Devices() const {
@@ -50,4 +58,10 @@ std::vector<std::string> Peripherals::deviceTypes() {
         types.push_back(device.deviceType());
 
     return types;
+}
+
+void Peripherals::loadDevices() {
+    devices.clear();
+    loadScreenDevices();
+    loadBluetoothDevices();
 }

@@ -17,7 +17,7 @@ public:
     const std::vector<GenericPeripheral> &Devices() const;
     std::vector<std::string> deviceTypes();
     std::vector<std::string> deviceNames();
-
+    void loadDevices();
 };
 
 #endif //CPUSTATS_PERIPHERALS_CONTROLLER_H
