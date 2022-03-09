@@ -44,12 +44,13 @@ public:
 
             for(int i = 0; i<3; i++) {
                 dot+=".";
-                if(content.isEmpty())
+                if(content.isEmpty()) {
                     label->setText(dot);
-
-                std::this_thread::sleep_for(500ms);
+                    std::this_thread::sleep_for(500ms);
+                }
             }
         }
+        label->setText(content);
     }
 };
 
