@@ -10,7 +10,7 @@ const std::array<float, batteryNum>& kStatsController::getEachBatteryVoltage() {
 }
 
 const std::array<int, batteryNum>& kStatsController::getEachBatteryCapacity() {
-//    model.Battery().readEachBatteryCapacity();
+    model.Battery().readEachBatteryCapacity();
     return model.Battery().BatteryCapacity();
 }
 
@@ -98,6 +98,7 @@ void kStatsController::lockConnectionSpeedTest() {
 }
 
 const std::vector<GenericPeripheral> &kStatsController::getDevices() {
+    model.Peripherals().loadDevices();
     return model.Peripherals().Devices();
 }
 
