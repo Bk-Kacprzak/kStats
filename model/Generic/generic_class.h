@@ -3,7 +3,6 @@
 
 #include "../Utils/threadPool.h"
 #include <mutex>
-static knet::threadPool threadPool;
 
 template<typename T>
 struct ValueContainer {
