@@ -25,6 +25,12 @@ kStatsView::kStatsView(QMainWindow *parent) {
     initializeContent();
 }
 
+void kStatsView::closeEvent(QCloseEvent *closeEvent) {
+    QWidget::closeEvent(closeEvent);
+    QApplication::exit();
+    threadPool.exit();
+}
+
 void Ui_MainWindow::initializeContent() {
     threadPool.push([this] {setupHomeInfo();});
     threadPool.push([this] {setupNetworkInfo();});
@@ -41,6 +47,11 @@ void Ui_MainWindow::on_homeButton_clicked()
 {
     currentWidgetIndex = 0;
     stackedWidget->setCurrentIndex(0);
+
+//    threadPool.push([&] {
+        setupPeripherals();
+//todo: refactor function
+//    });
 }
 
 void Ui_MainWindow::on_cpuButton_clicked()
@@ -64,7 +75,7 @@ void Ui_MainWindow::on_fansButton_clicked()
     currentWidgetIndex = 2;
     stackedWidget->setCurrentIndex(2);
     threadPool.push([=] {
-//        setupFanSpeed();
+        setupFanSpeed();
         displayFanSpeed();
     });
 }
@@ -90,13 +101,11 @@ void Ui_MainWindow::on_hardwareButton_clicked()
 //libc++abi: terminating with uncaught exception of type std::__1::system_error: condition_variable wait failed: Invalid argument
 
 //buggy
-//    threadPool.push([&] {
-//        batteryCycleCount->setText(QString::number(ApplicationController.getCycleCount()));
-//        batteryAmperage->setText(QString::number(ApplicationController.getBatteryAmperage()) + " mA");
-//    });
+    threadPool.push([&] {
+        displayBatteryTotalAmperage();
+    });
 
     threadPool.push([&] {
-        displayBatteryCapacity();
         displayBatteryVoltage();
     });
 }
@@ -116,17 +125,16 @@ void Ui_MainWindow::on_statisticsButton_clicked()
 }
 
 //GENERIC DISPLAY METHODS
-
 template<typename containerType, typename inputType, size_t S>
 void Ui_MainWindow::displayValues(const std::array<containerType, S> &labels, std::function<const std::array<inputType, S>()>getterFunction,
                                   const QString && unit, const int &widgetIndex) {
     std::array<inputType,S> values{0};
     do {
         values = getterFunction();
-        for (int i = 0; i < labels.size(); i++) {
+        for (int i = 0; i < labels.size(); i++)
             labels[i]->setText(QString::number(values[i]) + unit);
 
-        }
+
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     } while (widgetIndex == currentWidgetIndex);
 }
@@ -149,34 +157,50 @@ void Ui_MainWindow::displayValues(const std::array<containerType, S> &labels, st
 }
 
 
-void Ui_MainWindow::addLabelAndPicture(const std::vector<std::string>& dataName,
+void Ui_MainWindow::addLabelAndPicture(
+                        const std::vector<std::string>& readDeviceNames,
                         const std::vector<QLabel*>& icons,
                         const std::vector<QLabel*>& labels,
                         const std::vector<QString>& deviceIconPath,
-                        const std::vector<std::string>& deviceName,
-                        const std::vector<std::string>& dataType = std::vector<std::string>()) {
+                        const std::vector<std::string>& deviceTypes,
+                        const std::vector<std::string>& dataTypes = std::vector<std::string>()) {
 
-    for(int i = 0; i < dataName.size(); i++) {
-        std::string dataLowerCase;
-        if (dataType.empty())
-            dataLowerCase = dataName[i];
-        else
-            dataLowerCase = dataType[i];
+    //clear all labels and icons
+    for(int i = 0; i<labels.size(); i++) {
+        icons[i]->setStyleSheet("");
+        labels[i]->setText("");
+    }
 
-        std::transform(dataLowerCase.begin(), dataLowerCase.end(), dataLowerCase.begin(), ::tolower);
-        int iconIndex = -1;
-        for(int j = 0; j< deviceName.size(); j++) {
-            if (dataLowerCase.find(deviceName[j]) != std::string::npos) {
-                iconIndex = j;
-                break;
+    try {
+        for(int i = 0; i < readDeviceNames.size(); i++) {
+            std::string dataLowerCase;
+            if (dataTypes.empty())
+                dataLowerCase = readDeviceNames[i];
+            else
+                dataLowerCase = dataTypes[i];
+
+            std::transform(dataLowerCase.begin(), dataLowerCase.end(), dataLowerCase.begin(), ::tolower);
+            int iconIndex = -1;
+            for(int j = 0; j < deviceTypes.size(); j++) {
+                if (dataLowerCase.find(deviceTypes[j]) != std::string::npos) {
+                    iconIndex = j;
+                    break;
+                }
             }
-        }
 
-        if(iconIndex != -1) {
-            icons[i]->setStyleSheet( "image: " + deviceIconPath[iconIndex]);
-            labels[i]->setText(QString::fromStdString(dataName[i]));
-        } else
-            std::cout << "Unknown Device brand: " << dataName[i] << std::endl;
+            if(iconIndex != -1) {
+                //todo: refactor devices widget to stacked widget and create at least 10 icons and labels
+                //bug: when number of connected devices > 4, vectors icons, labels go out of scope
+                if(i >= 4)
+                   throw std::runtime_error("vector goes out of scope in: Ui_MainWindow::addLabelAndPicture()");
+
+                icons[i]->setStyleSheet( "image: " + deviceIconPath[iconIndex]);
+                labels[i]->setText(QString::fromStdString(readDeviceNames[i]));
+            } else
+                std::cout << "Unknown Device brand: " << readDeviceNames[i] << std::endl;
+        }
+    } catch(std::exception e) {
+        std::cout<<e.what();
     }
 }
 
@@ -211,13 +235,13 @@ void Ui_MainWindow::setupGPU() {
 }
 
 void Ui_MainWindow::setupPeripherals() {
-
     std::vector<GenericPeripheral> peripherals = ApplicationController.getDevices();
-
     std::vector<std::string> deviceNames = ApplicationController.getDeviceNames();
     std::vector<std::string> deviceTypes = ApplicationController.getDeviceTypes();
+
     std::vector<QLabel*> deviceIcon{peripheralIcon_1, peripheralIcon_2, peripheralIcon_3, peripheralIcon_4};
     std::vector<QLabel*> deviceLabel{peripheralName_1,peripheralName_2,peripheralName_3,peripheralName_4};
+
     addLabelAndPicture(deviceNames, deviceIcon, deviceLabel, peripheralIcons, peripheralTypes, deviceTypes);
 }
 
@@ -272,6 +296,7 @@ void Ui_MainWindow::displayFanSpeed() {
 void Ui_MainWindow::setupFanSpeed() {
     std::array<QLabel *, 4> fanMinMaxLabels = {fanLeftMinimumSpeed, fanLeftMaximumSpeed, fanRightMinimumSpeed, fanRightMaximumSpeed};
     auto fanMinMaxSpeed = ApplicationController.getFansMinMaxSpeed();
+    std::cout<<fanMinMaxSpeed[0]<<std::endl;
     for (int i = 0; i < fanMinMaxLabels.size(); i++) {
         fanMinMaxLabels[i]->setText(QString::number(fanMinMaxSpeed[i]) + " RPM");
     }
@@ -289,13 +314,20 @@ void Ui_MainWindow::on_testConnectionSpeedButton_clicked() {
     uploadSpeed->setText("");
     connectionPing->setText("");
 
-    ApplicationController.lockConnectionSpeedTest();
     threadPool.push([&] {
-        QString bestServer = QString::fromStdString(ApplicationController.getBestServer());
+        ApplicationController.lockConnectionSpeedTest();
+
+        //Best server to test connection
+        QString bestServer = "";
+        threadPool.push([&] {
+            Animation::networkAnimation(networkServer, bestServer);
+        });
+
+        bestServer = QString::fromStdString(ApplicationController.getBestServer());
         networkServer->setText(bestServer);
 
+        //Test download speed
         QString download_speed = "";
-
         threadPool.push([&] {
             Animation::networkAnimation(downloadSpeedTable, download_speed);
         });
@@ -304,14 +336,11 @@ void Ui_MainWindow::on_testConnectionSpeedButton_clicked() {
         });
 
         download_speed = QString::number(ApplicationController.getDownloadSpeed()) + " Mb/s";
+//        downloadSpeedTable->setText(download_speed);
+//        downloadSpeed->setText(download_speed);
 
-
-        downloadSpeedTable->setText(download_speed);
-        downloadSpeed->setText(download_speed);
-
-
+        //Test upload speed
         QString upload_speed = "";
-
         threadPool.push([&] {
             Animation::networkAnimation(uploadSpeedTable, upload_speed);
         });
@@ -319,10 +348,19 @@ void Ui_MainWindow::on_testConnectionSpeedButton_clicked() {
             Animation::networkAnimation(uploadSpeed, upload_speed);
         });
 
+
         upload_speed = QString::number(ApplicationController.getUploadSpeed()) + " Mb/s";
-        uploadSpeedTable->setText(upload_speed);
-        uploadSpeed->setText(upload_speed);
+//        uploadSpeedTable->setText(upload_speed);
+//        uploadSpeed->setText(upload_speed);
         connectionPing->setText(QString::number(ApplicationController.getLatency()));
+
+        using namespace std::chrono_literals;
+        std::this_thread::sleep_for(1s);
+        //bug
+        //const reference passed to animation might cause an exception error while this scope is ended. need to sleep for a while.
+
+
+        //unlock mutex
         ApplicationController.closeConnectionSpeedTest();
     });
 }
@@ -333,9 +371,9 @@ void Ui_MainWindow::setupHardware() {
     massAvailableMemory->setText(QString::number(ApplicationController.getVolumeStorageFreeMemory()) +" GB");
     massTotalMemory->setText(QString::number(ApplicationController.getVolumeStorageTotalMemory()) + " GB");
     massfileFormat->setText(QString::fromStdString(ApplicationController.getVolumeStorageFormatDescription()));
-//    batteryCycleCount->setText(QString::number(ApplicationController.getCycleCount()));
+    batteryCycleCount->setText(QString::number(ApplicationController.getCycleCount()));
 //    batteryAmperage->setText(QString::number(ApplicationController.getBatteryAmperage()) + " mA");
-//    displayBatteryCapacity();
+    displayBatteryCapacity();
 }
 
 void Ui_MainWindow::displayBatteryVoltage() {
@@ -346,11 +384,12 @@ void Ui_MainWindow::displayBatteryVoltage() {
     }," V", 4);
 }
 
-void Ui_MainWindow::displayTotalAmperage() {
-//    std::array<QLabel*, 1> x {batteryAmperage};
-//    displayValues<QLabel*, float, 1>(x,[&] {
-//        return ApplicationController.getBatteryAmperage();
-//    })
+void Ui_MainWindow::displayBatteryTotalAmperage() {
+    std::array<QLabel*, 1> amperageLabel{batteryAmperage};
+    displayValues<QLabel*, float, 1>(amperageLabel,[=] {
+        return std::array<float,1>{ApplicationController.getBatteryAmperage()};
+    }," mA",4);
+
 }
 
 void Ui_MainWindow::displayBatteryCapacity() {
@@ -366,6 +405,7 @@ void Ui_MainWindow::displayAllTemperatures() {
     std::array<QTableWidgetItem*, 3>  batteryVoltageLabels = (getLabels<3>(10, 12));
     std::array<QTableWidgetItem*, 3>  batteryCapacityLabels = (getLabels<3>(13, 15));
     std::array<QTableWidgetItem*, 4>  gpuTempLabels = (getLabels<4>(17, 20));
+
 
     threadPool.push([=]{
         displayValues<QTableWidgetItem*, float,3>(batteryVoltageLabels, [&] {
@@ -428,4 +468,5 @@ void Ui_MainWindow::on_fanRightSetMaxSpeedButton_clicked()
 {
 
 }
+
 
