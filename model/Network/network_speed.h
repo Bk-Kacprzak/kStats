@@ -14,9 +14,9 @@
 #include <string>
 
 
-#define URL_LENGTH_MAX       255
+#define URL_LENGTH_MAX       255*2
 #define THREAD_NUM_MAX       10
-#define UPLOAD_EXT_LENGTH_MAX 5
+#define UPLOAD_EXT_LENGTH_MAX 5*2
 #define SPEEDTEST_TIME_MAX   10
 #define CUNTRY_NAME_MAX      64
 #define UPLOAD_EXTENSION_TAG "upload_extension"
@@ -24,6 +24,7 @@
 
 #define INIT_DOWNLOAD_FILE_RESOLUTION 750
 #define FILE_350_SIZE                 245388
+
 
 #define MAX_ISP_NAME         255
 #define MAX_IPADDRESS_STRLEN 48
@@ -768,7 +769,7 @@ namespace knet {
             printf("Bestest server: %s(%0.2fKM)\n", server_url, servers[sindex].distance);
             return server_url;
         }
-        static double retrieveLatency() {
+        static double readLatency() {
             latency = test_latency(server_url);
             if (latency == DBL_MAX)
                 exit(-1);
@@ -776,7 +777,7 @@ namespace knet {
             return latency;
         }
 
-        static double retreiveDownloadSpeed() {
+        static double readDownloadSpeed() {
             speed = test_download(server_url, num_thread, dsize, 0);
             dsize = get_download_filename(speed, num_thread);
             fprintf(stderr, "Testing download speed");
@@ -788,7 +789,7 @@ namespace knet {
             return download_speed;
         }
 
-        static double retreiveUploadSpeed() {
+        static double readUploadSpeed() {
             if (ext[0] == 0 && get_upload_extension(server_url, ext) != OK)
                 exit(-1);
 
