@@ -8,7 +8,6 @@
 #include <atomic>
 #include <thread>
 
-
 namespace knet {
     class threadPool {
     private:
@@ -18,7 +17,7 @@ namespace knet {
         std::condition_variable dataCondition;
         std::atomic<bool> acceptFunctions;
         std::vector<std::thread> threads;
-        
+        std::atomic<bool> exitThreads;
     public:
         threadPool();
         ~threadPool();
@@ -32,5 +31,7 @@ namespace knet {
         void inifiniteLoop();
     };
 }
+
+extern knet::threadPool threadPool;
 
 #endif //CPUSTATS_THREADPOOL_H
