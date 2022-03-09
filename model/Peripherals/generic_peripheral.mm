@@ -29,19 +29,19 @@ const std::string& GenericPeripheral::name() const {
 const std::string GenericPeripheral::deviceType() const {
     switch(_deviceType) {
         case KEYBOARD:
-            return "Keyboard";
+            return "keyboard";
             break;
         case HEADPHONES:
-            return "Headphones";
+            return "headphones";
             break;
         case MOUSE:
-            return "Mouse";
+            return "mouse";
             break;
         case SCREEN:
-            return "Monitor";
+            return "monitor";
             break;
         default:
-            return "Unknown device type";
+            return "unknown device type";
             break;
     }
 }
