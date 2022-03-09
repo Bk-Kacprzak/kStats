@@ -11,8 +11,8 @@ void BatteryModel::readBatteryKey(KEYTYPE keytype, const int &index) {
             break;
         }
         case CELL_CAPACITY: {
-            result = readKey(batteryCapacityKeys[index]);
             std::lock_guard<std::mutex> lock(batteryCapacity.mtx);
+            result = readKey(batteryCapacityKeys[index]);
             batteryCapacity.value[index] = result.i;
             cv.notify_one();
             break;
@@ -32,8 +32,8 @@ void BatteryModel::readBatteryKey(KEYTYPE keytype, const int &index) {
             break;
         }
         case CYCLE_COUNT: {
-            result = readKey(cycleCountKey);
             std::lock_guard<std::mutex> lock(cycleCount.mtx);
+            result = readKey(cycleCountKey);
             cycleCount.value = result.i;
             cv.notify_one();
             break;
@@ -54,16 +54,12 @@ void BatteryModel::readEachBatteryVoltage() {
 
 void BatteryModel::readEachBatteryCapacity() {
     for(int i = 0; i<batteryNum; i++){
-        threadPool.push([=] {
             readBatteryKey(KEYTYPE::CELL_CAPACITY, i);
-        });
     }
 }
 
 void BatteryModel::readCycleCount() {
-    threadPool.push([=] {
         readBatteryKey(KEYTYPE::CYCLE_COUNT);
-    });
 }
 
 void BatteryModel::readTotalVoltage() {
@@ -86,7 +82,6 @@ const uint &BatteryModel::CycleCount() {
     cv.wait(lock,[=] {
         return cycleCount.value!=0;
     });
-
     return cycleCount.value;
 }
 
@@ -109,15 +104,10 @@ const float &BatteryModel::TotalVoltage() {
 }
 
 const std::array<int, batteryNum> &BatteryModel::BatteryCapacity() {
-    for(int i = 0; i<batteryNum; i++){
-        threadPool.push([=] {
-            readBatteryKey(KEYTYPE::CELL_CAPACITY, i);
-        });
-    }
+//Z
 
     std::unique_lock<std::mutex> lock(batteryCapacity.mtx);
     bool isFinished;
-
     cv.wait(lock,[&] {
         isFinished = true;
         for(const auto& value : batteryCapacity.value)
