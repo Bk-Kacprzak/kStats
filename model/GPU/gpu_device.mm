@@ -7,7 +7,6 @@
 
 GPU::GPU() {
     getModelName();
-//    retrieveAllTemperatureValues();
 }
 
 void GPU::readTemperature(const int &index) {
@@ -47,7 +46,6 @@ const std::vector<std::string> &GPU::ModelName() {
 
 const std::array<float, GPU_ALL_TEMP> &GPU::Temperatures() {
     for(int i = 0; i < GPU_TEMP_COUNT; i++) {
-
         threadPool.push([=] () {
             readTemperature(i);
         });
