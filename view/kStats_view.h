@@ -47,13 +47,12 @@ private:
     void setupHardware();
     void setupGPU();
     void setupPeripherals();
-
-    void addLabelAndPicture(const std::vector<std::string>& dataName,
+    void addLabelAndPicture(const std::vector<std::string>& readDeviceNames,
                             const std::vector<QLabel*>& icons,
                             const std::vector<QLabel*>& labels,
                             const std::vector<QString>& deviceIconPath,
-                            const std::vector<std::string>& deviceName,
-                            const std::vector<std::string>& dataType);
+                            const std::vector<std::string>& deviceTypes,
+                            const std::vector<std::string>& dataTypes);
     //loop functions
     template<typename containerType, typename inputType, size_t S>
     void displayValues(const std::array<containerType ,S> &,
@@ -67,6 +66,7 @@ private:
                        const int &,
                        QTableWidget* tableWidget);
 
+    void displayBatteryTotalAmperage();
     void displayCPUTemperature();
     void displayFanSpeed();
     void displayBatteryVoltage();
@@ -1413,9 +1413,7 @@ public:
         peripheralIcon_1->setObjectName(QString::fromUtf8("peripheralIcon_1"));
         peripheralIcon_1->setMinimumSize(QSize(45, 45));
         peripheralIcon_1->setMaximumSize(QSize(60, 60));
-        peripheralIcon_1->setStyleSheet(QString::fromUtf8("background:none;\n "
-                                                          "image: url(:/images/mouse.svg);\n "
-                                                          ""));
+        peripheralIcon_1->setStyleSheet(QString::fromUtf8("background:none;\n "));
         peripheralIcon_1->setAlignment(Qt::AlignHCenter|Qt::AlignTop);
 
         peripheral_1->addWidget(peripheralIcon_1, 0, Qt::AlignHCenter|Qt::AlignVCenter);
@@ -1440,9 +1438,7 @@ public:
         peripheralIcon_2->setObjectName(QString::fromUtf8("peripheralIcon_2"));
         peripheralIcon_2->setMinimumSize(QSize(45, 45));
         peripheralIcon_2->setMaximumSize(QSize(60, 60));
-        peripheralIcon_2->setStyleSheet(QString::fromUtf8("background:none;\n "
-                                                          "image: url(:/images/monitor.svg);"));
-
+        peripheralIcon_2->setStyleSheet(QString::fromUtf8("background:none;\n "));
         peripheral_2->addWidget(peripheralIcon_2, 0, Qt::AlignHCenter|Qt::AlignVCenter);
 
         peripheralName_2 = new QLabel(peripheralsContainer);
@@ -1465,8 +1461,7 @@ public:
         peripheralIcon_3->setObjectName(QString::fromUtf8("peripheralIcon_3"));
         peripheralIcon_3->setMinimumSize(QSize(45, 45));
         peripheralIcon_3->setMaximumSize(QSize(60, 60));
-        peripheralIcon_3->setStyleSheet(QString::fromUtf8("background:none;\n "
-                                                          "image: url(:/images/keyboard.svg);"));
+        peripheralIcon_3->setStyleSheet(QString::fromUtf8("background:none;\n"));
 
         peripheral_3->addWidget(peripheralIcon_3, 0, Qt::AlignHCenter|Qt::AlignVCenter);
 
@@ -3596,8 +3591,8 @@ public:
         horizontalLayout_37->setObjectName(QString::fromUtf8("horizontalLayout_37"));
         downloadSpeedContainer = new QFrame(fansPageContainer_2);
         downloadSpeedContainer->setObjectName(QString::fromUtf8("downloadSpeedContainer"));
-        downloadSpeedContainer->setMinimumSize(QSize(220, 250));
-        downloadSpeedContainer->setMaximumSize(QSize(220, 400));
+        downloadSpeedContainer->setMinimumSize(QSize(235, 250));
+        downloadSpeedContainer->setMaximumSize(QSize(235, 400));
         downloadSpeedContainer->setStyleSheet(QString::fromUtf8("background: none;\n "
                                                                 "border:none;"));
         downloadSpeedContainer->setFrameShape(QFrame::NoFrame);
@@ -3630,10 +3625,8 @@ public:
         circuralProgressDownloadSpeed->setMaximumSize(QSize(200, 200));
         circuralProgressDownloadSpeed->setStyleSheet(QString::fromUtf8("QFrame { \n "
                                                             "	border-radius: 100px;\n "
-                                                            "	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:-135, stop:0.749 rgba(255, 255, 255, 0), stop:1 #4798ff);\n "
+                                                            "	background-color: qconicalgradient(cx:0.5 cy:0.5 angle:225, stop: 0.1 rgba(255, 255, 255, 0), stop:1 #4798ff);\n "
                                                             "}"));
-
-
 
         circuralProgressDownloadSpeed->setFrameShape(QFrame::NoFrame);
         circuralProgressDownloadSpeed->setFrameShadow(QFrame::Plain);
@@ -3719,8 +3712,8 @@ public:
 
         UploadSpeedContainer = new QFrame(fansPageContainer_2);
         UploadSpeedContainer->setObjectName(QString::fromUtf8("UploadSpeedContainer"));
-        UploadSpeedContainer->setMinimumSize(QSize(220, 250));
-        UploadSpeedContainer->setMaximumSize(QSize(220, 400));
+        UploadSpeedContainer->setMinimumSize(QSize(235, 250));
+        UploadSpeedContainer->setMaximumSize(QSize(235, 400));
         UploadSpeedContainer->setStyleSheet(QString::fromUtf8("background: none;\n "
                                                               "border:none;"));
         UploadSpeedContainer->setFrameShape(QFrame::NoFrame);
@@ -3753,8 +3746,9 @@ public:
         circuralProgressUploadSpeed->setMaximumSize(QSize(200, 200));
         circuralProgressUploadSpeed->setStyleSheet(QString::fromUtf8("QFrame { \n "
                                                              "	border-radius: 100px;\n "
-                                                             "	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:-135, stop:0.749 rgba(255, 255, 255, 0), stop:0.750 #4798ff);\n "
+                                                             "	background-color: qconicalgradient(cx:0.5 cy:0.5 angle:225, stop: 0.1 rgba(255, 255, 255, 0), stop:1 #4798ff);\n "
                                                              "}"));
+//        qconicalgradient(cx:0.5, cy:0.5, angle:-135, stop:0.749 rgba(255, 255, 255, 0), stop:1 #4798ff)
         circuralProgressUploadSpeed->setFrameShape(QFrame::NoFrame);
         circuralProgressUploadSpeed->setFrameShadow(QFrame::Plain);
         circuralProgressUploadSpeed->setLineWidth(0);
@@ -5061,9 +5055,9 @@ public:
 class kStatsView: public Ui_MainWindow {
 public:
     kStatsView(QMainWindow * parent = nullptr);
-
 private:
     QMainWindow *ui;
+    void closeEvent(QCloseEvent *closeEvent);
 };
 
 QT_END_NAMESPACE
