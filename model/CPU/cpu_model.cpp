@@ -1,8 +1,6 @@
 #include "cpu_model.h"
-#include "../Utils/utils.h"
 #include <thread>
 #include <mutex>
-
 #include <vector>
 
 CPU::CPU() : physicalCoreCount(0), cacheSize(0), byteOrder(-1), architecture(-1) {
