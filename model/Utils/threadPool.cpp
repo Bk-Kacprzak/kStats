@@ -5,7 +5,7 @@
 #include "threadPool.h"
 #include <iostream>
 #include "utils.h"
-knet::threadPool::threadPool() : numOfThreads(std::thread::hardware_concurrency()), functionQueue(), mutexLock(), dataCondition(), acceptFunctions() {
+knet::threadPool::threadPool() : numOfThreads(std::thread::hardware_concurrency()), functionQueue(), mutexLock(), dataCondition(), acceptFunctions(), exitThreads(false) {
     for(int i = 0; i<numOfThreads; i++)
         threads.push_back(std::move(std::thread(&threadPool::inifiniteLoop, this)));
 }
@@ -13,7 +13,7 @@ knet::threadPool::threadPool() : numOfThreads(std::thread::hardware_concurrency(
 knet::threadPool::~threadPool() {
     for(auto& thread : threads) {
         if (thread.joinable())
-            thread.join();
+            thread.detach();
     }
 }
 
@@ -28,18 +28,20 @@ void knet::threadPool::push(std::function<void()> func) {
 void knet::threadPool::exit() {
     std::unique_lock<std::mutex> lock(mutexLock);
     acceptFunctions = false;
+    while(!functionQueue.empty())
+        functionQueue.pop();
     lock.unlock();
-    dataCondition.notify_all();
     //notify all waiting threads
+//    dataCondition.notify_all();
 }
 
 void knet::threadPool::inifiniteLoop() {
     std::function<void()> func;
-    while(true) {
+    while(!exitThreads) {
         {
             std::unique_lock<std::mutex> lock(mutexLock);
             dataCondition.wait(lock, [this]() {
-                return !functionQueue.empty() || acceptFunctions;
+                return !functionQueue.empty() || acceptFunctions || exitThreads;
             });
 
             if (functionQueue.empty() && !acceptFunctions)
@@ -49,6 +51,7 @@ void knet::threadPool::inifiniteLoop() {
             functionQueue.pop();
             //release the lock
         }
+
         func();
     }
 }
