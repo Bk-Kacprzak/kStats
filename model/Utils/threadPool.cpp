@@ -5,6 +5,10 @@
 #include "threadPool.h"
 #include <iostream>
 #include "utils.h"
+
+knet::threadPool threadPool;
+
+
 knet::threadPool::threadPool() : numOfThreads(std::thread::hardware_concurrency()), functionQueue(), mutexLock(), dataCondition(), acceptFunctions(), exitThreads(false) {
     for(int i = 0; i<numOfThreads; i++)
         threads.push_back(std::move(std::thread(&threadPool::inifiniteLoop, this)));
