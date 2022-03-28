@@ -3,9 +3,9 @@
 #include "../Generic/generic_device.h"
 #include <map>
 
-
 class MainDeviceModel : public GenericDevice{
     std::map<const char *, const char*> currentOs = {
+            {"Monterey 12.2.1", "21D62"},
             {"Monterey 12.2", "21D49"},
             {"Monterey 11.1", "21C52"},
             {"Big Sur 11.6.3" ,"20G415"},
@@ -60,7 +60,7 @@ class MainDeviceModel : public GenericDevice{
 
 public:
     MainDeviceModel();
-    void retrieveDeviceInformation();
+    void getDeviceInfo();
     const char* DeviceName() const;
     const char* OsVersion() const;
 };

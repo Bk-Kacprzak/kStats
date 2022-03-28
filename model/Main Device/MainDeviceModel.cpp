@@ -5,26 +5,19 @@
 #include "MainDeviceModel.h"
 
 MainDeviceModel::MainDeviceModel() {
-    retrieveDeviceInformation();
+    getDeviceInfo();
 }
 
-void MainDeviceModel::retrieveDeviceInformation() {
-    //OS Version
-//    threadPool.push([&] {
-        sysctlCall(osVersion,"kern.osversion",0);
-        for(const auto& item : currentOs) {
-            if (strcmp(item.second,osVersion.value) == 0) {
-                memcpy(osVersion.value, item.first, strlen(item.first)+1);
-                printf("%s\n", osVersion.value);
-            }
+void MainDeviceModel::getDeviceInfo() {
+//OS Version
+    sysctlCall(osVersion,"kern.osversion",0);
+    for(const auto& item : currentOs) {
+        if (strcmp(item.second,osVersion.value) == 0) {
+            memcpy(osVersion.value, item.first, strlen(item.first)+1);
         }
-//    });
+    }
 
-//    threadPool.push([&] {
-        sysctlCall(deviceName,"hw.model",64);
-    printf("%s\n", deviceName.value);
-
-//    });
+    sysctlCall(deviceName,"hw.model",64);
 }
 
 const char *MainDeviceModel::DeviceName() const {
