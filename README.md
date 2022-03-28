@@ -20,6 +20,3 @@ cmake .. -DCMAKE_PREFIX_PATH=$(brew --prefix qt5)
 make
 
 ```
-
- cmake .. -DCMAKE_PREFIX_PATH=$(brew --prefix qt5)
-
