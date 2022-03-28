@@ -78,17 +78,14 @@ GenericDevice::kernReturnValue GenericDevice::readKey(const char *key) {
             if (strcmp(val.dataType, DATATYPE_FPE2) == 0) {
                 value.i = Converter::fpe2ToInteger(val.bytes);
                 return value;
-            }
-            else if (strcmp(val.dataType, DATATYPE_SP78) == 0) {
+            } else if (strcmp(val.dataType, DATATYPE_SP78) == 0) {
                 value.i = Converter::sp78ToInteger(val.bytes);
                 return value;
-            }
-            else if (strcmp(val.dataType, DATATYPE_FLT) == 0) {
-                value.f = Converter::fltToFloat((unsigned char*) val.bytes);
+            } else if (strcmp(val.dataType, DATATYPE_FLT) == 0) {
+                value.f = Converter::fltToFloat((unsigned char *) val.bytes);
                 return value;
-            }
-            else if(strcmp(val.dataType, DATATYPE_UINT16) == 0) {
-                value.i = Converter::ui16ToInteger((unsigned char *)val.bytes);
+            } else if (strcmp(val.dataType, DATATYPE_UINT16) == 0) {
+                value.i = Converter::ui16ToInteger((unsigned char *) val.bytes);
 
                 return value;
             } else if (strcmp(val.dataType, DATATYPE_SINT16) == 0) {
@@ -97,26 +94,22 @@ GenericDevice::kernReturnValue GenericDevice::readKey(const char *key) {
             } else if (strcmp(val.dataType, DATATYPE_SP96) == 0) {
                 value.f = val.bytes[0] << 8 | val.bytes[1];
                 return value;
-            } else if(strcmp(val.dataType, DATATYPE_UINT32) == 0) {
+            } else if (strcmp(val.dataType, DATATYPE_UINT32) == 0) {
 
                 value.i = Converter::ui32ToInteger(val.bytes);
                 return value;
             } else if (strcmp(val.dataType, DATATYPE_CH8) == 0) {
             } else if (strcmp(val.dataType, DATATYPE_UINT8) == 0) {
-            }else if (strcmp(val.dataType, DATATYPE_HEX) == 0) {
-            }
-            else {
-                const char* error_msg= ("Unknown type: %s\n",val.dataType);
+            } else if (strcmp(val.dataType, DATATYPE_HEX) == 0) {
+            } else {
+                const char *error_msg = ("Unknown type: %s\n", val.dataType);
                 throw std::invalid_argument(error_msg);
             }
-        }
-        else
-        {
-            const char * error_msg = ("Unknown SMC Key: %s\n", val.key);
+        } else {
+            const char *error_msg = ("Unknown SMC Key: %s\n", val.key);
             throw std::invalid_argument(error_msg);
         }
-    } else
-        throw std::runtime_error("SMC Key read failed. kIOReturnSuccess = false\n");
+    }
 }
 
 void GenericDevice::writeKey(const char *key, const SMCBytes_t value) {
@@ -131,6 +124,3 @@ void GenericDevice::writeKey(const char *key, const SMCBytes_t value) {
     if(result != kIOReturnSuccess)
         throw std::runtime_error("writeKey result != kIOReturnSuccess");
 }
-
-
-
