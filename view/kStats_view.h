@@ -1647,39 +1647,39 @@ public:
         horizontalLayout_21->addWidget(cpuAverageTemperatureContainer);
 
         cpuUsageContainer = new QFrame(cpuPage);
-        cpuUsageContainer->setObjectName(QString::fromUtf8("cpuUsageContainer"));
-        cpuUsageContainer->setStyleSheet(QString::fromUtf8("background: none;\n "
-                                                           "border:none;"));
-        cpuUsageContainer->setFrameShape(QFrame::StyledPanel);
-        cpuUsageContainer->setFrameShadow(QFrame::Raised);
+//        cpuUsageContainer->setObjectName(QString::fromUtf8("cpuUsageContainer"));
+//        cpuUsageContainer->setStyleSheet(QString::fromUtf8("background: none;\n "
+//                                                           "border:none;"));
+//        cpuUsageContainer->setFrameShape(QFrame::StyledPanel);
+//        cpuUsageContainer->setFrameShadow(QFrame::Raised);
         verticalLayout_40 = new QVBoxLayout(cpuUsageContainer);
         verticalLayout_40->setObjectName(QString::fromUtf8("verticalLayout_40"));
         chart_container_3 = new QFrame(cpuUsageContainer);
         chart_container_3->setObjectName(QString::fromUtf8("chart_container_3"));
-        chart_container_3->setMaximumSize(QSize(16777215, 114));
-        chart_container_3->setFrameShape(QFrame::NoFrame);
-        chart_container_3->setFrameShadow(QFrame::Plain);
-        chart_container_3->setLineWidth(0);
+//        chart_container_3->setMaximumSize(QSize(16777215, 114));
+//        chart_container_3->setFrameShape(QFrame::NoFrame);
+//        chart_container_3->setFrameShadow(QFrame::Plain);
+//        chart_container_3->setLineWidth(0);
         horizontalLayout_23 = new QHBoxLayout(chart_container_3);
-        horizontalLayout_23->setSpacing(0);
+//        horizontalLayout_23->setSpacing(0);
         horizontalLayout_23->setObjectName(QString::fromUtf8("horizontalLayout_23"));
-        horizontalLayout_23->setContentsMargins(0, 0, 0, 0);
+//        horizontalLayout_23->setContentsMargins(0, 0, 0, 0);
         circularProgressBarBase_5 = new QFrame(chart_container_3);
         circularProgressBarBase_5->setObjectName(QString::fromUtf8("circularProgressBarBase_5"));
-        circularProgressBarBase_5->setMinimumSize(QSize(140, 140));
-        circularProgressBarBase_5->setMaximumSize(QSize(140, 140));
-        circularProgressBarBase_5->setFrameShape(QFrame::NoFrame);
-        circularProgressBarBase_5->setFrameShadow(QFrame::Plain);
+//        circularProgressBarBase_5->setMinimumSize(QSize(140, 140));
+//        circularProgressBarBase_5->setMaximumSize(QSize(140, 140));
+//        circularProgressBarBase_5->setFrameShape(QFrame::NoFrame);
+//        circularProgressBarBase_5->setFrameShadow(QFrame::Plain);
         circularProgressBarBase_5->setLineWidth(0);
         circuralProgressCpuUsage = new QFrame(circularProgressBarBase_5);
-        circuralProgressCpuUsage->setObjectName(QString::fromUtf8("circuralProgressCpuUsage"));
-        circuralProgressCpuUsage->setGeometry(QRect(0, 0, 140, 140));
-        circuralProgressCpuUsage->setMinimumSize(QSize(140, 140));
-        circuralProgressCpuUsage->setMaximumSize(QSize(140, 140));
-        circuralProgressCpuUsage->setStyleSheet(QString::fromUtf8("QFrame { \nborder-radius: 70px;\nbackground-color: qconicalgradient(cx:0.5 cy:0.5 angle:225, stop: 0.1 rgba(255, 255, 255, 0), stop:1 #4798ff);\n}"));
-        circuralProgressCpuUsage->setFrameShape(QFrame::NoFrame);
-        circuralProgressCpuUsage->setFrameShadow(QFrame::Plain);
-        circuralProgressCpuUsage->setLineWidth(0);
+//        circuralProgressCpuUsage->setObjectName(QString::fromUtf8("circuralProgressCpuUsage"));
+//        circuralProgressCpuUsage->setGeometry(QRect(0, 0, 140, 140));
+//        circuralProgressCpuUsage->setMinimumSize(QSize(140, 140));
+//        circuralProgressCpuUsage->setMaximumSize(QSize(140, 140));
+//        circuralProgressCpuUsage->setStyleSheet(QString::fromUtf8("QFrame { \nborder-radius: 70px;\nbackground-color: qconicalgradient(cx:0.5 cy:0.5 angle:225, stop: 0.1 rgba(255, 255, 255, 0), stop:1 #4798ff);\n}"));
+//        circuralProgressCpuUsage->setFrameShape(QFrame::NoFrame);
+//        circuralProgressCpuUsage->setFrameShadow(QFrame::Plain);
+//        circuralProgressCpuUsage->setLineWidth(0);
         circuralBg_7 = new QFrame(circularProgressBarBase_5);
         circuralBg_7->setObjectName(QString::fromUtf8("circuralBg_7"));
         circuralBg_7->setGeometry(QRect(0, 0, 140, 140));
@@ -1696,20 +1696,20 @@ public:
         circuralBg_7->setLineWidth(0);
         circuralContainer_7 = new QFrame(circularProgressBarBase_5);
         circuralContainer_7->setObjectName(QString::fromUtf8("circuralContainer_7"));
-        circuralContainer_7->setGeometry(QRect(5, 5, 130, 130));
-        circuralContainer_7->setMinimumSize(QSize(110, 110));
-        circuralContainer_7->setStyleSheet(QString::fromUtf8("QFrame {\n "
-                                                             " border-radius:65px;\n "
-                                                             "	background: #1a172d;\n "
-                                                             "}\n "
-                                                             "\n "
-                                                             "QFrame:hover {\n "
-                                                             "	background-color: #2b283e;\n "
-                                                             "}\n "
-                                                             ""));
-        circuralContainer_7->setFrameShape(QFrame::NoFrame);
-        circuralContainer_7->setFrameShadow(QFrame::Plain);
-        circuralContainer_7->setLineWidth(0);
+//        circuralContainer_7->setGeometry(QRect(5, 5, 130, 130));
+//        circuralContainer_7->setMinimumSize(QSize(110, 110));
+//        circuralContainer_7->setStyleSheet(QString::fromUtf8("QFrame {\n "
+//                                                             " border-radius:65px;\n "
+//                                                             "	background: #1a172d;\n "
+//                                                             "}\n "
+//                                                             "\n "
+//                                                             "QFrame:hover {\n "
+//                                                             "	background-color: #2b283e;\n "
+//                                                             "}\n "
+//                                                             ""));
+//        circuralContainer_7->setFrameShape(QFrame::NoFrame);
+//        circuralContainer_7->setFrameShadow(QFrame::Plain);
+//        circuralContainer_7->setLineWidth(0);
         verticalLayout_39 = new QVBoxLayout(circuralContainer_7);
         verticalLayout_39->setSpacing(0);
         verticalLayout_39->setObjectName(QString::fromUtf8("verticalLayout_39"));
@@ -1725,7 +1725,7 @@ public:
         verticalLayout_39->addWidget(cpuUsage);
 
         circuralBg_7->raise();
-        circuralProgressCpuUsage->raise();
+//        circuralProgressCpuUsage->raise();
         circuralContainer_7->raise();
 
         horizontalLayout_23->addWidget(circularProgressBarBase_5);
@@ -4856,9 +4856,9 @@ public:
         peripheralIcon_4->setText(QString());
         peripheralName_4->setText(QCoreApplication::translate("kStatsView", " ", nullptr));
         cpuAverageTemperature->setText(QCoreApplication::translate("kStatsView", "35\302\260C", nullptr));
-        label_84->setText(QCoreApplication::translate("kStatsView", "Temperature", nullptr));
-        cpuUsage->setText(QCoreApplication::translate("kStatsView", "35\302\260C", nullptr));
-        label_85->setText(QCoreApplication::translate("kStatsView", "Usage", nullptr));
+        label_84->setText(QCoreApplication::translate("kStatsView", "Average Temperature", nullptr));
+//        cpuUsage->setText(QCoreApplication::translate("kStatsView", "35\302\260C", nullptr));
+        label_85->setText(QCoreApplication::translate("kStatsView", "", nullptr));
         label_76->setText(QCoreApplication::translate("kStatsView", "Cache", nullptr));
         cpuCache->setText(QCoreApplication::translate("kStatsView", "12 MB", nullptr));
         label_70->setText(QCoreApplication::translate("kStatsView", "Clock min", nullptr));
@@ -4911,7 +4911,7 @@ public:
         fanRightSetMaxSpeedButton->setText(QCoreApplication::translate("kStatsView", "Set maximum speed", nullptr));
         label_99->setText(QCoreApplication::translate("kStatsView", "Network", nullptr));
         networkIcon->setText(QString());
-//        ssidName->setText(QCoreApplication::translate("kStatsView", "TP_LINK_BK", nullptr));
+        ssidName->setText(QCoreApplication::translate("kStatsView", "T-mobile Internet", nullptr));
         label_69->setText(QCoreApplication::translate("kStatsView", "IPv4 Address", nullptr));
 //        ipv4Address->setText(QCoreApplication::translate("kStatsView", "172.20.10.2", nullptr));
         label_101->setText(QCoreApplication::translate("kStatsView", "IPv6 Address", nullptr));
